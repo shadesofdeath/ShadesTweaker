@@ -1,0 +1,256 @@
+﻿<ui:UiWindow x:Class="ShadesTweaker.MainWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             MinHeight="550" MaxHeight="550" MaxWidth="1220" MinWidth="1220"
+        ResizeMode="NoResize" FontFamily="Segoe UI"
+        WindowStartupLocation="CenterScreen"
+        ExtendsContentIntoTitleBar="True"
+        WindowBackdropType="Auto"
+        WindowCornerPreference="Round"
+        WindowStyle="None">
+    <Grid>
+        <ui:TitleBar ShowClose="True" Title="Shades Tweaker v1.1" ShowMaximize="False" ShowHelp="False" ShowMinimize="True" CanMaximize="False"  VerticalAlignment="Top" Width="1220" />
+        <TabControl x:Name="myTabControl" Margin="0,42,0,0">
+                <!-- Tab 1 -->
+                <TabItem MaxWidth="200" MinWidth="200" FontSize="14">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal"  Margin="55,0,0,0">
+                            <ui:SymbolIcon Symbol="InprivateAccount20" Margin="0,0,5,0"/>
+                            <TextBlock Text="General" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <WrapPanel Margin="10">
+                        <StackPanel MaxWidth="300" MinWidth="300" HorizontalAlignment="Left">
+                        <Label Foreground="#7F8487" Content="System"/>
+                            <ui:ToggleSwitch x:Name="errorReportingToggle" Content="Disable Error Reporting Service" Margin="0,5,0,0" Checked="ErrorReportingToggle_Checked" Unchecked="ErrorReportingToggle_Unchecked"/>
+                            <ui:ToggleSwitch x:Name="modernStandbyToggle" Content="Disable Modern Standby " Margin="0,10,0,0" Checked="modernStandbyToggle_Checked" Unchecked="modernStandbyToggle_Unchecked"/>
+                            <ui:ToggleSwitch x:Name="fastStartupToggle" Content="Disable Fast Startup" Margin="0,10,0,0" Checked="fastStartupToggle_Checked" Unchecked="fastStartupToggle_Unchecked"/>
+                            <ui:ToggleSwitch x:Name="disableMemoryCompressionToggle" Content="Disable Memory Compression" Margin="0,10,0,0" Checked="disableMemoryCompressionToggle_Checked" Unchecked="disableMemoryCompressionToggle_Unhecked"/>
+                            <ui:ToggleSwitch x:Name="compatibilityassistansToggle"  Content="Disable Compatibility Assistant" Margin="0,10,0,0" Checked="compatibilityassistansToggle_Checked" Unchecked="compatibilityassistansToggle_Unchecked"/>
+                            <ui:ToggleSwitch x:Name="printspoolerToggle" Content="Disable Print Workflow Service" Margin="0,10,0,0" Checked="printspoolerToggle_Checked" Unchecked="printspoolerToggle_Unhecked"/>
+                            <ui:ToggleSwitch x:Name="SysMain" Content="Disable SysMain Service" Margin="0,10,0,0" Checked="SysMain_Checked" Unchecked="SysMain_Unchecked"/>
+                        </StackPanel>
+                        <StackPanel Margin="30,0,0,0" MaxWidth="300" MinWidth="300" HorizontalAlignment="Center">
+                        <Label Foreground="#7F8487"  Content="Windows Defender"/>
+                            <ui:ToggleSwitch x:Name="defender" Content="Disable Defender AntiSpyware" Margin="0,5,0,0" Checked="defender_Checked" Unchecked="defender_Unchecked"/>
+                            <ui:ToggleSwitch x:Name="defender_antivirus" Content="Disable Defender Antivirus" Margin="0,10,0,0" Checked="defender_antivirus_Checked" Unchecked="defender_antivirus_Unchecked"/>
+                            <ui:ToggleSwitch x:Name="defender_real" Content="Disable Defender Real Rime Protection" Margin="0,10,0,0" Checked="defender_real_Checked" Unchecked="defender_real_Unchecked"/>
+                            <ui:ToggleSwitch x:Name="smartscreen" Content="Disable Smartscreen" Margin="0,10,0,0" Checked="smartscreen_Checked" Unchecked="smartscreen_Unchecked"/>
+                            <ui:ToggleSwitch x:Name="ASS" Content="Disable Automatic Sample Submission" Margin="0,10,0,0" Checked="ASS_Checked" Unchecked="ASS_Unchecked"/>
+                            <ui:ToggleSwitch x:Name="firewall" Content="Turn Off Microsoft Defender Firewall" Margin="0,10,0,0" Checked="firewall_Checked" Unchecked="firewall_Unhecked"/>
+                        </StackPanel>
+                        <StackPanel Margin="25,0,0,0" MaxWidth="300" MinWidth="300" HorizontalAlignment="Left">
+                        <Label Foreground="#7F8487"  Content="Windows Update"/>
+                            <ui:ToggleSwitch x:Name="delivery" Content="Disable Delivery Optimization" Margin="0,5,0,0" Checked="delivery_Checked" Unchecked="delivery_Unchecked"/>
+                            <ui:ToggleSwitch x:Name="AutoRestart_Notifications" Content="Disable Auto-restart Notifications" Margin="0,10,0,0" Checked="AutoRestart_Notifications_Checked" Unchecked="AutoRestart_Notifications_Unchecked"/>
+                            <ui:ToggleSwitch x:Name="IncludeDrivers" Content="Disable Include Drivers" Margin="0,10,0,0" Checked="IncludeDrivers_Checked" Unchecked="IncludeDrivers_Unchecked"/>
+                            <ui:ToggleSwitch x:Name="FeatureUpdate" Content= "Disable Feature Update" Margin="0,10,0,0" Checked="FeatureUpdate_Checked" Unchecked="FeatureUpdate_Unchecked"/>
+                            <ui:ToggleSwitch x:Name="blockedge" Content="Block Microsoft Edge Automatic Install" Margin="0,10,0,0" Checked="blockedge_Checked" Unchecked="blockedge_Unchecked"/>
+                        </StackPanel>
+                        <StackPanel Margin="0,20,0,0" MaxWidth="300" MinWidth="300" HorizontalAlignment="Left">
+                        <Label Foreground="#7F8487"  Content="Disk Drives"/>
+                            <ui:ToggleSwitch x:Name="storagesenseToggle" Content="Disable Storage Sense" Margin="0,5,0,0" Checked="storagesenseToggle_Checked" Unchecked="storagesenseToggle_Unchecked"/>
+                            <ui:ToggleSwitch x:Name="restore" Content="Disable System Restore" Margin="0,10,0,0" Checked="restore_Checked" Unchecked="restore_Unchecked"/>
+                            <ui:ToggleSwitch x:Name="superfetch" Content="Disable Superfetch" Margin="0,10,0,0" Checked="superfetch_Checked" Unchecked="superfetch_Unchecked"/>
+                            <ui:ToggleSwitch x:Name="hibernation" Content="Disable Hibernation" Margin="0,10,0,0" Checked="hibernation_Checked" Unchecked="hibernation_Unchecked"/>
+                            <ui:ToggleSwitch x:Name="ntfstime" Content="Disable NTFS Last Access Time Stamp" Margin="0,10,0,0" Checked="ntfstime_Checked" Unchecked="ntfstime_Unchecked"/>
+                        </StackPanel>
+                        <StackPanel  Margin="30,20,0,0" MaxWidth="300" MinWidth="300" HorizontalAlignment="Left">
+                        <Label Foreground="#7F8487"  Content="Context Menu"/>
+                            <ui:ToggleSwitch x:Name="bat" Content="Add Windows Batch File" Margin="0,5,0,0" Checked="bat_Checked" Unchecked="bat_Unchecked"/>
+                            <ui:ToggleSwitch x:Name="copypath" Content="Add Copy as path" Margin="0,10,0,0" Checked="copypath_Checked" Unchecked="copypath_Unchecked"/>
+                            <ui:ToggleSwitch x:Name="vbs" Content="Add VBScript Script File" Margin="0,10,0,0" Checked="vbs_Checked" Unchecked="vbs_Unchecked"/>
+                            <ui:ToggleSwitch x:Name="nvidia" Content="Remove NVIDIA Control Panel" Margin="0,10,0,0" Checked="nvidia_Checked" Unchecked="nvidia_Unchecked"/>
+                            <ui:ToggleSwitch x:Name="ownership" Content="Add Take Ownership" Margin="0,10,0,0" Checked="ownership_Checked" Unchecked="ownership_Unchecked"/>
+                        </StackPanel>
+                    <StackPanel  Margin="30,20,0,0" MaxWidth="300" MinWidth="300" HorizontalAlignment="Left">
+                        <ui:ToggleSwitch x:Name="ramCleaner" Content="Add Ram Cleaner shortcut" Margin="0,5,0,0" Checked="ramCleaner_Checked" Unchecked="ramCleaner_Unchecked"/>
+                    </StackPanel>
+                </WrapPanel>
+                </TabItem>
+
+                <!-- Tab 2 -->
+                <TabItem Width="200" FontSize="14">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal" Margin="50,0,0,0">
+                            <ui:SymbolIcon Symbol="Broom16" Margin="0,0,5,0" />
+                            <TextBlock Text="Cleaning" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <Grid>
+                        <StackPanel Margin="10,10,0,0" MaxWidth="300" MinWidth="300" HorizontalAlignment="Left">
+                        <CheckBox x:Name="LogsCheckbox" Content="Windows Logs" />
+                        <CheckBox x:Name="tempCheckbox" Content="Temp Files" />
+                        <CheckBox x:Name="WindowsOldCheckbox" Content="Clear previous Windows installations" />
+                        <CheckBox x:Name="erroreportingCheckbox" Content="Error Reporting Files" />
+                        <CheckBox x:Name="programdatacachesCheckbox" Content="ProgramData Cache" />
+                        <CheckBox x:Name="downloadsCheckbox" Content="Downloads Folder" />
+                        <CheckBox x:Name="recyclebinCheckbox" Content="Recycle Bin"/>
+                            <CheckBox x:Name="searchindexCheckbox" Content="Windows Search Index"/>
+                            <CheckBox x:Name="prefetchCheckbox" Content="Prefetch Files "/>
+                            <CheckBox x:Name="fontcacheCheckbox" Content="Windows Font Cache"/>
+                            <CheckBox x:Name="ınstallerCheckbox" Content="Windows Installer Cache"/>
+
+                            <StackPanel Margin="0,15,0,0" >
+                            <Label FontSize="16" x:Name="sizeLabel"  Foreground="#7F8487"  Content="Size : " />
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Margin="10,10,15,10" HorizontalAlignment="Right">
+                            <ui:TextBox x:Name="outputTextBox" FontSize="12" MinHeight="380" MaxHeight="380" MinWidth="700" MaxWidth="700"/>
+                            <ProgressBar  x:Name="progressBar" Margin="0,5,0,0" IsIndeterminate="False" />
+                            <WrapPanel Margin="10,10,15,10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Button Width="100" Margin="-10,0,0,0" Content="Analyze" Click="AnalyzeButton_Click" />
+                                <Button Width="100" Margin="10,0,0,0" Content="Clean" Click="CleanButton_Click" />
+                            </WrapPanel>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+
+                <!-- Tab 3 -->
+                <TabItem MaxWidth="200" MinWidth="200" FontSize="14">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal" Margin="35,0,0,0">
+                            <ui:SymbolIcon Symbol="WindowSettings20" Margin="5,0,0,0" />
+                            <TextBlock Text="Windows 11" Margin="5,0,5,0"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <WrapPanel Margin="10">
+                        <StackPanel MaxWidth="300" MinWidth="300" HorizontalAlignment="Left">
+                        <Label Foreground="#7F8487"  Content="Windows 11"/>
+                        <ui:ToggleSwitch x:Name="enableOldContextMenu" Content="Enable Old Context Menu" Margin="0,5,0,0" Checked="oldcontextmenu_Checked" Unchecked="oldcontextmenu_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableWidgets" Content="Disable Widgets" Margin="0,10,0,0" Checked="widgets_Checked" Unchecked="widgets_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disablePeek" Content="Disable Peek" Margin="0,10,0,0" Checked="peek_Checked" Unchecked="peek_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="removeMeetNowIcon" Content="Remove MeetNow Icon on Taskbar" Margin="0,10,0,0" Checked="teams_Checked" Unchecked="teams_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableBingSearch" Content="Disable Bing Search in Windows Search" Margin="0,10,0,0" ToolTipService.ToolTip="Enable or Disable Search the Web with Bing in Windows Search" Checked="bing_Checked" Unchecked="bing_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="enableDarkMode" Content="Enable Dark Mode" Margin="0,10,0,0" Checked="darkMode_Checked" Unchecked="darkMode_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableTransparency" Content="Disable Transparency Effects" Margin="0,10,0,0" Checked="transparency_Checked" Unchecked="transparency_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="showFileExtensions" Content="Show File Extensions" Margin="0,10,0,0" Checked="showExtensions_Checked" Unchecked="showExtensions_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="increaseThumbnailSize" Content="Increase Taskbar Thumbnail Size" Margin="0,10,0,0" Checked="increaseThumbnailSize_Checked" Unchecked="increaseThumbnailSize_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableLockScreen" Content="Disable Lock Screen" Margin="0,10,0,0" Checked="disableLockScreen_Checked" Unchecked="disableLockScreen_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="adjustMenuDelay" Content="Adjust Menu Show Delay" Margin="0,10,0,0" Checked="adjustMenuDelay_Checked" Unchecked="adjustMenuDelay_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableCortana" Content="Disable Cortana" Margin="0,10,0,0" Checked="disableCortana_Checked" Unchecked="disableCortana_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableAppUpdates" Content="Disable Automatic App Updates" Margin="0,10,0,0" Checked="disableAppUpdates_Checked" Unchecked="disableAppUpdates_Unchecked"/>
+                    </StackPanel>
+                        <!-- Tab 3 content here -->
+                    </WrapPanel>
+                </TabItem>
+
+                <!-- Tab 4 -->
+                <TabItem MaxWidth="200" MinWidth="200" FontSize="14">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                            <ui:SymbolIcon Symbol="Incognito20" Margin="0,0,5,0" />
+                            <TextBlock Text="Privacy and Security" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <WrapPanel Margin="10">
+                        <StackPanel MaxWidth="300" MinWidth="300" Margin="5,0,0,0">
+                        <ui:ToggleSwitch x:Name="disableActivityFeed" Content="Disable Activity Feed" Margin="0,5,0,0" Checked="activityFeed_Checked" Unchecked="activityFeed_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableTelemetry" Content="Disable Telemetry" Margin="0,10,0,0" Checked="telemetry_Checked" Unchecked="telemetry_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableCortana2" Content="Disable Cortana" Margin="0,10,0,0" Checked="cortana_Checked" Unchecked="cortana_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableLocation" Content="Disable Location" Margin="0,10,0,0" Checked="location_Checked" Unchecked="location_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableAdvertisingID" Content="Disable Advertising ID" Margin="0,10,0,0" Checked="advertisingID_Checked" Unchecked="advertisingID_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableBiometric" Content="Disable Biometric" Margin="0,10,0,0" Checked="biometric_Checked" Unchecked="biometric_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableWindowsDefender" Content="Disable Windows Defender" Margin="0,10,0,0" Checked="windowsDefender_Checked" Unchecked="windowsDefender_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableOneDrive" Content="Disable OneDrive" Margin="0,10,0,0" Checked="oneDrive_Checked" Unchecked="oneDrive_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableFeedbackHub" Content="Disable Feedback Hub" Margin="0,10,0,0" Checked="feedbackHub_Checked" Unchecked="feedbackHub_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableWiFiSense" Content="Disable WiFi Sense" Margin="0,10,0,0" Checked="wifiSense_Checked" Unchecked="wifiSense_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableDiagnosticData" Content="Disable Diagnostic Data" Margin="0,10,0,0" Checked="diagnosticData_Checked" Unchecked="diagnosticData_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableDiagnosticsTracking" Content="Disable Diagnostics Tracking" Margin="0,10,0,0" Checked="diagnosticsTrackingDisable_Checked" Unchecked="diagnosticsTrackingDisable_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableSmartScreen" Content="Disable SmartScreen" Margin="0,10,0,0" Checked="smartScreen_Checked" Unchecked="smartScreen_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableLocationHistory" Content="Disable Location History" Margin="0,10,0,0" Checked="locationHistory_Checked" Unchecked="locationHistory_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableHandwritingDataSharing" Content="Disable Handwriting Data Sharing" Margin="0,10,0,0" Checked="handwritingDataSharingDisable_Checked" Unchecked="handwritingDataSharingDisable_Unchecked"/>
+                    </StackPanel>
+                        <StackPanel MaxWidth="300" MinWidth="300" Margin="20,0,0,0">
+                        <ui:ToggleSwitch x:Name="disableXboxGameBar" Content="Disable Xbox Game Bar" Margin="0,10,0,0" Checked="xboxGameBar_Checked" Unchecked="xboxGameBar_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disablePasswordRevealButton" Content="Disable Password Reveal Button" Margin="0,10,0,0" Checked="passwordReveal_Checked" Unchecked="passwordReveal_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableLocationSensors" Content="Disable Location Sensors" Margin="0,10,0,0" Checked="locationSensors_Checked" Unchecked="locationSensors_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableWiFiHotspot" Content="Disable WiFi Hotspot" Margin="0,10,0,0" Checked="wifiHotspot_Checked" Unchecked="wifiHotspot_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableMicrosoftStore" Content="Disable Microsoft Store" Margin="0,10,0,0" Checked="microsoftStore_Checked" Unchecked="microsoftStore_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableSpeechRecognition" Content="Disable Speech Recognition" Margin="0,10,0,0" Checked="speechRecognition_Checked" Unchecked="speechRecognition_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableOnlineTips" Content="Disable Online Tips" Margin="0,10,0,0" Checked="onlineTips_Checked" Unchecked="onlineTips_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableAppSuggestions" Content="Disable App Suggestions" Margin="0,10,0,0" Checked="appSuggestions_Checked" Unchecked="appSuggestions_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableUserActivityHistory" Content="Disable User Activity History" Margin="0,10,0,0" Checked="userActivityHistory_Checked" Unchecked="userActivityHistory_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableWiFiDirect" Content="Disable WiFi Direct" Margin="0,10,0,0" Checked="wifiDirect_Checked" Unchecked="wifiDirect_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableApplicationTelemetry" Content="Disable Application Telemetry" Margin="0,10,0,0" Checked="appTelemetry_Checked" Unchecked="appTelemetry_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableWindowsTroubleshooting" Content="Disable Windows Troubleshooting" Margin="0,10,0,0" Checked="troubleshooting_Checked" Unchecked="troubleshooting_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableAutoPlay" Content="Disable AutoPlay" Margin="0,10,0,0" Checked="autoPlay_Checked" Unchecked="autoPlay_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableClipboardHistory" Content="Disable Clipboard History" Margin="0,10,0,0" Checked="clipboardHistory_Checked" Unchecked="clipboardHistory_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableWebSearch" Content="Disable Web Search" Margin="0,10,0,0" Checked="webSearch_Checked" Unchecked="webSearch_Unchecked"/>
+                    </StackPanel>
+                        <StackPanel MaxWidth="330" MinWidth="330">
+                        <ui:ToggleSwitch x:Name="disableWindowsSpotlight" Content="Disable Windows Spotlight" Margin="0,10,0,0" Checked="windowsSpotlight_Checked" Unchecked="windowsSpotlight_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableWindowsInkWorkspace" Content="Disable Windows Ink Workspace" Margin="0,10,0,0" Checked="windowsInkWorkspace_Checked" Unchecked="windowsInkWorkspace_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableEdgeSync" Content="Disable Microsoft Edge Sync" Margin="0,10,0,0" Checked="edgeSync_Checked" Unchecked="edgeSync_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableErrorReporting" Content="Disable Error Reporting" Margin="0,10,0,0" Checked="errorReportingDisable_Checked" Unchecked="errorReportingDisable_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableCloudContentSuggestions" Content="Disable Cloud Content Suggestions" Margin="0,10,0,0" Checked="cloudContentSuggestionsDisable_Checked" Unchecked="cloudContentSuggestionsDisable_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableOnlineTipsAndHelp" Content="Disable Online Tips and Help" Margin="0,10,0,0" Checked="onlineTipsDisable_Checked" Unchecked="onlineTipsDisable_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableMediaDRMInternetAccess" Content="Disable Windows Media DRM Internet Access" Margin="0,10,0,0" Checked="mediaDRMInternetAccessDisable_Checked" Unchecked="mediaDRMInternetAccessDisable_Unchecked"/>
+                    </StackPanel>
+                    </WrapPanel>
+                </TabItem>
+
+            <!-- Tab 6 -->
+            <TabItem MaxWidth="200" MinWidth="200" FontSize="14">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Margin="60,0,0,0">
+                        <ui:SymbolIcon Symbol="Settings16" Margin="0,0,5,0" />
+                        <TextBlock Text="Settings" />
+                    </StackPanel>
+                </TabItem.Header>
+                <WrapPanel Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" TextAlignment="Center" Height="426">
+            <LineBreak/>
+            <Run FontWeight="Bold" Foreground="#E97777" FontSize="28" Text="Preset"/>
+            <LineBreak/>
+            <LineBreak/>
+            <Button Margin="-8,0,0,0" Content="Import" Click="ImportButton_Click"/>
+            <Button Margin="8,0,0,0" Content="Export" Click="ExportButton_Click"/>
+            <LineBreak/>
+            <LineBreak/>
+                    </TextBlock>
+                </WrapPanel>
+            </TabItem>
+            
+            <!-- Tab 5 -->
+            <TabItem MaxWidth="200" MinWidth="200" FontSize="14">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Margin="60,0,0,0">
+                        <ui:SymbolIcon Symbol="Info20" Margin="0,0,5,0" />
+                        <TextBlock Text="About" />
+                    </StackPanel>
+                </TabItem.Header>
+                <WrapPanel Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" TextAlignment="Center" Height="426">
+                <LineBreak/>
+                <Run FontWeight="Bold" Foreground="#E97777" FontSize="28" Text="About"/>
+                <LineBreak/>
+                <Run FontSize="18" Text="ShadesTweaker is a free, open-source application."/>
+                <LineBreak/>
+                <Run FontSize="18" Text="It comes with a modern UI/UX design and offers numerous fine-tuning options,"/>
+                <LineBreak/>
+                <Run FontSize="18" Text="never causing any harm to Windows."/>
+                <LineBreak/>
+                <LineBreak/>
+                <Run FontWeight="Bold" FontSize="28" Foreground="#E97777" Text="Developer"/> 
+                <LineBreak/>
+                <Run FontSize="18" Text="ShadesOfDeath"/> 
+                <LineBreak/>
+
+                <ui:Anchor Margin="0,10,0,0" Content="Github" NavigateUri="https://github.com/shadesofdeath"/>
+                <LineBreak/>
+                <WrapPanel Margin="0,25,0,0">
+                    <TextBlock>
+                        <Run FontWeight="Bold" Foreground="#E97777" FontSize="28" Text="Donate"/>
+                    <LineBreak/>
+                    <ui:Anchor Margin="0,10,0,0" Content="BuyMeCoffee" NavigateUri="https://www.buymeacoffee.com/berkayay"/>
+                    <ui:Anchor Margin="0,10,0,0" Content="Source Code" NavigateUri="https://github.com/shadesofdeath"/>
+                    </TextBlock>
+                </WrapPanel>
+                    </TextBlock>
+                </WrapPanel>
+            </TabItem>
+        </TabControl>
+        </Grid>
+</ui:UiWindow>
