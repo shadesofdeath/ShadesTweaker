@@ -1,0 +1,207 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="tabItemTextGeneral">Genel</system:String>
+    <system:String x:Key="system:StringKey">Genel</system:String>
+    <system:String x:Key="errorReportingToggle">Hata Raporlama Hizmetini Kapat</system:String>
+    <system:String x:Key="modernStandbyToggle">Hazırda Bekletmeyi Kapat</system:String>
+    <system:String x:Key="fastStartupToggle">Hızlı Başlatmayı Kapat</system:String>
+    <system:String x:Key="disableMemoryCompressionToggle">Bellek Sıkıştırmayı Kapat</system:String>
+    <system:String x:Key="compatibilityAssistantToggle">Uyumluluk Yardımcısını Kapat</system:String>
+    <system:String x:Key="printSpoolerToggle">Yazdırma Kuyruk Hizmetini Kapat</system:String>
+    <system:String x:Key="sysMainToggle">SysMain Hizmetini Kapat</system:String>
+
+
+    <system:String x:Key="windowsDefenderLabel">Windows Defender</system:String>
+    <system:String x:Key="disableDefenderAntiSpywareToggle">Defender AntiSpyware'ı Kapat</system:String>
+    <system:String x:Key="disableDefenderAntivirusToggle">Defender Antivirüs'ü Kapat</system:String>
+    <system:String x:Key="disableDefenderRealTimeToggle">Defender Gerçek Zamanlı Koruma'yı Kapat</system:String>
+    <system:String x:Key="disableSmartScreenToggle">Akıllı Filtrelemeyi Kapat</system:String>
+    <system:String x:Key="turnOffFirewallToggle">Defender Güvenlik Duvarını Kapat</system:String>
+
+    <system:String x:Key="windowsUpdateLabel">Windows Update</system:String>
+    <system:String x:Key="disableDeliveryOptimizationToggle">Teslimat Optimizasyonunu Kapat</system:String>
+    <system:String x:Key="disableAutoRestartNotificationsToggle">Otomatik Yeniden Başlatma Bildirimlerini Kapat</system:String>
+    <system:String x:Key="disableIncludeDriversToggle">Sürücüleri Dahil Etme'yi Kapat</system:String>
+    <system:String x:Key="disableFeatureUpdateToggle">Özellik Güncellemelerini Kapat</system:String>
+    <system:String x:Key="blockMicrosoftEdgeInstallToggle">Edge Otomatik Kurulumunu Engelle</system:String>
+
+    <system:String x:Key="diskDrivesLabel">Disk Sürücüleri</system:String>
+    <system:String x:Key="disableStorageSenseToggle">Depolama Duyarlılığını Kapat</system:String>
+    <system:String x:Key="disableSystemRestoreToggle">Sistem Geri Yükleme'yi Kapat</system:String>
+    <system:String x:Key="disableSuperfetchToggle">Superfetch'i Kapat</system:String>
+    <system:String x:Key="disableHibernationToggle">Hibernation'ı Kapat</system:String>
+    <system:String x:Key="disableNTFSLastAccessTimeToggle">NTFS Son Erişim Zaman Damgasını Kapat</system:String>
+
+    <system:String x:Key="contextMenuLabel">İçerik Menüsü</system:String>
+    <system:String x:Key="addWindowsBatchFileToggle">Windows Batch Dosyası Ekle</system:String>
+    <system:String x:Key="addCopyAsPathToggle">Kopyala Yolu Olarak Ekle</system:String>
+    <system:String x:Key="addVBScriptScriptFileToggle">VBScript Betik Dosyası Ekle</system:String>
+    <system:String x:Key="removeNVIDIAControlPanelToggle">NVIDIA Kontrol Panelini Kaldır</system:String>
+    <system:String x:Key="addTakeOwnershipToggle">Sahiplenmeyi Ekle</system:String>
+    <system:String x:Key="addramCleanerToggle">Ram Temizleme kısayolunu ekle</system:String>
+
+    <system:String x:Key="tabItemTextCleaning">Temizlik</system:String>
+    <system:String x:Key="windowsLogsCheckbox">Windows Günlükleri</system:String>
+    <system:String x:Key="tempFilesCheckbox">Geçici Dosyalar</system:String>
+    <system:String x:Key="clearPreviousWindowsInstallationsCheckbox">Önceki Windows Kurulumlarını Temizle</system:String>
+    <system:String x:Key="errorReportingFilesCheckbox">Hata Raporlama Dosyaları</system:String>
+    <system:String x:Key="programDataCacheCheckbox">ProgramData Önbelleği</system:String>
+    <system:String x:Key="downloadsFolderCheckbox">İndirilenler Klasörü</system:String>
+    <system:String x:Key="recycleBinCheckbox">Geri Dönüşüm Kutusu</system:String>
+    <system:String x:Key="windowsSearchIndexCheckbox">Windows Arama Dizini</system:String>
+    <system:String x:Key="prefetchFilesCheckbox">Ön Yükleme Dosyaları</system:String>
+    <system:String x:Key="windowsFontCacheCheckbox">Windows Yazı Tipi Önbelleği</system:String>
+    <system:String x:Key="windowsInstallerCacheCheckbox">Windows Yükleyici Önbelleği</system:String>
+
+    <system:String x:Key="sizeLabelContent">Boyut:</system:String>
+    <system:String x:Key="analyzeButtonContent">Analiz Et</system:String>
+    <system:String x:Key="cleanButtonContent">Temizle</system:String>
+
+    <system:String x:Key="enableOldContextMenuToggle">Eski İçerik Menüsünü Etkinleştir</system:String>
+    <system:String x:Key="disableWidgetsToggle">Araç Kutularını Kapat</system:String>
+    <system:String x:Key="disablePeekToggle">Peek'i Kapat</system:String>
+    <system:String x:Key="removeMeetNowIconToggle">Görev Çubuğundaki MeetNow Simgesini Kaldır</system:String>
+    <system:String x:Key="disableBingSearchToggle">Windows Aramasında Bing Aramasını Kapat</system:String>
+    <system:String x:Key="disableBingSearchToolTip">Windows Aramasında Web'de Bing ile Arama yapmayı Etkinleştir veya Kapat</system:String>
+    <system:String x:Key="enableDarkModeToggle">Koyu Modu Etkinleştir</system:String>
+    <system:String x:Key="disableTransparencyToggle">Şeffaflık Efektlerini Kapat</system:String>
+    <system:String x:Key="showFileExtensionsToggle">Dosya Uzantılarını Göster</system:String>
+    <system:String x:Key="increaseThumbnailSizeToggle">Görev Çubuğu Önizleme Boyutunu Artır</system:String>
+    <system:String x:Key="disableLockScreenToggle">Kilitleme Ekranını Kapat</system:String>
+    <system:String x:Key="adjustMenuDelayToggle">Menü Gösterme Gecikmesini Ayarla</system:String>
+    <system:String x:Key="disableCortanaToggle">Cortana'yı Kapat</system:String>
+    <system:String x:Key="disableAppUpdatesToggle">Otomatik Uygulama Güncellemelerini Kapat</system:String>
+    <system:String x:Key="disableSearchIndex">Arama Dizine Eklemeyi Kapat</system:String>
+
+    <system:String x:Key="windowsServicesHeaderText"> Windows Hizmetleri</system:String>
+    <system:String x:Key="windowsServicesLabel">Windows Hizmetleri</system:String>
+    <system:String x:Key="AVCTPServiceToggle">AVCTP Hizmetini Kapat</system:String>
+    <system:String x:Key="AVCTPServiceToolTip">Bluetooth Ses Cihazı veya Kablosuz Kulaklık kullanmıyorsanız.</system:String>
+    <system:String x:Key="BitLockerDriveEncryptionServiceToggle">BitLocker Sürücü Şifreleme Hizmetini Kapat</system:String>
+    <system:String x:Key="BitLockerDriveEncryptionServiceToolTip">BitLocker depolama şifrelemesi kullanmıyorsanız.</system:String>
+    <system:String x:Key="BluetoothSupportServiceToggle">Bluetooth Desteği Hizmetini Kapat</system:String>
+    <system:String x:Key="BluetoothSupportServiceToolTip">Hiçbir Bluetooth cihazı kullanmıyorsanız.</system:String>
+    <system:String x:Key="ConnectedUserExperiencesTelemetryToggle">Bağlı Kullanıcı Deneyimleri ve Telemetriyi Kapat</system:String>
+    <system:String x:Key="ConnectedUserExperiencesTelemetryToolTip">Geribildirim, Telemetri ve Veri Toplama işlevini Kapatır.</system:String>
+    <system:String x:Key="DiagnosticTrackingServiceToggle">Teşhis Takip Hizmetini Kapat</system:String>
+    <system:String x:Key="DiagnosticTrackingServiceToolTip">Telemetri ve Veri Toplama işlevini kapatır.</system:String>
+    <system:String x:Key="DownloadedMapsManagerToggle">İndirilen Harita Yöneticisini Kapat</system:String>
+    <system:String x:Key="DownloadedMapsManagerToolTip">Eğer Bing Haritalar uygulamasını kullanmıyorsanız.</system:String>
+    <system:String x:Key="FileHistoryServiceToggle">Dosya Geçmişi Hizmetini Kapat</system:String>
+    <system:String x:Key="FileHistoryServiceToolTip">Windows Yedekleme veya Sistem Geri Yükleme işlevini kullanmayacaksanız.</system:String>
+    <system:String x:Key="IPHelperToggle">IP Yardımcısı Hizmetini Kapat</system:String>
+    <system:String x:Key="IPHelperToolTip">IPv6 bağlantısı kullanmıyorsanız.</system:String>
+    <system:String x:Key="WindowsUpdateMedicServiceToggle">Windows Güncelleme Tıbbi Hizmetini kapat</system:String>
+    <system:String x:Key="WindowsUpdateMedicServiceToolTip">Windows Güncelleme hizmetini etkileyen sorunları çözer.</system:String>
+    <system:String x:Key="WindowsBiometricServiceToggle">Windows Biyometrik Hizmetini kapat</system:String>
+    <system:String x:Key="WindowsBiometricServiceToolTip">Parmak izi ve diğer biyometrik tanıma cihazlarını destekler.</system:String>
+    <system:String x:Key="WindowsTimeServiceToggle">Windows Zaman Hizmetini kapat</system:String>
+    <system:String x:Key="WindowsTimeServiceToolTip">Bilgisayarın saatinin ağ zaman sunucusuyla senkronize edilmesini sağlar.</system:String>
+    <system:String x:Key="WindowsModulesInstallerToggle">Windows Modül Yükleyici kapat</system:String>
+    <system:String x:Key="WindowsModulesInstallerToolTip">Windows güncellemelerinin ve isteğe bağlı bileşenlerin yüklenmesini, değiştirilmesini ve kaldırılmasını sağlar.</system:String>
+    <system:String x:Key="WinRMServerToggle">Windows Uzak Yönetim (WinRM) Hizmeti kapat</system:String>
+    <system:String x:Key="WinRMServerToolTip">Windows bilgisayarlarında uzaktan yönetim ve komut dosyası çalıştırmayı etkinleştirir.</system:String>
+    <system:String x:Key="WindowsInsiderServiceToggle">Windows Insider Kapat</system:String>
+    <system:String x:Key="EventLogServiceToggle">Windows Olay Günlüğü Hizmeti</system:String>
+    <system:String x:Key="EventLogServiceToolTip">Sistem, güvenlik ve uygulama olaylarının günlüğe kaydedilmesini sağlar.</system:String>
+    <system:String x:Key="RemoteDesktopServicesToggle">Uzak Masaüstü Hizmetleri</system:String>
+    <system:String x:Key="RemoteDesktopServicesToolTip">Bilgisayara uzaktan erişime izin verir.</system:String>
+    <system:String x:Key="PrintSpoolerServiceToggle">Yazdırma Kuyruğu Hizmeti</system:String>
+    <system:String x:Key="PrintSpoolerServiceToolTip">Yazdırma işleri ve yazıcı kuyruklarını yönetir.</system:String>
+    <system:String x:Key="SecurityCenterServiceToggle">Güvenlik Merkezi Hizmeti</system:String>
+    <system:String x:Key="SecurityCenterServiceToolTip">Sistem güvenlik ayarlarını ve antivirüs durumunu denetler.</system:String>
+    <system:String x:Key="WindowsErrorReportingServiceToggle">Windows Hata Raporlama Hizmetini kapat</system:String>
+    <system:String x:Key="WindowsErrorReportingServiceToolTip">Hata raporlarını toplar ve Microsoft'a gönderir.</system:String>
+    <system:String x:Key="WMPNetworkSharingServiceToggle">Windows Medya Oynatıcı Ağ Paylaşım Hizmeti</system:String>
+    <system:String x:Key="WMPNetworkSharingServiceToolTip">Windows Medya Oynatıcı kütüphanelerini diğer ağdaki oynatıcılara ve medya cihazlarına paylaşır.</system:String>
+    <system:String x:Key="WebClientServiceToggle">Web İstemci Hizmeti</system:String>
+    <system:String x:Key="WebClientServiceToolTip">Uygulamaların İnternet'teki dosyalara ve kaynaklara erişmesine izin verir.</system:String>
+    <system:String x:Key="SuperfetchServiceToggle">Superfetch Hizmeti</system:String>
+    <system:String x:Key="SuperfetchServiceToolTip">Zamanla sistem performansını korur ve geliştirir.</system:String>
+    <system:String x:Key="RemoteRegistryServiceToggle">Uzak Kayıt Defteri Hizmeti</system:String>
+    <system:String x:Key="RemoteRegistryServiceToolTip">Windows Kayıt Defterine uzaktan erişimi etkinleştirir.</system:String>
+    <system:String x:Key="BITS_ServiceToggle">Arka Plan Zeki Aktarım Hizmeti</system:String>
+    <system:String x:Key="BITS_ServiceToolTip">Makineler arasında boşta ağ bant genişliğini kullanarak dosya aktarımını etkinleştirir.</system:String>
+    <system:String x:Key="DataUsageServiceToggle">Veri Kullanımı Hizmeti</system:String>
+    <system:String x:Key="DataUsageServiceToolTip">Cihazdaki veri kullanımını izler ve yönetir.</system:String>
+    <system:String x:Key="GeolocationServiceToggle">Coğrafi Konum Hizmeti</system:String>
+    <system:String x:Key="GeolocationServiceToolTip">Uygulamalara ve web sitelerine konumunuzu talep etme izni verir.</system:String>
+    <system:String x:Key="CredentialManagerServiceToggle">Kimlik Bilgileri Yöneticisi Hizmeti</system:String>
+    <system:String x:Key="CredentialManagerServiceToolTip">Kullanıcı hesaplarının ve uygulamaların kimlik bilgilerini kaydeder ve yönetir.</system:String>
+    <system:String x:Key="DistributedLinkTrackingClientToggle">Dağıtılmış Bağlantı İzleme İstemcisi</system:String>
+    <system:String x:Key="DistributedLinkTrackingClientToolTip">Dosya bağlantıları taşındığında veya yeniden adlandırıldığında NTFS birimindeki bağlantıları sürdürür.</system:String>
+    <system:String x:Key="SysMainServiceToggle">SysMain Hizmeti</system:String>
+    <system:String x:Key="SysMainServiceToolTip">Zamanla sistem performansını korumak ve geliştirmek için Superfetch'i etkinleştirir.</system:String>
+
+    <system:String x:Key="privacyAndSecuritysHeaderText">Gizlilik ve Güvenlik</system:String>
+    <system:String x:Key="disableActivityFeedToggle">Activity Feed'i Kapat</system:String>
+    <system:String x:Key="disableTelemetryToggle">Telemetriyi Kapat</system:String>
+    <system:String x:Key="disableCortana2Toggle">Cortana'yı Kapat</system:String>
+    <system:String x:Key="disableLocationToggle">Konumu Kapat</system:String>
+    <system:String x:Key="disableAdvertisingIDToggle">Reklam Kimliğini Kapat</system:String>
+    <system:String x:Key="disableBiometricToggle">Biyometriyi Kapat</system:String>
+    <system:String x:Key="disableWindowsDefenderToggle">Windows Defender'ı Kapat</system:String>
+    <system:String x:Key="disableOneDriveToggle">OneDrive'ı Kapat</system:String>
+    <system:String x:Key="disableFeedbackHubToggle">Geri Bildirim Merkezi'ni Kapat</system:String>
+    <system:String x:Key="disableWiFiSenseToggle">WiFi Sense'i Kapat</system:String>
+    <system:String x:Key="disableDiagnosticDataToggle">Tanısal Veriyi Kapat</system:String>
+    <system:String x:Key="disableDiagnosticsTrackingToggle">Tanılama İzlemeyi Kapat</system:String>
+    <system:String x:Key="disableSmartScreen2Toggle">Akıllı Ekranı Kapat</system:String>
+    <system:String x:Key="disableLocationHistoryToggle">Konum Geçmişini Kapat</system:String>
+    <system:String x:Key="disableHandwritingDataSharingToggle">El Yazısı Veri Paylaşımını Kapat</system:String>
+
+    <system:String x:Key="disableXboxGameBarToggle">Xbox Oyun Çubuğunu Kapat</system:String>
+    <system:String x:Key="disablePasswordRevealButtonToggle">Parola Göster Düğmesini Kapat</system:String>
+    <system:String x:Key="disableLocationSensorsToggle">Konum Sensörlerini Kapat</system:String>
+    <system:String x:Key="disableWiFiHotspotToggle">WiFi Hotspot'u Kapat</system:String>
+    <system:String x:Key="lockScreenCameraToggle">Kilit Ekranı Kamerasını Kapat</system:String>
+    <system:String x:Key="lockScreenCameraToolTip">Kilit ekranından kameraya erişimi Kapatır.</system:String>
+    <system:String x:Key="disableSpeechRecognitionToggle">Konuşma Tanıma'yı Kapat</system:String>
+    <system:String x:Key="disableOnlineTipsToggle">Çevrimiçi İpuçlarını Kapat</system:String>
+    <system:String x:Key="disableAppSuggestionsToggle">Uygulama Önerilerini Kapat</system:String>
+    <system:String x:Key="disableUserActivityHistoryToggle">Kullanıcı Etkinlik Geçmişini Kapat</system:String>
+    <system:String x:Key="disableWiFiDirectToggle">WiFi Direct'i Kapat</system:String>
+    <system:String x:Key="disableApplicationTelemetryToggle">Uygulama Telemetrisini Kapat</system:String>
+    <system:String x:Key="disableWindowsTroubleshootingToggle">Windows Sorun Gidermeyi Kapat</system:String>
+    <system:String x:Key="disableAutoPlayToggle">Otomatik Oynatmayı Kapat</system:String>
+    <system:String x:Key="disableClipboardHistoryToggle">Panoya Geçmişi Kapat</system:String>
+    <system:String x:Key="disableWebSearchToggle">Web Aramasını Kapat</system:String>
+
+    <system:String x:Key="disableWindowsSpotlight">Windows Spotlight'ı Kapat</system:String>
+    <system:String x:Key="disableWindowsInkWorkspace">Windows Ink Çalışma Alanını Kapat</system:String>
+    <system:String x:Key="disableEdgeSync">Microsoft Edge Senkronizasyonunu Kapat</system:String>
+    <system:String x:Key="disableErrorReporting">Hata Raporlamayı Kapat</system:String>
+    <system:String x:Key="disableCloudContentSuggestions">Bulut İçerik Önerilerini Kapat</system:String>
+    <system:String x:Key="disableOnlineTipsAndHelp">Çevrimiçi İpuçlarını ve Yardımı Kapat</system:String>
+    <system:String x:Key="disableMediaDRMInternetAccess">Windows Medya DRM İnternet Erişimini Kapat</system:String>
+    <system:String x:Key="cameraAccessToggle">Kamera Erişimini Kapat</system:String>
+    <system:String x:Key="microphoneAccessToggle">Mikrofon Erişimini Kapat</system:String>
+    <system:String x:Key="appNotificationsToggle">Uygulama Bildirimlerini Kapat</system:String>
+    <system:String x:Key="syncWithDevicesToggle">Cihazlarla Senkronizasyonu Kapat</system:String>
+    <system:String x:Key="appAccountInfoAccessToggle">Uygulamaların Hesap Bilgilerine Erişimini Kapat</system:String>
+    <system:String x:Key="cortanaWebSearchToggle">Cortana Web Aramasını Kapat</system:String>
+    <system:String x:Key="autoRunRemovableMediaToggle">Taşınabilir Medya İçin Otomatik Çalıştırmayı Kapat</system:String>
+    <system:String x:Key="gameRecordingToggle">Oyun Kaydını ve Yayınlamayı Kapat</system:String>
+
+    <system:String x:Key="presetText">Ön Ayar</system:String>
+    <system:String x:Key="importText">İçe Aktar</system:String>
+    <system:String x:Key="exportText">Dışa Aktar</system:String>
+    <system:String x:Key="languageText">Dil</system:String>
+
+    <system:String x:Key="aboutText">Hakkında</system:String>
+    <system:String x:Key="aboutHeaderText">Hakkında</system:String>
+    <system:String x:Key="aboutAppDescription1">ShadesTweaker ücretsiz ve açık kaynaklı bir uygulamadır.</system:String>
+    <system:String x:Key="aboutAppDescription2">Modern bir UI/UX tasarımına sahiptir ve birçok ince ayarlama seçeneği sunar,</system:String>
+    <system:String x:Key="aboutAppDescription3">Windows'a herhangi bir zarar vermez.</system:String>
+    <system:String x:Key="developerText">Geliştirici</system:String>
+    <system:String x:Key="developerName">ShadesOfDeath</system:String>
+    <system:String x:Key="githubText">Github</system:String>
+    <system:String x:Key="donateText">Bağış Yap</system:String>
+    <system:String x:Key="buyMeCoffeeText">Bana Kahve Ismarla</system:String>
+    <system:String x:Key="sourceCodeText">Kaynak Kod</system:String>
+
+    <system:String x:Key="settingsText">Ayarlar</system:String>
+
+</ResourceDictionary>

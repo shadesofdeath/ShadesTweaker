@@ -3,6 +3,7 @@ using SophiApp.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -92,7 +93,7 @@ namespace ShadesTweaker
                         }
                     }
 
-                    System.Windows.MessageBox.Show("Toggle switch states have been imported.");
+                    System.Windows.MessageBox.Show("Preset file imported successfully :)");
                 }
             }
             catch (Exception ex)
@@ -114,9 +115,9 @@ namespace ShadesTweaker
 
                     foreach (TabItem tabItem in myTabControl.Items)
                     {
-                        if (tabItem.Content is WrapPanel wrapPanel)
+                        if (tabItem.Content is Panel panel)
                         {
-                            foreach (StackPanel stackPanel in wrapPanel.Children.OfType<StackPanel>())
+                            foreach (StackPanel stackPanel in panel.Children.OfType<StackPanel>())
                             {
                                 foreach (ToggleSwitch toggleSwitch in stackPanel.Children.OfType<ToggleSwitch>())
                                 {
@@ -129,7 +130,7 @@ namespace ShadesTweaker
                     }
 
                     xmlDoc.Save(saveFileDialog.FileName);
-                    System.Windows.MessageBox.Show("Toggle switch states have been exported.");
+                    System.Windows.MessageBox.Show("Preset file saved successfully :)");
                 }
             }
             catch (Exception ex)
@@ -140,19 +141,23 @@ namespace ShadesTweaker
 
 
 
+
         private ToggleSwitch FindToggleSwitchByName(string name)
         {
             foreach (TabItem tabItem in myTabControl.Items)
             {
-                if (tabItem.Content is WrapPanel wrapPanel)
+                if (tabItem.Content is Panel panel)
                 {
-                    foreach (StackPanel stackPanel in wrapPanel.Children)
+                    foreach (UIElement uiElement in panel.Children)
                     {
-                        foreach (UIElement toggleSwitchElement in stackPanel.Children)
+                        if (uiElement is StackPanel stackPanel)
                         {
-                            if (toggleSwitchElement is ToggleSwitch toggleSwitch && toggleSwitch.Name == name)
+                            foreach (UIElement toggleSwitchElement in stackPanel.Children)
                             {
-                                return toggleSwitch;
+                                if (toggleSwitchElement is ToggleSwitch toggleSwitch && toggleSwitch.Name == name)
+                                {
+                                    return toggleSwitch;
+                                }
                             }
                         }
                     }
@@ -160,6 +165,7 @@ namespace ShadesTweaker
             }
             return null;
         }
+
 
         // Error Reporting Service
         private void ErrorReportingToggle_Checked(object sender, RoutedEventArgs e)
@@ -210,7 +216,7 @@ namespace ShadesTweaker
             process.Start();
         }
 
-        private void disableMemoryCompressionToggle_Unhecked(object sender, RoutedEventArgs e)
+        private void disableMemoryCompressionToggle_Unchecked(object sender, RoutedEventArgs e)
         {
             ProcessStartInfo psi = new ProcessStartInfo
             {
@@ -244,7 +250,7 @@ namespace ShadesTweaker
             RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppCompat", "DisablePCA", 1, RegistryValueKind.DWord);
 
         }
-        private void compatibilityassistansToggle_Unchecked(object sender, RoutedEventArgs e)
+        private void compatibilityAssistantToggle_Unchecked(object sender, RoutedEventArgs e)
         {
             RegHelper.TryDeleteValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\AppCompat", "DisablePCA");
 
@@ -256,7 +262,7 @@ namespace ShadesTweaker
             RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\Spooler", "Start", 4, RegistryValueKind.DWord);
         }
 
-        private void printspoolerToggle_Unhecked(object sender, RoutedEventArgs e)
+        private void printspoolerToggle_Unchecked(object sender, RoutedEventArgs e)
         {
             RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\Spooler", "Start", 2, RegistryValueKind.DWord);
         }
@@ -443,7 +449,7 @@ namespace ShadesTweaker
             process.Start();
         }
 
-        private void firewall_Unhecked(object sender, RoutedEventArgs e)
+        private void firewall_Unchecked(object sender, RoutedEventArgs e)
         {
             ProcessStartInfo psi = new ProcessStartInfo
             {
@@ -1069,17 +1075,6 @@ namespace ShadesTweaker
             RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Network Connections", "NC_ShowSharedAccessUI", 1, RegistryValueKind.DWord);
         }
 
-        // Microsoft Store
-        private void microsoftStore_Checked(object sender, RoutedEventArgs e)
-        {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\WindowsStore", "DisableStoreApps", 1, RegistryValueKind.DWord);
-        }
-
-        private void microsoftStore_Unchecked(object sender, RoutedEventArgs e)
-        {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\WindowsStore", "DisableStoreApps", 0, RegistryValueKind.DWord);
-        }
-
         // Speech Recognition
         private void speechRecognition_Checked(object sender, RoutedEventArgs e)
         {
@@ -1333,6 +1328,450 @@ namespace ShadesTweaker
                 }
             }
         }
+
+
+        // Add Ram Cleaner Shortcut
+
+
+        private void disableSearchIndex_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Windows Search", "AllowCortana", 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Windows Search", "AllowSearchToUseLocation", 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Windows Search", "DisableWebSearch", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\WSearch", "Start", 4, RegistryValueKind.DWord);
+
+        }
+
+        private void disableSearchIndex_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Windows Search", "AllowCortana", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Windows Search", "AllowSearchToUseLocation", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Windows Search", "DisableWebSearch", 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\WSearch", "Start", 2, RegistryValueKind.DWord);
+        }
+
+        // AVCTP service
+        private void AVCTP_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\BthAvctpSvc", "Start", 4, RegistryValueKind.DWord);
+        }
+        private void AVCTP_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\WSearch", "Start", 3, RegistryValueKind.DWord);
+        }
+
+        // BitLocker Drive Encryption Service
+
+        private void BitLockerDriveEncryptionService_Checked(object sender,RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\BDESVC", "Start", 4, RegistryValueKind.DWord);
+
+        }
+        private void BitLockerDriveEncryptionService_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\BDESVC", "Start", 3, RegistryValueKind.DWord);
+        }
+
+        // Bluetooth Support Service
+
+        private void BluetoothSupportService_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\bthserv", "Start", 4, RegistryValueKind.DWord);
+        }
+        private void BluetoothSupportService_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\bthserv", "Start", 3, RegistryValueKind.DWord);
+        }
+
+        // ConnectedUserExperiencesTelemetry
+
+        private void ConnectedUserExperiencesTelemetry_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\DiagTrack", "Start", 4, RegistryValueKind.DWord);
+
+        }
+        private void ConnectedUserExperiencesTelemetry_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\DiagTrack", "Start", 2, RegistryValueKind.DWord);
+        }
+
+        // DiagnosticTrackingService
+
+        private void DiagnosticTrackingService_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\DiagTrack", "Start", 4, RegistryValueKind.DWord);
+        }
+        private void DiagnosticTrackingService_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\DiagTrack", "Start", 2, RegistryValueKind.DWord);
+        }
+
+        // DownloadedMapsManager
+
+        private void DownloadedMapsManager_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\MapsBroker", "Start", 4, RegistryValueKind.DWord);
+
+        }
+        private void DownloadedMapsManager_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\MapsBroker", "Start", 2, RegistryValueKind.DWord);
+        }
+
+        // FileHistoryService
+
+        private void FileHistoryService_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\fhsvc", "Start", 4, RegistryValueKind.DWord);
+
+        }
+        private void FileHistoryService_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\fhsvc", "Start", 3, RegistryValueKind.DWord);
+        }
+
+        // IPHelper
+
+        private void IPHelper_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\iphlpsvc", "Start", 4, RegistryValueKind.DWord);
+        }
+        private void IPHelper_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\iphlpsvc", "Start", 2, RegistryValueKind.DWord);
+        }
+
+        // Windows Update Medic Service
+        private void WindowsUpdateMedicService_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\waauserv", "Start", 4, RegistryValueKind.DWord);
+        }
+
+        private void WindowsUpdateMedicService_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\waauserv", "Start", 2, RegistryValueKind.DWord);
+        }
+
+        // Windows Biometric Service
+        private void WindowsBiometricService_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\WbioSrvc", "Start", 4, RegistryValueKind.DWord);
+        }
+
+        private void WindowsBiometricService_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\WbioSrvc", "Start", 3, RegistryValueKind.DWord);
+        }
+
+        // Windows Time Service
+        private void WindowsTimeService_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\W32Time", "Start", 4, RegistryValueKind.DWord);
+        }
+
+        private void WindowsTimeService_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\W32Time", "Start", 3, RegistryValueKind.DWord);
+        }
+
+        // Windows Modules Installer
+        private void WindowsModulesInstaller_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\TrustedInstaller", "Start", 4, RegistryValueKind.DWord);
+        }
+
+        private void WindowsModulesInstaller_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\TrustedInstaller", "Start", 3, RegistryValueKind.DWord);
+        }
+
+        // Windows Remote Management (WinRM) Service
+        private void WinRMServer_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\WinRM", "Start", 4, RegistryValueKind.DWord);
+        }
+
+        private void WinRMServer_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\WinRM", "Start", 3, RegistryValueKind.DWord);
+        }
+
+        // Windows Event Log Service
+        private void EventLogService_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\EventLog", "Start", 4, RegistryValueKind.DWord);
+        }
+
+        private void EventLogService_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\EventLog", "Start", 3, RegistryValueKind.DWord);
+        }
+
+
+        // Windows Insider Service
+        private void WindowsInsiderService_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\WaaSMedicSvc", "Start", 4, RegistryValueKind.DWord);
+        }
+
+        private void WindowsInsiderService_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\WaaSMedicSvc", "Start", 3, RegistryValueKind.DWord);
+        }
+
+        // Remote Desktop Services
+        private void RemoteDesktopServices_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\TermService", "Start", 4, RegistryValueKind.DWord);
+        }
+
+        private void RemoteDesktopServices_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\TermService", "Start", 3, RegistryValueKind.DWord);
+        }
+
+        // Print Spooler Service
+        private void PrintSpoolerService_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\Spooler", "Start", 4, RegistryValueKind.DWord);
+        }
+
+        private void PrintSpoolerService_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\Spooler", "Start", 2, RegistryValueKind.DWord);
+        }
+
+        // Security Center Service
+        private void SecurityCenterService_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\wscsvc", "Start", 4, RegistryValueKind.DWord);
+        }
+
+        private void SecurityCenterService_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\wscsvc", "Start", 2, RegistryValueKind.DWord);
+        }
+
+        // Windows Error Reporting Service
+        private void WindowsErrorReportingService_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\WerSvc", "Start", 4, RegistryValueKind.DWord);
+        }
+
+        private void WindowsErrorReportingService_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\WerSvc", "Start", 2, RegistryValueKind.DWord);
+        }
+
+        // Windows Media Player Network Sharing Service
+        private void WMPNetworkSharingService_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\WMPNetworkSvc", "Start", 4, RegistryValueKind.DWord);
+        }
+
+        private void WMPNetworkSharingService_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\WMPNetworkSvc", "Start", 3, RegistryValueKind.DWord);
+        }
+
+        // WebClient Service
+        private void WebClientService_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\WebClient", "Start", 2, RegistryValueKind.DWord);
+        }
+
+        private void WebClientService_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\WebClient", "Start", 4, RegistryValueKind.DWord);
+        }
+
+        // Superfetch Service
+        private void SuperfetchService_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\SysMain", "Start", 2, RegistryValueKind.DWord);
+        }
+
+        private void SuperfetchService_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\SysMain", "Start", 4, RegistryValueKind.DWord);
+        }
+
+        // Remote Registry Service
+        private void RemoteRegistryService_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\RemoteRegistry", "Start", 2, RegistryValueKind.DWord);
+        }
+
+        private void RemoteRegistryService_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\RemoteRegistry", "Start", 4, RegistryValueKind.DWord);
+        }
+
+        // Background Intelligent Transfer Service
+        private void BITS_Service_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\BITS", "Start", 2, RegistryValueKind.DWord);
+        }
+
+        private void BITS_Service_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\BITS", "Start", 3, RegistryValueKind.DWord);
+        }
+
+        // Data Usage Service
+        private void DataUsageService_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\DusmSvc", "Start", 2, RegistryValueKind.DWord);
+        }
+
+        private void DataUsageService_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\DusmSvc", "Start", 3, RegistryValueKind.DWord);
+        }
+
+        // Geolocation Service
+        private void GeolocationService_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\lfsvc", "Start", 2, RegistryValueKind.DWord);
+        }
+
+        private void GeolocationService_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\lfsvc", "Start", 3, RegistryValueKind.DWord);
+        }
+
+        // Credential Manager Service
+        private void CredentialManagerService_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\VaultSvc", "Start", 2, RegistryValueKind.DWord);
+        }
+
+        private void CredentialManagerService_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\VaultSvc", "Start", 3, RegistryValueKind.DWord);
+        }
+
+        // Distributed Link Tracking Client
+        private void DistributedLinkTrackingClient_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\TrkWks", "Start", 2, RegistryValueKind.DWord);
+        }
+
+        private void DistributedLinkTrackingClient_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\TrkWks", "Start", 3, RegistryValueKind.DWord);
+        }
+
+        // SysMain Service
+        private void SysMainService_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\SysMain", "Start", 2, RegistryValueKind.DWord);
+        }
+
+        private void SysMainService_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\SysMain", "Start", 3, RegistryValueKind.DWord);
+        }
+
+        // Disable Camera Access
+        private void CameraAccess_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam", "Value", "Deny", RegistryValueKind.String);
+        }
+
+        private void CameraAccess_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam", "Value", "Allow", RegistryValueKind.String);
+        }
+
+        // Disable Microphone Access
+        private void MicrophoneAccess_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone", "Value", "Deny", RegistryValueKind.String);
+        }
+
+        private void MicrophoneAccess_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone", "Value", "Allow", RegistryValueKind.String);
+        }
+
+        // Disable App Notifications
+        private void AppNotifications_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Policies\Microsoft\Windows\Explorer", "DisableNotificationCenter", 1, RegistryValueKind.DWord);
+        }
+
+        private void AppNotifications_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Policies\Microsoft\Windows\Explorer", "DisableNotificationCenter", 0, RegistryValueKind.DWord);
+        }
+
+        // Disable Sync with Devices
+        private void SyncWithDevices_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync", "SyncPolicy", 1, RegistryValueKind.DWord);
+        }
+
+        private void SyncWithDevices_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync", "SyncPolicy", 0, RegistryValueKind.DWord);
+        }
+
+        // Disable App Access to Account Info
+        private void AppAccountInfoAccess_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\PolicyManager\default\Settings\AllowMicrosoftAccountToSync", "Value", 0, RegistryValueKind.DWord);
+        }
+
+        private void AppAccountInfoAccess_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\PolicyManager\default\Settings\AllowMicrosoftAccountToSync", "Value", 1, RegistryValueKind.DWord);
+        }
+
+        // Disable Cortana Web Search
+        private void CortanaWebSearch_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Windows Search", "AllowCortana", 0, RegistryValueKind.DWord);
+        }
+
+        private void CortanaWebSearch_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Windows Search", "AllowCortana", 1, RegistryValueKind.DWord);
+        }
+
+        // Disable AutoRun for Removable Media
+        private void AutoRunRemovableMedia_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoDriveTypeAutoRun", 255, RegistryValueKind.DWord);
+        }
+
+        private void AutoRunRemovableMedia_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoDriveTypeAutoRun", 145, RegistryValueKind.DWord);
+        }
+
+        // Disable Lock Screen Camera
+        private void LockScreenCamera_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Personalization", "NoLockScreenCamera", 1, RegistryValueKind.DWord);
+        }
+
+        private void LockScreenCamera_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Personalization", "NoLockScreenCamera", 0, RegistryValueKind.DWord);
+        }
+
+        // Disable Windows Game Recording and Broadcasting
+        private void GameRecording_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\GameDVR", "AllowGameDVR", 0, RegistryValueKind.DWord);
+        }
+
+        private void GameRecording_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\GameDVR", "AllowGameDVR", 1, RegistryValueKind.DWord);
+        }
+
 
 
 
@@ -1729,6 +2168,29 @@ namespace ShadesTweaker
             }
         }
 
+        private void comboBoxLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ResourceDictionary resourceDictionary = new ResourceDictionary();
+            string basePath = AppDomain.CurrentDomain.BaseDirectory; // Programın çalıştığı dizin
+
+            if (comboBoxLanguage.SelectedIndex == 0)
+            {
+                resourceDictionary.Source = new Uri(Path.Combine(basePath, "StringResources.en.xaml"));
+            }
+            else if (comboBoxLanguage.SelectedIndex == 1)
+            {
+                resourceDictionary.Source = new Uri(Path.Combine(basePath, "StringResources.tr.xaml"));
+            }
+            else if (comboBoxLanguage.SelectedIndex == 2)
+            {
+                resourceDictionary.Source = new Uri(Path.Combine(basePath, "StringResources.de.xaml"));
+            }
+            else if (comboBoxLanguage.SelectedIndex == 3)
+            {
+                resourceDictionary.Source = new Uri(Path.Combine(basePath, "StringResources.es.xaml"));
+            }
+            this.Resources.MergedDictionaries.Add(resourceDictionary);
+        }
 
     }
 }

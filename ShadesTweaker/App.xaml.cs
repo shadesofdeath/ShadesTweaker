@@ -13,5 +13,6 @@ namespace ShadesTweaker
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }

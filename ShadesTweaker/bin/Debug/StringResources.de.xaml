@@ -1,0 +1,214 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="tabItemTextGeneral">Allgemein</system:String>
+    <system:String x:Key="system:StringKey">Allgemein</system:String>
+    <system:String x:Key="errorReportingToggle">Fehlerberichterstattung deaktivieren</system:String>
+    <system:String x:Key="modernStandbyToggle">Modernen Standby deaktivieren</system:String>
+
+    <system:String x:Key="fastStartupToggle">Schnellstart deaktivieren</system:String>
+    <system:String x:Key="disableMemoryCompressionToggle">Speicherkomprimierung deaktivieren</system:String>
+    <system:String x:Key="compatibilityAssistantToggle">Kompatibilitätsassistent deaktivieren</system:String>
+    <system:String x:Key="printSpoolerToggle">Druckwarteschlange deaktivieren</system:String>
+    <system:String x:Key="sysMainToggle">SysMain-Dienst deaktivieren</system:String>
+
+    <system:String x:Key="windowsDefenderLabel">Windows Defender</system:String>
+    <system:String x:Key="disableDefenderAntiSpywareToggle">Defender-Antispyware deaktivieren</system:String>
+
+    <system:String x:Key="disableDefenderAntivirusToggle">Defender-Antivirus deaktivieren</system:String>
+    <system:String x:Key="disableDefenderRealTimeToggle">Echtzeitschutz von Defender deaktivieren</system:String>
+    <system:String x:Key="disableSmartScreenToggle">SmartScreen deaktivieren</system:String>
+    <system:String x:Key="turnOffFirewallToggle">Defender-Firewall deaktivieren</system:String>
+
+    <system:String x:Key="windowsUpdateLabel">Windows Update</system:String>
+    <system:String x:Key="disableDeliveryOptimizationToggle">Paketoptimierung deaktivieren</system:String>
+    <system:String x:Key="disableAutoRestartNotificationsToggle">Automatische Neustartbenachrichtigungen deaktivieren</system:String>
+    <system:String x:Key="disableIncludeDriversToggle">'Treiber einbeziehen' deaktivieren</system:String>
+    <system:String x:Key="disableFeatureUpdateToggle">Feature-Updates deaktivieren</system:String>
+    <system:String x:Key="blockMicrosoftEdgeInstallToggle">Automatische Edge-Installation blockieren</system:String>
+
+    <system:String x:Key="diskDrivesLabel">Datenträger</system:String>
+    <system:String x:Key="disableStorageSenseToggle">Speicheroptimierung deaktivieren</system:String>
+    <system:String x:Key="disableSystemRestoreToggle">Systemwiederherstellung deaktivieren</system:String>
+    <system:String x:Key="disableSuperfetchToggle">SuperFetch deaktivieren</system:String>
+    <system:String x:Key="disableHibernationToggle">Ruhezustand deaktivieren</system:String>
+    <system:String x:Key="disableNTFSLastAccessTimeToggle">NTFS-Letzter Zugriffszeitstempel deaktivieren</system:String>
+
+    <system:String x:Key="contextMenuLabel">Kontextmenü</system:String>
+    <system:String x:Key="addWindowsBatchFileToggle">Windows-Batchdatei hinzufügen</system:String>
+    <system:String x:Key="addCopyAsPathToggle">'Als Pfad kopieren' hinzufügen</system:String>
+    <system:String x:Key="addVBScriptScriptFileToggle">VBScript-Skriptdatei hinzufügen</system:String>
+    <system:String x:Key="removeNVIDIAControlPanelToggle">NVIDIA-Systemsteuerung entfernen</system:String>
+    <system:String x:Key="addTakeOwnershipToggle">'Besitz übernehmen' hinzufügen</system:String>
+    <system:String x:Key="addramCleanerToggle">Ram Cleanup-Verknüpfung hinzufügen</system:String>
+
+    <system:String x:Key="tabItemTextCleaning">Bereinigen</system:String>
+    <system:String x:Key="windowsLogsCheckbox">Windows-Protokolle</system:String>
+    <system:String x:Key="tempFilesCheckbox">Temporäre Dateien</system:String>
+    <system:String x:Key="clearPreviousWindowsInstallationsCheckbox">Vorherige Windows-Installationen löschen</system:String>
+    <system:String x:Key="errorReportingFilesCheckbox">Fehlerberichterstattungsdateien</system:String>
+    <system:String x:Key="programDataCacheCheckbox">ProgramData-Cache</system:String>
+    <system:String x:Key="downloadsFolderCheckbox">Download-Ordner</system:String>
+    <system:String x:Key="recycleBinCheckbox">Papierkorb</system:String>
+    <system:String x:Key="windowsSearchIndexCheckbox">Windows-Suchindex</system:String>
+    <system:String x:Key="prefetchFilesCheckbox">Prefetch-Dateien</system:String>
+    <system:String x:Key="windowsFontCacheCheckbox">Windows-Schriftartencache</system:String>
+    <system:String x:Key="windowsInstallerCacheCheckbox">Windows Installer-Cache</system:String>
+
+    <system:String x:Key="sizeLabelContent">Größe:</system:String>
+    <system:String x:Key="analyzeButtonContent">Analysieren</system:String>
+    <system:String x:Key="cleanButtonContent">Bereinigen</system:String>
+
+    <system:String x:Key="enableOldContextMenuToggle">Altes Kontextmenü aktivieren</system:String>
+    <system:String x:Key="disableWidgetsToggle">Widgets deaktivieren</system:String>
+    <system:String x:Key="disablePeekToggle">Peek deaktivieren</system:String>
+    <system:String x:Key="removeMeetNowIconToggle">MeetNow-Symbol in Taskleiste entfernen</system:String>
+    <system:String x:Key="disableBingSearchToggle">Bing-Suche in Windows-Suche deaktivieren</system:String>
+    <system:String x:Key="disableBingSearchToolTip">Bing-Web-Suche in Windows-Suche aktivieren oder deaktivieren</system:String>
+    <system:String x:Key="enableDarkModeToggle">Dunklen Modus aktivieren</system:String>
+    <system:String x:Key="disableTransparencyToggle">Transparenzeffekte deaktivieren</system:String>
+    <system:String x:Key="showFileExtensionsToggle">Dateierweiterungen anzeigen</system:String>
+    <system:String x:Key="increaseThumbnailSizeToggle">Vorschaugröße in Taskleiste erhöhen</system:String>
+    <system:String x:Key="disableLockScreenToggle">Sperrbildschirm deaktivieren</system:String>
+    <system:String x:Key="adjustMenuDelayToggle">Menüanzeigeverzögerung anpassen</system:String>
+    <system:String x:Key="disableCortanaToggle">Cortana deaktivieren</system:String>
+    <system:String x:Key="disableAppUpdatesToggle">Automatische App-Updates deaktivieren</system:String>
+    <system:String x:Key="disableSearchIndex">Indizierung deaktivieren</system:String>
+
+    <system:String x:Key="windowsServicesHeaderText">Windows Dienste</system:String>
+    <system:String x:Key="windowsServicesLabel">Windows Dienste</system:String>
+    <system:String x:Key="AVCTPServiceToggle">AVCTP-Dienst deaktivieren</system:String>
+
+    <system:String x:Key="AVCTPServiceToolTip">Wenn Sie kein Bluetooth-Audiogerät oder drahtlose Kopfhörer verwenden.</system:String>
+    <system:String x:Key="BitLockerDriveEncryptionServiceToggle">BitLocker-Laufwerksverschlüsselungsdienst deaktivieren</system:String>
+    <system:String x:Key="BitLockerDriveEncryptionServiceToolTip">Wenn Sie keine BitLocker-Speicherverschlüsselung verwenden.</system:String>
+    <system:String x:Key="BluetoothSupportServiceToggle">Bluetooth-Unterstützungsdienst deaktivieren</system:String>
+    <system:String x:Key="BluetoothSupportServiceToolTip">Wenn Sie keine Bluetooth-Geräte verwenden.</system:String>
+    <system:String x:Key="ConnectedUserExperiencesTelemetryToggle">Verbundene Benutzererfahrungen und Telemetrie deaktivieren</system:String>
+
+    <system:String x:Key="ConnectedUserExperiencesTelemetryToolTip">Deaktiviert Feedback, Telemetrie und Datensammlung.</system:String>
+    <system:String x:Key="DiagnosticTrackingServiceToggle">Diagnosedienst deaktivieren</system:String>
+    <system:String x:Key="DiagnosticTrackingServiceToolTip">Deaktiviert Telemetrie und Datensammlung.</system:String>
+    <system:String x:Key="DownloadedMapsManagerToggle">Downloaded Maps Manager deaktivieren</system:String>
+    <system:String x:Key="DownloadedMapsManagerToolTip">Wenn Sie die Bing Maps App nicht verwenden.</system:String>
+    <system:String x:Key="FileHistoryServiceToggle">Dateiversionsverlauf deaktivieren</system:String>
+    <system:String x:Key="FileHistoryServiceToolTip">Wenn Sie keine Windows Sicherung oder Systemwiederherstellung verwenden.</system:String>
+    <system:String x:Key="IPHelperToggle">IP-Hilfsprogramm deaktivieren</system:String>
+    <system:String x:Key="IPHelperToolTip">Wenn Sie keine IPv6-Verbindung verwenden.</system:String>
+    <system:String x:Key="WindowsUpdateMedicServiceToggle">Windows Update-Diagnosedienst</system:String>
+    <system:String x:Key="WindowsUpdateMedicServiceToolTip">Behebt Probleme mit dem Windows Update-Dienst.</system:String>
+    <system:String x:Key="WindowsBiometricServiceToggle">Windows Biometric Service</system:String>
+    <system:String x:Key="WindowsBiometricServiceToolTip">Unterstützt Fingerabdruck- und andere biometrische Erkennungsgeräte.</system:String>
+    <system:String x:Key="WindowsTimeServiceToggle">Windows Zeitdienst</system:String>
+    <system:String x:Key="WindowsTimeServiceToolTip">Synchronisiert die Computeruhr mit einem Netzwerkzeitserver.</system:String>
+    <system:String x:Key="WindowsModulesInstallerToggle">Windows-Modulinstaller</system:String>
+    <system:String x:Key="WindowsModulesInstallerToolTip">Installiert, ändert und entfernt Windows-Updates und optionale Komponenten.</system:String>
+    <system:String x:Key="WinRMServerToggle">Windows Remote Management (WinRM)</system:String>
+    <system:String x:Key="WinRMServerToolTip">Ermöglicht Remote-Verwaltung und Skriptausführung auf Windows-Computern.</system:String>
+    <system:String x:Key="WindowsInsiderServiceToggle">Windows Insider deaktivieren</system:String>
+    <system:String x:Key="EventLogServiceToggle">Windows-Ereignisanzeige</system:String>
+    <system:String x:Key="EventLogServiceToolTip">Protokolliert System-, Sicherheits- und Anwendungsereignisse.</system:String>
+    <system:String x:Key="RemoteDesktopServicesToggle">Remotedesktopdienste</system:String>
+
+    <system:String x:Key="RemoteDesktopServicesToolTip">Ermöglicht Remotezugriff auf den Computer.</system:String>
+    <system:String x:Key="PrintSpoolerServiceToggle">Druckwarteschlangendienst</system:String>
+    <system:String x:Key="PrintSpoolerServiceToolTip">Verwaltet Druckaufträge und Druckerwarteschlangen.</system:String>
+    <system:String x:Key="SecurityCenterServiceToggle">Sicherheitscenterdienst</system:String>
+    <system:String x:Key="SecurityCenterServiceToolTip">Überprüft System-Sicherheitseinstellungen und Antivirenstatus.</system:String>
+    <system:String x:Key="WindowsErrorReportingServiceToggle">Windows-Fehlerberichterstattung</system:String>
+    <system:String x:Key="WindowsErrorReportingServiceToolTip">Sammelt und sendet Fehlerberichte an Microsoft.</system:String>
+    <system:String x:Key="WMPNetworkSharingServiceToggle">Windows Media Player-Netzwerkfreigabedienst</system:String>
+    <system:String x:Key="WMPNetworkSharingServiceToolTip">Teilt Windows Media Player-Bibliotheken mit Playern und Mediengeräten im Netzwerk.</system:String>
+    <system:String x:Key="WebClientServiceToggle">WebClient-Dienst</system:String>
+    <system:String x:Key="WebClientServiceToolTip">Erlaubt Apps den Zugriff auf Dateien und Ressourcen im Internet.</system:String>
+    <system:String x:Key="SuperfetchServiceToggle">SuperFetch-Dienst</system:String>
+    <system:String x:Key="SuperfetchServiceToolTip">Erhält und verbessert die Zeit Leistung.</system:String>
+    <system:String x:Key="RemoteRegistryServiceToggle">Remoteregistrierungsdienst</system:String>
+    <system:String x:Key="RemoteRegistryServiceToolTip">Ermöglicht Remotezugriff auf die Windows-Registrierung.</system:String>
+    <system:String x:Key="BITS_ServiceToggle">Intelligenter Hintergrundübertragungsdienst</system:String>
+    <system:String x:Key="BITS_ServiceToolTip">Ermöglicht die Übertragung von Dateien über ungenutzte Netzwerkbandbreite zwischen Computern.</system:String>
+    <system:String x:Key="DataUsageServiceToggle">Datennutzungsdienst</system:String>
+    <system:String x:Key="DataUsageServiceToolTip">Überwacht und verwaltet die Datennutzung auf dem Gerät.</system:String>
+    <system:String x:Key="GeolocationServiceToggle">Geolokalisierungsdienst</system:String>
+    <system:String x:Key="GeolocationServiceToolTip">Erlaubt Apps und Websites, Ihren Standort anzufordern.</system:String>
+    <system:String x:Key="CredentialManagerServiceToggle">Anmeldeinformationsverwaltungsdienst</system:String>
+    <system:String x:Key="CredentialManagerServiceToolTip">Speichert und verwaltet die Anmeldeinformationen von Benutzerkonten und Apps.</system:String>
+    <system:String x:Key="DistributedLinkTrackingClientToggle">Verteilter Linkverfolgungsclient</system:String>
+    <system:String x:Key="DistributedLinkTrackingClientToolTip">Beibehaltung von Links auf NTFS-Volumes, wenn Dateilinks verschoben oder umbenannt werden.</system:String>
+    <system:String x:Key="SysMainServiceToggle">SysMain-Dienst</system:String>
+    <system:String x:Key="SysMainServiceToolTip">Aktiviert Superfetch, um die Leistung im Laufe der Zeit zu erhalten und zu verbessern.</system:String>
+
+    <system:String x:Key="privacyAndSecuritysHeaderText">Datenschutz</system:String>
+    <system:String x:Key="disableActivityFeedToggle">Aktivitäts-Feed deaktivieren</system:String>
+    <system:String x:Key="disableTelemetryToggle">Telemetrie deaktivieren</system:String>
+    <system:String x:Key="disableCortana2Toggle">Cortana deaktivieren</system:String>
+
+    <system:String x:Key="disableLocationToggle">Standort deaktivieren</system:String>
+    <system:String x:Key="disableAdvertisingIDToggle">Werbe-ID deaktivieren</system:String>
+    <system:String x:Key="disableBiometricToggle">Biometrie deaktivieren</system:String>
+    <system:String x:Key="disableWindowsDefenderToggle">Windows Defender deaktivieren</system:String>
+    <system:String x:Key="disableOneDriveToggle">OneDrive deaktivieren</system:String>
+    <system:String x:Key="disableFeedbackHubToggle">Feedback-Hub deaktivieren</system:String>
+    <system:String x:Key="disableWiFiSenseToggle">WLAN-Sinn deaktivieren</system:String>
+
+    <system:String x:Key="disableDiagnosticDataToggle">Diagnosedaten deaktivieren</system:String>
+    <system:String x:Key="disableDiagnosticsTrackingToggle">Diagnosetracking deaktivieren</system:String>
+    <system:String x:Key="disableSmartScreen2Toggle">Smart Screen deaktivieren</system:String>
+    <system:String x:Key="disableLocationHistoryToggle">Standortverlauf deaktivieren</system:String>
+    <system:String x:Key="disableHandwritingDataSharingToggle">Handschriftdatenfreigabe deaktivieren</system:String>
+
+    <system:String x:Key="disableXboxGameBarToggle">Xbox Game Bar deaktivieren</system:String>
+    <system:String x:Key="disablePasswordRevealButtonToggle">Kennwortanzeige deaktivieren</system:String>
+    <system:String x:Key="disableLocationSensorsToggle">Standortsensoren deaktivieren</system:String>
+    <system:String x:Key="disableWiFiHotspotToggle">WLAN-Hotspot deaktivieren</system:String>
+    <system:String x:Key="lockScreenCameraToggle">Sperrbildschirmkamera deaktivieren</system:String>
+    <system:String x:Key="lockScreenCameraToolTip">Deaktiviert den Kamerazugriff vom Sperrbildschirm.</system:String>
+    <system:String x:Key="disableSpeechRecognitionToggle">Spracherkennung deaktivieren</system:String>
+    <system:String x:Key="disableOnlineTipsToggle">Online-Tipps deaktivieren</system:String>
+    <system:String x:Key="disableAppSuggestionsToggle">App-Vorschläge deaktivieren</system:String>
+    <system:String x:Key="disableUserActivityHistoryToggle">Benutzeraktivitätsverlauf deaktivieren</system:String>
+    <system:String x:Key="disableWiFiDirectToggle">WLAN Direct deaktivieren</system:String>
+    <system:String x:Key="disableApplicationTelemetryToggle">Anwendungstelemetrie deaktivieren</system:String>
+    <system:String x:Key="disableWindowsTroubleshootingToggle">Windows-Problembehebung deaktivieren</system:String>
+    <system:String x:Key="disableAutoPlayToggle">Autowiedergabe deaktivieren</system:String>
+    <system:String x:Key="disableClipboardHistoryToggle">Zwischenablageverlauf deaktivieren</system:String>
+    <system:String x:Key="disableWebSearchToggle">Websuche deaktivieren</system:String>
+
+    <system:String x:Key="disableWindowsSpotlight">Windows Spotlight deaktivieren</system:String>
+    <system:String x:Key="disableWindowsInkWorkspace">Windows Ink Arbeitsbereich deaktivieren</system:String>
+
+    <system:String x:Key="disableEdgeSync">Microsoft Edge Synchronisierung deaktivieren</system:String>
+    <system:String x:Key="disableErrorReporting">Fehlerberichterstattung deaktivieren</system:String>
+    <system:String x:Key="disableCloudContentSuggestions">Cloudempfehlungen deaktivieren</system:String>
+    <system:String x:Key="disableOnlineTipsAndHelp">Online-Tipps und -Hilfe deaktivieren</system:String>
+    <system:String x:Key="disableMediaDRMInternetAccess">Windows Media DRM Internetzugriff deaktivieren</system:String>
+    <system:String x:Key="cameraAccessToggle">Kamerazugriff deaktivieren</system:String>
+    <system:String x:Key="microphoneAccessToggle">Mikrofon deaktivieren</system:String>
+    <system:String x:Key="appNotificationsToggle">App-Benachrichtigungen deaktivieren</system:String>
+    <system:String x:Key="syncWithDevicesToggle">Synchronisation mit Geräten deaktivieren</system:String>
+    <system:String x:Key="appAccountInfoAccessToggle">App-Kontozugriff deaktivieren</system:String>
+    <system:String x:Key="cortanaWebSearchToggle">Cortana Websuche deaktivieren</system:String>
+
+    <system:String x:Key="autoRunRemovableMediaToggle">Autorun von Wechseldatenträgern deaktivieren</system:String>
+    <system:String x:Key="gameRecordingToggle">Spielaufzeichnung und -streaming deaktivieren</system:String>
+
+    <system:String x:Key="presetText">Voreinstellung</system:String>
+    <system:String x:Key="importText">Importieren</system:String>
+    <system:String x:Key="exportText">Exportieren</system:String>
+    <system:String x:Key="languageText">Sprache</system:String>
+
+    <system:String x:Key="aboutText">Über</system:String>
+    <system:String x:Key="aboutHeaderText">Über</system:String>
+    <system:String x:Key="aboutAppDescription1">ShadesTweaker ist eine kostenlose und Open-Source-Anwendung.</system:String>
+    <system:String x:Key="aboutAppDescription2">Es hat ein modernes UI/UX-Design und bietet viele Feineinstellungen,</system:String>
+
+    <system:String x:Key="aboutAppDescription3">ohne Windows zu beschädigen.</system:String>
+    <system:String x:Key="developerText">Entwickler</system:String>
+    <system:String x:Key="developerName">ShadesOfDeath</system:String>
+    <system:String x:Key="githubText">Github</system:String>
+    <system:String x:Key="donateText">Spenden</system:String>
+    <system:String x:Key="buyMeCoffeeText">Kauf mir einen Kaffee</system:String>
+    <system:String x:Key="sourceCodeText">Quellcode</system:String>
+
+    <system:String x:Key="settingsText">Einstellungen</system:String>
+</ResourceDictionary>
