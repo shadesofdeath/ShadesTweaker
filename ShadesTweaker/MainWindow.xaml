@@ -3,7 +3,7 @@
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:rs="clr-namespace:ShadesTweaker.Properties"
-             MinWidth="1300" MinHeight="650"
+             MinWidth="1400" MinHeight="650"
         ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen"
         ExtendsContentIntoTitleBar="True"
@@ -11,7 +11,7 @@
         WindowCornerPreference="Round"
         WindowStyle="None">
     <Grid>
-        <ui:TitleBar ShowClose="True" Title="Shades Tweaker v1.2" ShowMaximize="True" ShowHelp="False" ShowMinimize="True" CanMaximize="True"  VerticalAlignment="Top" />
+        <ui:TitleBar ShowClose="True" Title="Shades Tweaker v1.3" ShowMaximize="True" ShowHelp="False" ShowMinimize="True" CanMaximize="True"  VerticalAlignment="Top" />
         <TabControl x:Name="myTabControl" Margin="0,42,0,0">
             <!-- Tab 1 -->
             <TabItem MaxWidth="175" MinWidth="175" FontSize="12">
@@ -56,7 +56,7 @@
                         <ui:ToggleSwitch FontSize="12"  x:Name="hibernationToggle" Content="{DynamicResource disableHibernationToggle}" Margin="0,10,0,0" Checked="hibernation_Checked" Unchecked="hibernation_Unchecked"/>
                         <ui:ToggleSwitch FontSize="12"  x:Name="ntfstimeToggle" Content="{DynamicResource disableNTFSLastAccessTimeToggle}" Margin="0,10,0,0" Checked="ntfstime_Checked" Unchecked="ntfstime_Unchecked"/>
                     </StackPanel>
-                    <StackPanel Margin="-60,240,0,0" MaxWidth="420" MinWidth="420">
+                    <StackPanel Margin="-160,240,0,0" MaxWidth="420" MinWidth="420">
                         <Label Foreground="#7F8487" Content="{DynamicResource contextMenuLabel}" />
                         <ui:ToggleSwitch FontSize="12"  x:Name="batToggle" Content="{DynamicResource addWindowsBatchFileToggle}" Margin="0,5,0,0" Checked="bat_Checked" Unchecked="bat_Unchecked"/>
                         <ui:ToggleSwitch FontSize="12"  x:Name="copypathToggle" Content="{DynamicResource addCopyAsPathToggle}" Margin="0,10,0,0" Checked="copypath_Checked" Unchecked="copypath_Unchecked"/>
@@ -106,6 +106,7 @@
             </TabItem>
 
             <!-- Tab 3 -->
+            <!-- Tab 3 -->
             <TabItem MaxWidth="175" MinWidth="175" FontSize="12">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Margin="35,0,0,0">
@@ -130,6 +131,7 @@
                         <ui:ToggleSwitch FontSize="12"  x:Name="disableCortana" Content="{DynamicResource disableCortanaToggle}" Margin="0,10,0,0" Checked="disableCortana_Checked" Unchecked="disableCortana_Unchecked"/>
                         <ui:ToggleSwitch FontSize="12"  x:Name="disableAppUpdates" Content="{DynamicResource disableAppUpdatesToggle}" Margin="0,10,0,0" Checked="disableAppUpdates_Checked" Unchecked="disableAppUpdates_Unchecked"/>
                         <ui:ToggleSwitch FontSize="12"  x:Name="disableSearchIndex" Content="{DynamicResource disableSearchIndex}" Margin="0,10,0,0" Checked="disableSearchIndex_Checked" Unchecked="disableSearchIndex_Unchecked"/>
+                        <ui:ToggleSwitch FontSize="12"  x:Name="oldPhotoViewer" Content="{DynamicResource oldPhotoViewer}" Margin="0,10,0,0" Checked="oldPhotoViewer_Checked" Unchecked="oldPhotoViewer_Unchecked"/>
 
                     </StackPanel>
                     <StackPanel Margin="15,0,0,0" MaxWidth="300" MinWidth="300" HorizontalAlignment="Left">
@@ -247,7 +249,7 @@
                     </StackPanel>
                 </WrapPanel>
             </TabItem>
-
+            
             <!-- Tab 6 -->
             <TabItem MaxWidth="175" MinWidth="175" FontSize="12">
                 <TabItem.Header>
@@ -319,5 +321,6 @@
             </TabItem>
 
         </TabControl>
+        
     </Grid>
 </ui:UiWindow>

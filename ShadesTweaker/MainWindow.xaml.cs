@@ -3,16 +3,16 @@ using SophiApp.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Xml.Linq;
 using Wpf.Ui.Controls;
+
 
 namespace ShadesTweaker
 {
@@ -22,15 +22,36 @@ namespace ShadesTweaker
         {
             InitializeComponent();
             Loaded += (sender, args) =>
-        {
-            Wpf.Ui.Appearance.Watcher.Watch(
-                this,                                  // Window class
-                Wpf.Ui.Appearance.BackgroundType.Mica, // Background type
-                true     
-                );
-        };
-
+            {
+                if (IsWindows11OrHigher())
+                {
+                    SetAcrylicTheme();
+                }
+                else
+                {
+                    SetTabbedTheme();
+                }
+            };
         }
+
+        private bool IsWindows11OrHigher()
+        {
+            // Windows 11 version number: 10.0.22000
+            Version win11Version = new Version(10, 0, 22000, 0);
+            return Environment.OSVersion.Platform == PlatformID.Win32NT &&
+                   Environment.OSVersion.Version >= win11Version;
+        }
+
+        private void SetAcrylicTheme()
+        {
+            Wpf.Ui.Appearance.Watcher.Watch(this, Wpf.Ui.Appearance.BackgroundType.Acrylic, true);
+        }
+
+        private void SetTabbedTheme()
+        {
+            Wpf.Ui.Appearance.Watcher.Watch(this, Wpf.Ui.Appearance.BackgroundType.Tabbed, true);
+        }
+
         public class ToggleSwitchState
         {
             public string Name { get; set; }
@@ -1770,10 +1791,55 @@ namespace ShadesTweaker
         private void GameRecording_Unchecked(object sender, RoutedEventArgs e)
         {
             RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\GameDVR", "AllowGameDVR", 1, RegistryValueKind.DWord);
+
         }
 
 
+        // Old Photo Viewer
+        private void oldPhotoViewer_Checked(object sender, RoutedEventArgs e)
+        {
+            // Önce çalışma dizininin yolunu alalım
+            string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
+            // Resources klasörü içindeki "photo-viewer.ps1" dosyasının tam yolunu oluşturalım
+            string ps1FilePath = Path.Combine(currentDirectory, "Resources", "photo-viewer.ps1");
+
+            // Eğer kullanıcı yönetici yetkisine sahipse, PowerShell betiğini gizli olarak çalıştıralım
+            if (IsAdministrator())
+            {
+                ProcessStartInfo psi = new ProcessStartInfo
+                {
+                    FileName = "powershell.exe",
+                    Arguments = $"-ExecutionPolicy Bypass -WindowStyle Hidden -File \"{ps1FilePath}\"",
+                    Verb = "runas"  // Yönetici yetkisiyle çalıştırma için
+                };
+
+                try
+                {
+                    Process.Start(psi);
+                }
+                catch (Exception)
+                {
+                }
+            }
+            else
+            {
+            }
+        }
+
+        // Kullanıcının yönetici yetkisine sahip olup olmadığını kontrol eden fonksiyon
+        private bool IsAdministrator()
+        {
+            WindowsIdentity identity = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+
+
+        private void oldPhotoViewer_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
 
 
         private bool isProcessing = false;
@@ -2191,6 +2257,10 @@ namespace ShadesTweaker
             }
             this.Resources.MergedDictionaries.Add(resourceDictionary);
         }
+
+
+
+
 
     }
 }

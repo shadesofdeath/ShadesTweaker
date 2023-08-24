@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <system:String x:Key="tabItemTextGeneral">General</system:String>
@@ -72,6 +72,7 @@
     <system:String x:Key="disableCortanaToggle">Disable Cortana</system:String>
     <system:String x:Key="disableAppUpdatesToggle">Disable Automatic App Updates</system:String>
     <system:String x:Key="disableSearchIndex">Disable Search Indexing</system:String>
+    <system:String x:Key="oldPhotoViewer">Enable Old Photo Viewer</system:String>
 
     <system:String x:Key="windowsServicesHeaderText"> Windows Services</system:String>
     <system:String x:Key="windowsServicesLabel">Windows Services</system:String>

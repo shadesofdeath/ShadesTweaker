@@ -74,6 +74,7 @@
     <system:String x:Key="disableCortanaToggle">Cortana'yı Kapat</system:String>
     <system:String x:Key="disableAppUpdatesToggle">Otomatik Uygulama Güncellemelerini Kapat</system:String>
     <system:String x:Key="disableSearchIndex">Arama Dizine Eklemeyi Kapat</system:String>
+    <system:String x:Key="oldPhotoViewer">Eski fotoğraf görüntüleyicisini geri yükle</system:String>
 
     <system:String x:Key="windowsServicesHeaderText"> Windows Hizmetleri</system:String>
     <system:String x:Key="windowsServicesLabel">Windows Hizmetleri</system:String>

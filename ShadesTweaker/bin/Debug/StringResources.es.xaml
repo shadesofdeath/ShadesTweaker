@@ -72,6 +72,7 @@
     <system:String x:Key="disableCortanaToggle">Deshabilitar Cortana</system:String>
     <system:String x:Key="disableAppUpdatesToggle">Deshabilitar actualizaciones automáticas de aplicaciones</system:String>
     <system:String x:Key="disableSearchIndex">Deshabilitar indexación de búsqueda</system:String>
+	<system:String x:Key="oldPhotoViewer">Activar el visor de fotos antiguas</system:String>
 
     <system:String x:Key="windowsServicesHeaderText">Servicios de Windows</system:String>
     <system:String x:Key="windowsServicesLabel">Servicios de Windows</system:String>
