@@ -44,12 +44,12 @@ namespace ShadesTweaker
 
         private void SetAcrylicTheme()
         {
-            Wpf.Ui.Appearance.Watcher.Watch(this, Wpf.Ui.Appearance.BackgroundType.Acrylic, true);
+            Wpf.Ui.Appearance.Watcher.Watch(this, Wpf.Ui.Appearance.BackgroundType.Mica, true);
         }
 
         private void SetTabbedTheme()
         {
-            Wpf.Ui.Appearance.Watcher.Watch(this, Wpf.Ui.Appearance.BackgroundType.Tabbed, true);
+            Wpf.Ui.Appearance.Watcher.Watch(this, Wpf.Ui.Appearance.BackgroundType.Mica, true);
         }
 
         public class ToggleSwitchState
