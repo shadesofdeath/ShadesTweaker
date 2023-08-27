@@ -11,10 +11,10 @@
         WindowCornerPreference="Round"
         WindowStyle="None">
     <Grid>
-        <ui:TitleBar ShowClose="True" Title="Shades Tweaker v1.3" ShowMaximize="False" ShowHelp="False" ShowMinimize="True" CanMaximize="False"  VerticalAlignment="Top" />
+        <ui:TitleBar ShowClose="True" Title="Shades Tweaker v1.4" ShowMaximize="False" ShowHelp="False" ShowMinimize="True" CanMaximize="False"  VerticalAlignment="Top" />
         <TabControl x:Name="myTabControl" Margin="0,42,0,0">
             <!-- Tab 1 -->
-            <TabItem MaxWidth="175" MinWidth="175" FontSize="12">
+            <TabItem Width="auto" FontSize="12">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal"  Margin="55,0,0,0">
                         <ui:SymbolIcon Symbol="InprivateAccount20" Margin="0,0,5,0"/>
@@ -24,52 +24,52 @@
                 <Grid Margin="10">
                     <StackPanel  MaxWidth="400" MinWidth="400" HorizontalAlignment="Left">
                         <Label Foreground="#7F8487" Content="{DynamicResource system:StringKey}" />
-                        <ui:ToggleSwitch FontSize="12"  x:Name="errorReportingToggle" Content="{DynamicResource errorReportingToggle}" Margin="0,5,0,0" Checked="ErrorReportingToggle_Checked" Unchecked="ErrorReportingToggle_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="modernStandbyToggle" Content="{DynamicResource modernStandbyToggle}" Margin="0,10,0,0" Checked="modernStandbyToggle_Checked" Unchecked="modernStandbyToggle_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="fastStartupToggle" Content="{DynamicResource fastStartupToggle}" Margin="0,10,0,0" Checked="fastStartupToggle_Checked" Unchecked="fastStartupToggle_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableMemoryCompressionToggle" Content="{DynamicResource disableMemoryCompressionToggle}" Margin="0,10,0,0" Checked="disableMemoryCompressionToggle_Checked" Unchecked="disableMemoryCompressionToggle_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="compatibilityAssistantToggle" Content="{DynamicResource compatibilityAssistantToggle}" Margin="0,10,0,0" Checked="compatibilityassistansToggle_Checked" Unchecked="compatibilityAssistantToggle_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="printSpoolerToggle" Content="{DynamicResource printSpoolerToggle}" Margin="0,10,0,0" Checked="printspoolerToggle_Checked" Unchecked="printspoolerToggle_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="sysMainToggle" Content="{DynamicResource sysMainToggle}" Margin="0,10,0,0" Checked="SysMain_Checked" Unchecked="SysMain_Unchecked"/>
+                        <ui:ToggleSwitch FontSize="12" Margin="0,5,0,0" x:Name="errorReportingToggle" Checked="errorReportingDisable_Checked" Unchecked="errorReportingDisable_Unchecked" Content="{DynamicResource errorReportingToggle}" ToolTip="{DynamicResource errorReportingToggleTooltip}" />
+                        <ui:ToggleSwitch FontSize="12" Margin="0,10,0,0" x:Name="modernStandbyToggle" Checked="modernStandbyToggle_Checked" Unchecked="modernStandbyToggle_Unchecked" Content="{DynamicResource modernStandbyToggle}" ToolTip="{DynamicResource modernStandbyToggleTooltip}" />
+                        <ui:ToggleSwitch FontSize="12" Margin="0,10,0,0" x:Name="fastStartupToggle" Checked="fastStartupToggle_Checked" Unchecked="fastStartupToggle_Unchecked" Content="{DynamicResource fastStartupToggle}" ToolTip="{DynamicResource fastStartupToggleTooltip}" />
+                        <ui:ToggleSwitch FontSize="12" Margin="0,10,0,0" x:Name="disableMemoryCompressionToggle" Checked="disableMemoryCompressionToggle_Checked" Unchecked="disableMemoryCompressionToggle_Unchecked" Content="{DynamicResource disableMemoryCompressionToggle}" ToolTip="{DynamicResource disableMemoryCompressionToggleTooltip}" />
+                        <ui:ToggleSwitch FontSize="12" Margin="0,10,0,0" x:Name="compatibilityAssistantToggle" Checked="compatibilityassistansToggle_Checked" Unchecked="compatibilityAssistantToggle_Unchecked" Content="{DynamicResource compatibilityAssistantToggle}" ToolTip="{DynamicResource compatibilityAssistantToggleTooltip}" />
+                        <ui:ToggleSwitch FontSize="12" Margin="0,10,0,0" x:Name="printSpoolerToggle" Checked="printspoolerToggle_Checked" Unchecked="printspoolerToggle_Unchecked" Content="{DynamicResource printSpoolerToggle}" ToolTip="{DynamicResource printSpoolerToggleTooltip}" />
+                        <ui:ToggleSwitch FontSize="12" Margin="0,10,0,0" x:Name="sysMainToggle" Checked="SysMain_Checked" Unchecked="SysMain_Unchecked" Content="{DynamicResource sysMainToggle}" ToolTip="{DynamicResource sysMainToggleTooltip}" />
                     </StackPanel>
                     <StackPanel Margin="800,0,0,0" MaxWidth="430" MinWidth="430" HorizontalAlignment="Center">
                         <Label Foreground="#7F8487" Content="{DynamicResource windowsDefenderLabel}" />
-                        <ui:ToggleSwitch FontSize="12"  x:Name="defenderToggle" Content="{DynamicResource disableDefenderAntiSpywareToggle}" Margin="0,5,0,0" Checked="defender_Checked" Unchecked="defender_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="defenderAntivirusToggle" Content="{DynamicResource disableDefenderAntivirusToggle}" Margin="0,10,0,0" Checked="defender_antivirus_Checked" Unchecked="defender_antivirus_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="defenderRealTimeToggle" Content="{DynamicResource disableDefenderRealTimeToggle}" Margin="0,10,0,0" Checked="defender_real_Checked" Unchecked="defender_real_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="smartScreenToggle" Content="{DynamicResource disableSmartScreenToggle}" Margin="0,10,0,0" Checked="smartscreen_Checked" Unchecked="smartScreen_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="firewallToggle" Content="{DynamicResource turnOffFirewallToggle}" Margin="0,10,0,0" Checked="firewall_Checked" Unchecked="firewall_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="defenderToggle" FontSize="12" Content="{DynamicResource disableDefenderAntiSpywareToggle}" Margin="0,5,0,0" Checked="defender_Checked" Unchecked="defender_Unchecked" ToolTip="{DynamicResource defenderToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="defenderAntivirusToggle" FontSize="12" Content="{DynamicResource disableDefenderAntivirusToggle}" Margin="0,10,0,0" Checked="defender_antivirus_Checked" Unchecked="defender_antivirus_Unchecked" ToolTip="{DynamicResource defenderAntivirusToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="defenderRealTimeToggle" FontSize="12" Content="{DynamicResource disableDefenderRealTimeToggle}" Margin="0,10,0,0" Checked="defender_real_Checked" Unchecked="defender_real_Unchecked" ToolTip="{DynamicResource defenderRealTimeToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="smartScreenToggle" FontSize="12" Content="{DynamicResource disableSmartScreenToggle}" Margin="0,10,0,0" Checked="smartscreen_Checked" Unchecked="smartScreen_Checked" ToolTip="{DynamicResource smartScreenToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="firewallToggle" FontSize="12" Content="{DynamicResource turnOffFirewallToggle}" Margin="0,10,0,0" Checked="firewall_Checked" Unchecked="firewall_Unchecked" ToolTip="{DynamicResource firewallToggleToolTip}"/>
                     </StackPanel>
                     <StackPanel Margin="0,250,0,0" MaxWidth="380" MinWidth="380" HorizontalAlignment="Left">
                         <Label Foreground="#7F8487" Content="{DynamicResource windowsUpdateLabel}" />
-                        <ui:ToggleSwitch FontSize="12"  x:Name="deliveryToggle" Content="{DynamicResource disableDeliveryOptimizationToggle}" Margin="0,5,0,0" Checked="delivery_Checked" Unchecked="delivery_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="autoRestartNotificationsToggle" Content="{DynamicResource disableAutoRestartNotificationsToggle}" Margin="0,10,0,0" Checked="AutoRestart_Notifications_Checked" Unchecked="AutoRestart_Notifications_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="includeDriversToggle" Content="{DynamicResource disableIncludeDriversToggle}" Margin="0,10,0,0" Checked="IncludeDrivers_Checked" Unchecked="IncludeDrivers_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="featureUpdateToggle" Content="{DynamicResource disableFeatureUpdateToggle}" Margin="0,10,0,0" Checked="FeatureUpdate_Checked" Unchecked="FeatureUpdate_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="blockEdgeToggle" Content="{DynamicResource blockMicrosoftEdgeInstallToggle}" Margin="0,10,0,0" Checked="blockedge_Checked" Unchecked="blockedge_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="deliveryToggle" FontSize="12" Content="{DynamicResource disableDeliveryOptimizationToggle}" Margin="0,5,0,0" Checked="delivery_Checked" Unchecked="delivery_Unchecked" ToolTip="{DynamicResource deliveryToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="autoRestartNotificationsToggle" FontSize="12" Content="{DynamicResource disableAutoRestartNotificationsToggle}" Margin="0,10,0,0" Checked="AutoRestart_Notifications_Checked" Unchecked="AutoRestart_Notifications_Unchecked" ToolTip="{DynamicResource autoRestartNotificationsToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="includeDriversToggle" FontSize="12" Content="{DynamicResource disableIncludeDriversToggle}" Margin="0,10,0,0" Checked="IncludeDrivers_Checked" Unchecked="IncludeDrivers_Unchecked" ToolTip="{DynamicResource includeDriversToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="featureUpdateToggle" FontSize="12" Content="{DynamicResource disableFeatureUpdateToggle}" Margin="0,10,0,0" Checked="FeatureUpdate_Checked" Unchecked="FeatureUpdate_Unchecked" ToolTip="{DynamicResource featureUpdateToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="blockEdgeToggle" FontSize="12" Content="{DynamicResource blockMicrosoftEdgeInstallToggle}" Margin="0,10,0,0" Checked="blockedge_Checked" Unchecked="blockedge_Unchecked" ToolTip="{DynamicResource blockEdgeToggleToolTip}"/>
                     </StackPanel>
                     <StackPanel Margin="400,0,0,0" MaxWidth="400" MinWidth="400" HorizontalAlignment="Left">
                         <Label Foreground="#7F8487" Content="{DynamicResource diskDrivesLabel}" />
-                        <ui:ToggleSwitch FontSize="12"  x:Name="storagesenseToggle" Content="{DynamicResource disableStorageSenseToggle}" Margin="0,5,0,0" Checked="storagesenseToggle_Checked" Unchecked="storagesenseToggle_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="restoreToggle" Content="{DynamicResource disableSystemRestoreToggle}" Margin="0,10,0,0" Checked="restore_Checked" Unchecked="restore_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="superfetchToggle" Content="{DynamicResource disableSuperfetchToggle}" Margin="0,10,0,0" Checked="superfetch_Checked" Unchecked="superfetch_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="hibernationToggle" Content="{DynamicResource disableHibernationToggle}" Margin="0,10,0,0" Checked="hibernation_Checked" Unchecked="hibernation_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="ntfstimeToggle" Content="{DynamicResource disableNTFSLastAccessTimeToggle}" Margin="0,10,0,0" Checked="ntfstime_Checked" Unchecked="ntfstime_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="storagesenseToggle" FontSize="12" Content="{DynamicResource disableStorageSenseToggle}" Margin="0,5,0,0" Checked="storagesenseToggle_Checked" Unchecked="storagesenseToggle_Unchecked" ToolTip="{DynamicResource storagesenseToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="restoreToggle" FontSize="12" Content="{DynamicResource disableSystemRestoreToggle}" Margin="0,10,0,0" Checked="restore_Checked" Unchecked="restore_Unchecked" ToolTip="{DynamicResource restoreToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="superfetchToggle" FontSize="12" Content="{DynamicResource disableSuperfetchToggle}" Margin="0,10,0,0" Checked="superfetch_Checked" Unchecked="superfetch_Unchecked" ToolTip="{DynamicResource superfetchToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="hibernationToggle" FontSize="12" Content="{DynamicResource disableHibernationToggle}" Margin="0,10,0,0" Checked="hibernation_Checked" Unchecked="hibernation_Unchecked" ToolTip="{DynamicResource hibernationToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="ntfstimeToggle" FontSize="12" Content="{DynamicResource disableNTFSLastAccessTimeToggle}" Margin="0,10,0,0" Checked="ntfstime_Checked" Unchecked="ntfstime_Unchecked" ToolTip="{DynamicResource ntfstimeToggleToolTip}"/>
                     </StackPanel>
                     <StackPanel Margin="-160,240,0,0" MaxWidth="420" MinWidth="420">
                         <Label Foreground="#7F8487" Content="{DynamicResource contextMenuLabel}" />
-                        <ui:ToggleSwitch FontSize="12"  x:Name="batToggle" Content="{DynamicResource addWindowsBatchFileToggle}" Margin="0,5,0,0" Checked="bat_Checked" Unchecked="bat_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="copypathToggle" Content="{DynamicResource addCopyAsPathToggle}" Margin="0,10,0,0" Checked="copypath_Checked" Unchecked="copypath_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="vbsToggle" Content="{DynamicResource addVBScriptScriptFileToggle}" Margin="0,10,0,0" Checked="vbs_Checked" Unchecked="vbs_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="nvidiaToggle" Content="{DynamicResource removeNVIDIAControlPanelToggle}" Margin="0,10,0,0" Checked="nvidia_Checked" Unchecked="nvidia_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="ownershipToggle" Content="{DynamicResource addTakeOwnershipToggle}" Margin="0,10,0,0" Checked="ownership_Checked" Unchecked="ownership_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="addramCleanerToggle" Content="{DynamicResource addramCleanerToggle}" Margin="0,10,0,0" Checked="ramCleaner_Checked" Unchecked="ramCleaner_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="batToggle" FontSize="12" Content="{DynamicResource addWindowsBatchFileToggle}" Margin="0,5,0,0" Checked="bat_Checked" Unchecked="bat_Unchecked" ToolTip="{DynamicResource batToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="copyPathToggle" FontSize="12" Content="{DynamicResource addCopyAsPathToggle}" Margin="0,10,0,0" Checked="copypath_Checked" Unchecked="copypath_Unchecked" ToolTip="{DynamicResource copyPathToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="vbsToggle" FontSize="12" Content="{DynamicResource addVBScriptScriptFileToggle}" Margin="0,10,0,0" Checked="vbs_Checked" Unchecked="vbs_Unchecked" ToolTip="{DynamicResource vbsToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="nvidiaToggle" FontSize="12" Content="{DynamicResource removeNVIDIAControlPanelToggle}" Margin="0,10,0,0" Checked="nvidia_Checked" Unchecked="nvidia_Unchecked" ToolTip="{DynamicResource nvidiaToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="ownershipToggle" FontSize="12" Content="{DynamicResource addTakeOwnershipToggle}" Margin="0,10,0,0" Checked="ownership_Checked" Unchecked="ownership_Unchecked" ToolTip="{DynamicResource ownershipToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="ramCleanerToggle" FontSize="12" Content="{DynamicResource addramCleanerToggle}" Margin="0,10,0,0" Checked="ramCleaner_Checked" Unchecked="ramCleaner_Unchecked" ToolTip="{DynamicResource ramCleanerToggleToolTip}"/>
                     </StackPanel>
                 </Grid>
             </TabItem>
 
             <!-- Tab 2 -->
-            <TabItem MaxWidth="175" MinWidth="175" FontSize="12">
+            <TabItem Width="auto" FontSize="12">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Margin="50,0,0,0">
                         <ui:SymbolIcon Symbol="Broom16" Margin="0,0,5,0" />
@@ -78,18 +78,17 @@
                 </TabItem.Header>
                 <Grid>
                     <StackPanel Margin="10,10,0,0" MaxWidth="400" MinWidth="400" HorizontalAlignment="Left">
-                        <CheckBox  FontSize="12" x:Name="LogsCheckbox" Content="{DynamicResource windowsLogsCheckbox}" />
-                        <CheckBox  FontSize="12" x:Name="tempCheckbox" Content="{DynamicResource tempFilesCheckbox}" />
-                        <CheckBox  FontSize="12" x:Name="WindowsOldCheckbox" Content="{DynamicResource clearPreviousWindowsInstallationsCheckbox}" />
-                        <CheckBox  FontSize="12" x:Name="erroreportingCheckbox" Content="{DynamicResource errorReportingFilesCheckbox}" />
-                        <CheckBox  FontSize="12" x:Name="programdatacachesCheckbox" Content="{DynamicResource programDataCacheCheckbox}" />
-                        <CheckBox  FontSize="12" x:Name="downloadsCheckbox" Content="{DynamicResource downloadsFolderCheckbox}" />
-                        <CheckBox  FontSize="12" x:Name="recyclebinCheckbox" Content="{DynamicResource recycleBinCheckbox}" />
-                        <CheckBox  FontSize="12" x:Name="searchindexCheckbox" Content="{DynamicResource windowsSearchIndexCheckbox}" />
-                        <CheckBox  FontSize="12" x:Name="prefetchCheckbox" Content="{DynamicResource prefetchFilesCheckbox}" />
-                        <CheckBox  FontSize="12" x:Name="fontcacheCheckbox" Content="{DynamicResource windowsFontCacheCheckbox}" />
-                        <CheckBox  FontSize="12" x:Name="ınstallerCheckbox" Content="{DynamicResource windowsInstallerCacheCheckbox}" />
-
+                        <CheckBox x:Name="logsCheckbox" FontSize="12" Content="{DynamicResource windowsLogsCheckbox}" ToolTip="{DynamicResource logsCheckboxToolTip}"/>
+                        <CheckBox x:Name="tempCheckbox" FontSize="12" Content="{DynamicResource tempFilesCheckbox}" ToolTip="{DynamicResource tempCheckboxToolTip}"/>
+                        <CheckBox x:Name="windowsOldCheckbox" FontSize="12" Content="{DynamicResource clearPreviousWindowsInstallationsCheckbox}" ToolTip="{DynamicResource windowsOldCheckboxToolTip}"/>
+                        <CheckBox x:Name="errorReportingCheckbox" FontSize="12" Content="{DynamicResource errorReportingFilesCheckbox}" ToolTip="{DynamicResource errorReportingCheckboxToolTip}"/>
+                        <CheckBox x:Name="programDataCachesCheckbox" FontSize="12" Content="{DynamicResource programDataCacheCheckbox}" ToolTip="{DynamicResource programDataCachesCheckboxToolTip}"/>
+                        <CheckBox x:Name="downloadsCheckbox" FontSize="12" Content="{DynamicResource downloadsFolderCheckbox}" ToolTip="{DynamicResource downloadsCheckboxToolTip}"/>
+                        <CheckBox x:Name="recycleBinCheckbox" FontSize="12" Content="{DynamicResource recycleBinCheckbox}" ToolTip="{DynamicResource recycleBinCheckboxToolTip}"/>
+                        <CheckBox x:Name="searchIndexCheckbox" FontSize="12" Content="{DynamicResource windowsSearchIndexCheckbox}" ToolTip="{DynamicResource searchIndexCheckboxToolTip}"/>
+                        <CheckBox x:Name="prefetchCheckbox" FontSize="12" Content="{DynamicResource prefetchFilesCheckbox}" ToolTip="{DynamicResource prefetchCheckboxToolTip}"/>
+                        <CheckBox x:Name="fontCacheCheckbox" FontSize="12" Content="{DynamicResource windowsFontCacheCheckbox}" ToolTip="{DynamicResource fontCacheCheckboxToolTip}"/>
+                        <CheckBox x:Name="installerCheckbox" FontSize="12" Content="{DynamicResource windowsInstallerCacheCheckbox}" ToolTip="{DynamicResource installerCheckboxToolTip}"/>
                         <StackPanel Margin="0,15,0,0" >
                             <Label FontSize="18" x:Name="sizeLabel" Foreground="#7F8487" Content="{DynamicResource sizeLabelContent}" />
                         </StackPanel>
@@ -107,7 +106,7 @@
 
             <!-- Tab 3 -->
             <!-- Tab 3 -->
-            <TabItem MaxWidth="175" MinWidth="175" FontSize="12">
+            <TabItem Width="auto" FontSize="12">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Margin="35,0,0,0">
                         <ui:SymbolIcon Symbol="WindowSettings20" Margin="-5,0,0,0" />
@@ -117,22 +116,21 @@
                 <WrapPanel Margin="10">
                     <StackPanel MaxWidth="400" MinWidth="400" HorizontalAlignment="Left">
                         <Label Foreground="#7F8487"  Content="Windows 10/11"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="enableOldContextMenu" Content="{DynamicResource enableOldContextMenuToggle}" Margin="0,5,0,0" Checked="oldcontextmenu_Checked" Unchecked="oldcontextmenu_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableWidgets" Content="{DynamicResource disableWidgetsToggle}" Margin="0,10,0,0" Checked="widgets_Checked" Unchecked="widgets_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disablePeek" Content="{DynamicResource disablePeekToggle}" Margin="0,10,0,0" Checked="peek_Checked" Unchecked="peek_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="removeMeetNowIcon" Content="{DynamicResource removeMeetNowIconToggle}" Margin="0,10,0,0" Checked="teams_Checked" Unchecked="teams_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableBingSearch" Content="{DynamicResource disableBingSearchToggle}" Margin="0,10,0,0" ToolTipService.ToolTip="{DynamicResource disableBingSearchToolTip}" Checked="bing_Checked" Unchecked="bing_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="enableDarkMode" Content="{DynamicResource enableDarkModeToggle}" Margin="0,10,0,0" Checked="darkMode_Checked" Unchecked="darkMode_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableTransparency" Content="{DynamicResource disableTransparencyToggle}" Margin="0,10,0,0" Checked="transparency_Checked" Unchecked="transparency_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="showFileExtensions" Content="{DynamicResource showFileExtensionsToggle}" Margin="0,10,0,0" Checked="showExtensions_Checked" Unchecked="showExtensions_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="increaseThumbnailSize" Content="{DynamicResource increaseThumbnailSizeToggle}" Margin="0,10,0,0" Checked="increaseThumbnailSize_Checked" Unchecked="increaseThumbnailSize_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableLockScreen" Content="{DynamicResource disableLockScreenToggle}" Margin="0,10,0,0" Checked="disableLockScreen_Checked" Unchecked="disableLockScreen_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="adjustMenuDelay" Content="{DynamicResource adjustMenuDelayToggle}" Margin="0,10,0,0" Checked="adjustMenuDelay_Checked" Unchecked="adjustMenuDelay_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableCortana" Content="{DynamicResource disableCortanaToggle}" Margin="0,10,0,0" Checked="disableCortana_Checked" Unchecked="disableCortana_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableAppUpdates" Content="{DynamicResource disableAppUpdatesToggle}" Margin="0,10,0,0" Checked="disableAppUpdates_Checked" Unchecked="disableAppUpdates_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableSearchIndex" Content="{DynamicResource disableSearchIndex}" Margin="0,10,0,0" Checked="disableSearchIndex_Checked" Unchecked="disableSearchIndex_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="oldPhotoViewer" Content="{DynamicResource oldPhotoViewer}" Margin="0,10,0,0" Checked="oldPhotoViewer_Checked" Unchecked="oldPhotoViewer_Unchecked"/>
-
+                        <ui:ToggleSwitch x:Name="enableOldContextMenu" FontSize="12" Content="{DynamicResource enableOldContextMenuToggle}" Margin="0,5,0,0" Checked="oldcontextmenu_Checked" Unchecked="oldcontextmenu_Unchecked" ToolTip="{DynamicResource enableOldContextMenuToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableWidgets" FontSize="12" Content="{DynamicResource disableWidgetsToggle}" Margin="0,10,0,0" Checked="widgets_Checked" Unchecked="widgets_Unchecked" ToolTip="{DynamicResource disableWidgetsToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disablePeek" FontSize="12" Content="{DynamicResource disablePeekToggle}" Margin="0,10,0,0" Checked="peek_Checked" Unchecked="peek_Unchecked" ToolTip="{DynamicResource disablePeekToolTip}"/>
+                        <ui:ToggleSwitch x:Name="removeMeetNowIcon" FontSize="12" Content="{DynamicResource removeMeetNowIconToggle}" Margin="0,10,0,0" Checked="teams_Checked" Unchecked="teams_Unchecked" ToolTip="{DynamicResource removeMeetNowIconToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableBingSearch" FontSize="12" Content="{DynamicResource disableBingSearchToggle}" Margin="0,10,0,0" ToolTip="{DynamicResource disableBingSearchToolTip}" Checked="bing_Checked" Unchecked="bing_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="enableDarkMode" FontSize="12" Content="{DynamicResource enableDarkModeToggle}" Margin="0,10,0,0" Checked="darkMode_Checked" Unchecked="darkMode_Unchecked" ToolTip="{DynamicResource enableDarkModeToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableTransparency" FontSize="12" Content="{DynamicResource disableTransparencyToggle}" Margin="0,10,0,0" Checked="transparency_Checked" Unchecked="transparency_Unchecked" ToolTip="{DynamicResource disableTransparencyToolTip}"/>
+                        <ui:ToggleSwitch x:Name="showFileExtensions" FontSize="12" Content="{DynamicResource showFileExtensionsToggle}" Margin="0,10,0,0" Checked="showExtensions_Checked" Unchecked="showExtensions_Unchecked" ToolTip="{DynamicResource showFileExtensionsToolTip}"/>
+                        <ui:ToggleSwitch x:Name="increaseThumbnailSize" FontSize="12" Content="{DynamicResource increaseThumbnailSizeToggle}" Margin="0,10,0,0" Checked="increaseThumbnailSize_Checked" Unchecked="increaseThumbnailSize_Unchecked" ToolTip="{DynamicResource increaseThumbnailSizeToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableLockScreen" FontSize="12" Content="{DynamicResource disableLockScreenToggle}" Margin="0,10,0,0" Checked="disableLockScreen_Checked" Unchecked="disableLockScreen_Unchecked" ToolTip="{DynamicResource disableLockScreenToolTip}"/>
+                        <ui:ToggleSwitch x:Name="adjustMenuDelay" FontSize="12" Content="{DynamicResource adjustMenuDelayToggle}" Margin="0,10,0,0" Checked="adjustMenuDelay_Checked" Unchecked="adjustMenuDelay_Unchecked" ToolTip="{DynamicResource adjustMenuDelayToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableCortana" FontSize="12" Content="{DynamicResource disableCortanaToggle}" Margin="0,10,0,0" Checked="disableCortana_Checked" Unchecked="disableCortana_Unchecked" ToolTip="{DynamicResource disableCortanaToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableAppUpdates" FontSize="12" Content="{DynamicResource disableAppUpdatesToggle}" Margin="0,10,0,0" Checked="disableAppUpdates_Checked" Unchecked="disableAppUpdates_Unchecked" ToolTip="{DynamicResource disableAppUpdatesToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableSearchIndex" FontSize="12" Content="{DynamicResource disableSearchIndex}" Margin="0,10,0,0" Checked="disableSearchIndex_Checked" Unchecked="disableSearchIndex_Unchecked" ToolTip="{DynamicResource disableSearchIndexToolTip}"/>
+                        <ui:ToggleSwitch x:Name="oldPhotoViewer" FontSize="12" Content="{DynamicResource oldPhotoViewer}" Margin="0,10,0,0" Checked="oldPhotoViewer_Checked" Unchecked="oldPhotoViewer_Unchecked" ToolTip="{DynamicResource oldPhotoViewerToolTip}"/>
                     </StackPanel>
                     <StackPanel Margin="15,0,0,0" MaxWidth="300" MinWidth="300" HorizontalAlignment="Left">
                     </StackPanel>
@@ -140,7 +138,7 @@
                 </WrapPanel>
             </TabItem>
             <!-- Tab 4 -->
-            <TabItem MaxWidth="190" MinWidth="190" FontSize="12">
+            <TabItem Width="auto" FontSize="12">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Margin="30,0,0,0">
                         <ui:SymbolIcon Symbol="DesktopPulse20" Margin="-5,0,0,0" />
@@ -150,42 +148,39 @@
                 <WrapPanel Margin="10">
                     <StackPanel MaxWidth="400" MinWidth="400" HorizontalAlignment="Left">
                         <Label Foreground="#7F8487"  Content="{DynamicResource windowsServicesLabel}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="AVCTP" Content="{DynamicResource AVCTPServiceToggle}" Margin="0,10,0,0" Checked="AVCTP_Checked" Unchecked="AVCTP_Unchecked" ToolTip="{DynamicResource AVCTPServiceToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="BitLockerDriveEncryptionService" Content="{DynamicResource BitLockerDriveEncryptionServiceToggle}" Margin="0,10,0,0" Checked="BitLockerDriveEncryptionService_Checked" Unchecked="BitLockerDriveEncryptionService_Unchecked" ToolTip="{DynamicResource BitLockerDriveEncryptionServiceToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="BluetoothSupportService" Content="{DynamicResource BluetoothSupportServiceToggle}" Margin="0,10,0,0" Checked="BluetoothSupportService_Checked" Unchecked="BluetoothSupportService_Unchecked" ToolTip="{DynamicResource BluetoothSupportServiceToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="ConnectedUserExperiencesTelemetry" Content="{DynamicResource ConnectedUserExperiencesTelemetryToggle}" Margin="0,10,0,0" Checked="ConnectedUserExperiencesTelemetry_Checked" Unchecked="ConnectedUserExperiencesTelemetry_Unchecked" ToolTip="{DynamicResource ConnectedUserExperiencesTelemetryToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="DiagnosticTrackingService" Content="{DynamicResource DiagnosticTrackingServiceToggle}" Margin="0,10,0,0" Checked="DiagnosticTrackingService_Checked" Unchecked="DiagnosticTrackingService_Unchecked" ToolTip="{DynamicResource DiagnosticTrackingServiceToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="DownloadedMapsManager" Content="{DynamicResource DownloadedMapsManagerToggle}" Margin="0,10,0,0" Checked="DownloadedMapsManager_Checked" Unchecked="DownloadedMapsManager_Unchecked" ToolTip="{DynamicResource DownloadedMapsManagerToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="FileHistoryService" Content="{DynamicResource FileHistoryServiceToggle}" Margin="0,10,0,0" Checked="FileHistoryService_Checked" Unchecked="FileHistoryService_Unchecked" ToolTip="{DynamicResource FileHistoryServiceToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="IPHelper" Content="{DynamicResource IPHelperToggle}" Margin="0,10,0,0" Checked="IPHelper_Checked" Unchecked="IPHelper_Unchecked" ToolTip="{DynamicResource IPHelperToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="WindowsUpdateMedicServiceToggle" Content="{DynamicResource WindowsUpdateMedicServiceToggle}" Margin="0,10,0,0" Checked="WindowsUpdateMedicService_Checked" Unchecked="WindowsUpdateMedicService_Unchecked" ToolTip="{DynamicResource WindowsUpdateMedicServiceToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="WindowsBiometricServiceToggle" Content="{DynamicResource WindowsBiometricServiceToggle}" Margin="0,10,0,0" Checked="WindowsBiometricService_Checked" Unchecked="WindowsBiometricService_Unchecked" ToolTip="{DynamicResource WindowsBiometricServiceToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="WindowsTimeServiceToggle" Content="{DynamicResource WindowsTimeServiceToggle}" Margin="0,10,0,0" Checked="WindowsTimeService_Checked" Unchecked="WindowsTimeService_Unchecked" ToolTip="{DynamicResource WindowsTimeServiceToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="WindowsModulesInstallerToggle" Content="{DynamicResource WindowsModulesInstallerToggle}" Margin="0,10,0,0" Checked="WindowsModulesInstaller_Checked" Unchecked="WindowsModulesInstaller_Unchecked" ToolTip="{DynamicResource WindowsModulesInstallerToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="WinRMServerToggle" Content="{DynamicResource WinRMServerToggle}" Margin="0,10,0,0" Checked="WinRMServer_Checked" Unchecked="WinRMServer_Unchecked" ToolTip="{DynamicResource WinRMServerToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="EventLogServiceToggle" Content="{DynamicResource EventLogServiceToggle}" Margin="0,10,0,0" Checked="EventLogService_Checked" Unchecked="EventLogService_Unchecked" ToolTip="{DynamicResource EventLogServiceToolTip}"/>
+                        <ui:ToggleSwitch FontSize="12" x:Name="AVCTP" Content="{DynamicResource AVCTPServiceToggle}" Margin="0,10,0,0" Checked="AVCTP_Checked" Unchecked="AVCTP_Unchecked" ToolTip="{DynamicResource AVCTPServiceToolTip}"/>
+                        <ui:ToggleSwitch FontSize="12" x:Name="BitLockerDriveEncryptionService" Content="{DynamicResource BitLockerDriveEncryptionServiceToggle}" Margin="0,10,0,0" Checked="BitLockerDriveEncryptionService_Checked" Unchecked="BitLockerDriveEncryptionService_Unchecked" ToolTip="{DynamicResource BitLockerDriveEncryptionServiceToolTip}"/>
+                        <ui:ToggleSwitch FontSize="12" x:Name="BluetoothSupportService" Content="{DynamicResource BluetoothSupportServiceToggle}" Margin="0,10,0,0" Checked="BluetoothSupportService_Checked" Unchecked="BluetoothSupportService_Unchecked" ToolTip="{DynamicResource BluetoothSupportServiceToolTip}"/>
+                        <ui:ToggleSwitch FontSize="12" x:Name="ConnectedUserExperiencesTelemetry" Content="{DynamicResource ConnectedUserExperiencesTelemetryToggle}" Margin="0,10,0,0" Checked="ConnectedUserExperiencesTelemetry_Checked" Unchecked="ConnectedUserExperiencesTelemetry_Unchecked" ToolTip="{DynamicResource ConnectedUserExperiencesTelemetryToolTip}"/>
+                        <ui:ToggleSwitch FontSize="12" x:Name="DiagnosticTrackingService" Content="{DynamicResource DiagnosticTrackingServiceToggle}" Margin="0,10,0,0" Checked="DiagnosticTrackingService_Checked" Unchecked="DiagnosticTrackingService_Unchecked" ToolTip="{DynamicResource DiagnosticTrackingServiceToolTip}"/>
+                        <ui:ToggleSwitch FontSize="12" x:Name="DownloadedMapsManager" Content="{DynamicResource DownloadedMapsManagerToggle}" Margin="0,10,0,0" Checked="DownloadedMapsManager_Checked" Unchecked="DownloadedMapsManager_Unchecked" ToolTip="{DynamicResource DownloadedMapsManagerToolTip}"/>
+                        <ui:ToggleSwitch FontSize="12" x:Name="FileHistoryService" Content="{DynamicResource FileHistoryServiceToggle}" Margin="0,10,0,0" Checked="FileHistoryService_Checked" Unchecked="FileHistoryService_Unchecked" ToolTip="{DynamicResource FileHistoryServiceToolTip}"/>
+                        <ui:ToggleSwitch FontSize="12" x:Name="IPHelper" Content="{DynamicResource IPHelperToggle}" Margin="0,10,0,0" Checked="IPHelper_Checked" Unchecked="IPHelper_Unchecked" ToolTip="{DynamicResource IPHelperToolTip}"/>
+                        <ui:ToggleSwitch FontSize="12" x:Name="WindowsUpdateMedicServiceToggle" Content="{DynamicResource WindowsUpdateMedicServiceToggle}" Margin="0,10,0,0" Checked="WindowsUpdateMedicService_Checked" Unchecked="WindowsUpdateMedicService_Unchecked" ToolTip="{DynamicResource WindowsUpdateMedicServiceToolTip}"/>
+                        <ui:ToggleSwitch FontSize="12" x:Name="WindowsBiometricServiceToggle" Content="{DynamicResource WindowsBiometricServiceToggle}" Margin="0,10,0,0" Checked="WindowsBiometricService_Checked" Unchecked="WindowsBiometricService_Unchecked" ToolTip="{DynamicResource WindowsBiometricServiceToolTip}"/>
+                        <ui:ToggleSwitch FontSize="12" x:Name="WindowsTimeServiceToggle" Content="{DynamicResource WindowsTimeServiceToggle}" Margin="0,10,0,0" Checked="WindowsTimeService_Checked" Unchecked="WindowsTimeService_Unchecked" ToolTip="{DynamicResource WindowsTimeServiceToolTip}"/>
+                        <ui:ToggleSwitch FontSize="12" x:Name="WinRMServerToggle" Content="{DynamicResource WinRMServerToggle}" Margin="0,10,0,0" Checked="WinRMServer_Checked" Unchecked="WinRMServer_Unchecked" ToolTip="{DynamicResource WinRMServerToolTip}"/>
+                        <ui:ToggleSwitch FontSize="12" x:Name="EventLogServiceToggle" Content="{DynamicResource EventLogServiceToggle}" Margin="0,10,0,0" Checked="EventLogService_Checked" Unchecked="EventLogService_Unchecked" ToolTip="{DynamicResource EventLogServiceToolTip}"/>
+                        <ui:ToggleSwitch x:Name="WindowsInsiderServiceToggle" FontSize="12" Content="{DynamicResource WindowsInsiderServiceToggle}" Margin="0,10,0,0" Checked="WindowsInsiderService_Checked" Unchecked="WindowsInsiderService_Unchecked" ToolTip="{DynamicResource WindowsInsiderServiceToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="RemoteDesktopServicesToggle" FontSize="12" Content="{DynamicResource RemoteDesktopServicesToggle}" Margin="0,10,0,0" Checked="RemoteDesktopServices_Checked" Unchecked="RemoteDesktopServices_Unchecked" ToolTip="{DynamicResource RemoteDesktopServicesToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="PrintSpoolerServiceToggle" FontSize="12" Content="{DynamicResource PrintSpoolerServiceToggle}" Margin="0,10,0,0" Checked="PrintSpoolerService_Checked" Unchecked="PrintSpoolerService_Unchecked" ToolTip="{DynamicResource PrintSpoolerServiceToggleToolTip}"/>
                     </StackPanel>
                     <StackPanel MaxWidth="370" MinWidth="300" Margin="25,0,0,0" HorizontalAlignment="Center">
-                        <ui:ToggleSwitch FontSize="12"  x:Name="WindowsInsiderServiceToggle" Content="{DynamicResource WindowsInsiderServiceToggle}" Margin="0,10,0,0" Checked="WindowsInsiderService_Checked" Unchecked="WindowsInsiderService_Unchecked" ToolTip="{DynamicResource WindowsInsiderServiceToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="RemoteDesktopServicesToggle" Content="{DynamicResource RemoteDesktopServicesToggle}" Margin="0,10,0,0" Checked="RemoteDesktopServices_Checked" Unchecked="RemoteDesktopServices_Unchecked" ToolTip="{DynamicResource RemoteDesktopServicesToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="PrintSpoolerServiceToggle" Content="{DynamicResource PrintSpoolerServiceToggle}" Margin="0,10,0,0" Checked="PrintSpoolerService_Checked" Unchecked="PrintSpoolerService_Unchecked" ToolTip="{DynamicResource PrintSpoolerServiceToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="SecurityCenterServiceToggle" Content="{DynamicResource SecurityCenterServiceToggle}" Margin="0,10,0,0" Checked="SecurityCenterService_Checked" Unchecked="SecurityCenterService_Unchecked" ToolTip="{DynamicResource SecurityCenterServiceToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="WindowsErrorReportingServiceToggle" Content="{DynamicResource WindowsErrorReportingServiceToggle}" Margin="0,10,0,0" Checked="WindowsErrorReportingService_Checked" Unchecked="WindowsErrorReportingService_Unchecked" ToolTip="{DynamicResource WindowsErrorReportingServiceToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="WMPNetworkSharingServiceToggle" Content="{DynamicResource WMPNetworkSharingServiceToggle}" Margin="0,10,0,0" Checked="WMPNetworkSharingService_Checked" Unchecked="WMPNetworkSharingService_Unchecked" ToolTip="{DynamicResource WMPNetworkSharingServiceToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="WebClientServiceToggle" Content="{DynamicResource WebClientServiceToggle}" Margin="0,10,0,0" Checked="WebClientService_Checked" Unchecked="WebClientService_Unchecked" ToolTip="{DynamicResource WebClientServiceToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="SuperfetchServiceToggle" Content="{DynamicResource SuperfetchServiceToggle}" Margin="0,10,0,0" Checked="SuperfetchService_Checked" Unchecked="SuperfetchService_Unchecked" ToolTip="{DynamicResource SuperfetchServiceToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="RemoteRegistryServiceToggle" Content="{DynamicResource RemoteRegistryServiceToggle}" Margin="0,10,0,0" Checked="RemoteRegistryService_Checked" Unchecked="RemoteRegistryService_Unchecked" ToolTip="{DynamicResource RemoteRegistryServiceToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="BITS_ServiceToggle" Content="{DynamicResource BITS_ServiceToggle}" Margin="0,10,0,0" Checked="BITS_Service_Checked" Unchecked="BITS_Service_Unchecked" ToolTip="{DynamicResource BITS_ServiceToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="DataUsageServiceToggle" Content="{DynamicResource DataUsageServiceToggle}" Margin="0,10,0,0" Checked="DataUsageService_Checked" Unchecked="DataUsageService_Unchecked" ToolTip="{DynamicResource DataUsageServiceToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="GeolocationServiceToggle" Content="{DynamicResource GeolocationServiceToggle}" Margin="0,10,0,0" Checked="GeolocationService_Checked" Unchecked="GeolocationService_Unchecked" ToolTip="{DynamicResource GeolocationServiceToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="CredentialManagerServiceToggle" Content="{DynamicResource CredentialManagerServiceToggle}" Margin="0,10,0,0" Checked="CredentialManagerService_Checked" Unchecked="CredentialManagerService_Unchecked" ToolTip="{DynamicResource CredentialManagerServiceToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="DistributedLinkTrackingClientToggle" Content="{DynamicResource DistributedLinkTrackingClientToggle}" Margin="0,10,0,0" Checked="DistributedLinkTrackingClient_Checked" Unchecked="DistributedLinkTrackingClient_Unchecked" ToolTip="{DynamicResource DistributedLinkTrackingClientToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="SysMainServiceToggle" Content="{DynamicResource SysMainServiceToggle}" Margin="0,10,0,0" Checked="SysMainService_Checked" Unchecked="SysMainService_Unchecked" ToolTip="{DynamicResource SysMainServiceToolTip}"/>
+                        <ui:ToggleSwitch x:Name="WindowsErrorReportingServiceToggle" FontSize="12" Content="{DynamicResource WindowsErrorReportingServiceToggle}" Margin="0,10,0,0" Checked="WindowsErrorReportingService_Checked" Unchecked="WindowsErrorReportingService_Unchecked" ToolTip="{DynamicResource WindowsErrorReportingServiceToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="WMPNetworkSharingServiceToggle" FontSize="12" Content="{DynamicResource WMPNetworkSharingServiceToggle}" Margin="0,10,0,0" Checked="WMPNetworkSharingService_Checked" Unchecked="WMPNetworkSharingService_Unchecked" ToolTip="{DynamicResource WMPNetworkSharingServiceToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="WebClientServiceToggle" FontSize="12" Content="{DynamicResource WebClientServiceToggle}" Margin="0,10,0,0" Checked="WebClientService_Checked" Unchecked="WebClientService_Unchecked" ToolTip="{DynamicResource WebClientServiceToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="SuperfetchServiceToggle" FontSize="12" Content="{DynamicResource SuperfetchServiceToggle}" Margin="0,10,0,0" Checked="SuperfetchService_Checked" Unchecked="SuperfetchService_Unchecked" ToolTip="{DynamicResource SuperfetchServiceToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="RemoteRegistryServiceToggle" FontSize="12" Content="{DynamicResource RemoteRegistryServiceToggle}" Margin="0,10,0,0" Checked="RemoteRegistryService_Checked" Unchecked="RemoteRegistryService_Unchecked" ToolTip="{DynamicResource RemoteRegistryServiceToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="BITS_ServiceToggle" FontSize="12" Content="{DynamicResource BITS_ServiceToggle}" Margin="0,10,0,0" Checked="BITS_Service_Checked" Unchecked="BITS_Service_Unchecked" ToolTip="{DynamicResource BITSServiceToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="DataUsageServiceToggle" FontSize="12" Content="{DynamicResource DataUsageServiceToggle}" Margin="0,10,0,0" Checked="DataUsageService_Checked" Unchecked="DataUsageService_Unchecked" ToolTip="{DynamicResource DataUsageServiceToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="GeolocationServiceToggle" FontSize="12" Content="{DynamicResource GeolocationServiceToggle}" Margin="0,10,0,0" Checked="GeolocationService_Checked" Unchecked="GeolocationService_Unchecked" ToolTip="{DynamicResource GeolocationServiceToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="CredentialManagerServiceToggle" FontSize="12" Content="{DynamicResource CredentialManagerServiceToggle}" Margin="0,10,0,0" Checked="CredentialManagerService_Checked" Unchecked="CredentialManagerService_Unchecked" ToolTip="{DynamicResource CredentialManagerServiceToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="SysMainServiceToggle" FontSize="12" Content="{DynamicResource SysMainServiceToggle}" Margin="0,10,0,0" Checked="SysMainService_Checked" Unchecked="SysMainService_Unchecked" ToolTip="{DynamicResource SysMainServiceToggleToolTip}"/>
                     </StackPanel>
                 </WrapPanel>
             </TabItem>
             <!-- Tab 5 -->
-            <TabItem MaxWidth="175" MinWidth="175" FontSize="12">
+            <TabItem Width="auto" FontSize="12">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
                         <ui:SymbolIcon Symbol="Incognito20" Margin="-15,0,5,0" />
@@ -194,64 +189,63 @@
                 </TabItem.Header>
                 <WrapPanel Margin="10">
                     <StackPanel MaxWidth="430" MinWidth="430" Margin="5,0,0,0">
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableActivityFeed" Content="{DynamicResource disableActivityFeedToggle}" Margin="0,5,0,0" Checked="activityFeed_Checked" Unchecked="activityFeed_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableTelemetry" Content="{DynamicResource disableTelemetryToggle}" Margin="0,10,0,0" Checked="telemetry_Checked" Unchecked="telemetry_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableCortana2" Content="{DynamicResource disableCortana2Toggle}" Margin="0,10,0,0" Checked="cortana_Checked" Unchecked="cortana_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableLocation" Content="{DynamicResource disableLocationToggle}" Margin="0,10,0,0" Checked="location_Checked" Unchecked="location_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableAdvertisingID" Content="{DynamicResource disableAdvertisingIDToggle}" Margin="0,10,0,0" Checked="advertisingID_Checked" Unchecked="advertisingID_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableBiometric" Content="{DynamicResource disableBiometricToggle}" Margin="0,10,0,0" Checked="biometric_Checked" Unchecked="biometric_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableWindowsDefender" Content="{DynamicResource disableWindowsDefenderToggle}" Margin="0,10,0,0" Checked="windowsDefender_Checked" Unchecked="windowsDefender_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableOneDrive" Content="{DynamicResource disableOneDriveToggle}" Margin="0,10,0,0" Checked="oneDrive_Checked" Unchecked="oneDrive_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableFeedbackHub" Content="{DynamicResource disableFeedbackHubToggle}" Margin="0,10,0,0" Checked="feedbackHub_Checked" Unchecked="feedbackHub_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableWiFiSense" Content="{DynamicResource disableWiFiSenseToggle}" Margin="0,10,0,0" Checked="wifiSense_Checked" Unchecked="wifiSense_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableDiagnosticData" Content="{DynamicResource disableDiagnosticDataToggle}" Margin="0,10,0,0" Checked="diagnosticData_Checked" Unchecked="diagnosticData_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableDiagnosticsTracking" Content="{DynamicResource disableDiagnosticsTrackingToggle}" Margin="0,10,0,0" Checked="DiagnosticTrackingService_Checked" Unchecked="diagnosticsTrackingDisable_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableSmartScreen" Content="{DynamicResource disableSmartScreen2Toggle}" Margin="0,10,0,0" Checked="smartScreen_Checked" Unchecked="smartScreen_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableLocationHistory" Content="{DynamicResource disableLocationHistoryToggle}" Margin="0,10,0,0" Checked="locationHistory_Checked" Unchecked="locationHistory_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableHandwritingDataSharing" Content="{DynamicResource disableHandwritingDataSharingToggle}" Margin="0,10,0,0" Checked="handwritingDataSharingDisable_Checked" Unchecked="handwritingDataSharingDisable_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableActivityFeed" FontSize="12" Content="{DynamicResource disableActivityFeedToggle}" Margin="0,5,0,0" Checked="activityFeed_Checked" Unchecked="activityFeed_Unchecked" ToolTip="{DynamicResource disableActivityFeedToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableTelemetry" FontSize="12" Content="{DynamicResource disableTelemetryToggle}" Margin="0,10,0,0" Checked="telemetry_Checked" Unchecked="telemetry_Unchecked" ToolTip="{DynamicResource disableTelemetryToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableCortana2" FontSize="12" Content="{DynamicResource disableCortana2Toggle}" Margin="0,10,0,0" Checked="cortana_Checked" Unchecked="cortana_Unchecked" ToolTip="{DynamicResource disableCortana2ToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableLocation" FontSize="12" Content="{DynamicResource disableLocationToggle}" Margin="0,10,0,0" Checked="location_Checked" Unchecked="location_Unchecked" ToolTip="{DynamicResource disableLocationToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableAdvertisingID" FontSize="12" Content="{DynamicResource disableAdvertisingIDToggle}" Margin="0,10,0,0" Checked="advertisingID_Checked" Unchecked="advertisingID_Unchecked" ToolTip="{DynamicResource disableAdvertisingIDToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableBiometric" FontSize="12" Content="{DynamicResource disableBiometricToggle}" Margin="0,10,0,0" Checked="biometric_Checked" Unchecked="biometric_Unchecked" ToolTip="{DynamicResource disableBiometricToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableWindowsDefender" FontSize="12" Content="{DynamicResource disableWindowsDefenderToggle}" Margin="0,10,0,0" Checked="windowsDefender_Checked" Unchecked="windowsDefender_Unchecked" ToolTip="{DynamicResource disableWindowsDefenderToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableOneDrive" FontSize="12" Content="{DynamicResource disableOneDriveToggle}" Margin="0,10,0,0" Checked="oneDrive_Checked" Unchecked="oneDrive_Unchecked" ToolTip="{DynamicResource disableOneDriveToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableFeedbackHub" FontSize="12" Content="{DynamicResource disableFeedbackHubToggle}" Margin="0,10,0,0" Checked="feedbackHub_Checked" Unchecked="feedbackHub_Unchecked" ToolTip="{DynamicResource disableFeedbackHubToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableWiFiSense" FontSize="12" Content="{DynamicResource disableWiFiSenseToggle}" Margin="0,10,0,0" Checked="wifiSense_Checked" Unchecked="wifiSense_Unchecked" ToolTip="{DynamicResource disableWiFiSenseToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableDiagnosticData" FontSize="12" Content="{DynamicResource disableDiagnosticDataToggle}" Margin="0,10,0,0" Checked="diagnosticData_Checked" Unchecked="diagnosticData_Unchecked" ToolTip="{DynamicResource disableDiagnosticDataToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableDiagnosticsTracking" FontSize="12" Content="{DynamicResource disableDiagnosticsTrackingToggle}" Margin="0,10,0,0" Checked="diagnosticsTrackingDisable_Checked" Unchecked="diagnosticsTrackingDisable_Unchecked" ToolTip="{DynamicResource disableDiagnosticsTrackingToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableSmartScreen" FontSize="12" Content="{DynamicResource disableSmartScreen2Toggle}" Margin="0,10,0,0" Checked="smartScreen_Checked" Unchecked="smartScreen_Unchecked" ToolTip="{DynamicResource disableSmartScreen2ToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableLocationHistory" FontSize="12" Content="{DynamicResource disableLocationHistoryToggle}" Margin="0,10,0,0" Checked="locationHistory_Checked" Unchecked="locationHistory_Unchecked" ToolTip="{DynamicResource disableLocationHistoryToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableHandwritingDataSharing" FontSize="12" Content="{DynamicResource disableHandwritingDataSharingToggle}" Margin="0,10,0,0" Checked="handwritingDataSharingDisable_Checked" Unchecked="handwritingDataSharingDisable_Unchecked" ToolTip="{DynamicResource disableHandwritingDataSharingToolTip}"/>
                     </StackPanel>
                     <StackPanel MaxWidth="400" MinWidth="400" Margin="430,0,0,0">
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableXboxGameBar" Content="{DynamicResource disableXboxGameBarToggle}" Margin="0,10,0,0" Checked="xboxGameBar_Checked" Unchecked="xboxGameBar_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disablePasswordRevealButton" Content="{DynamicResource disablePasswordRevealButtonToggle}" Margin="0,10,0,0" Checked="passwordReveal_Checked" Unchecked="passwordReveal_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableLocationSensors" Content="{DynamicResource disableLocationSensorsToggle}" Margin="0,10,0,0" Checked="locationSensors_Checked" Unchecked="locationSensors_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableWiFiHotspot" Content="{DynamicResource disableWiFiHotspotToggle}" Margin="0,10,0,0" Checked="wifiHotspot_Checked" Unchecked="wifiHotspot_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="LockScreenCameraToggle" Content="{DynamicResource lockScreenCameraToggle}" Margin="0,10,0,0" Checked="LockScreenCamera_Checked" Unchecked="LockScreenCamera_Unchecked" ToolTip="{DynamicResource lockScreenCameraToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableSpeechRecognition" Content="{DynamicResource disableSpeechRecognitionToggle}" Margin="0,10,0,0" Checked="speechRecognition_Checked" Unchecked="speechRecognition_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableOnlineTips" Content="{DynamicResource disableOnlineTipsToggle}" Margin="0,10,0,0" Checked="onlineTips_Checked" Unchecked="onlineTips_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableAppSuggestions" Content="{DynamicResource disableAppSuggestionsToggle}" Margin="0,10,0,0" Checked="appSuggestions_Checked" Unchecked="appSuggestions_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableUserActivityHistory" Content="{DynamicResource disableUserActivityHistoryToggle}" Margin="0,10,0,0" Checked="userActivityHistory_Checked" Unchecked="userActivityHistory_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableWiFiDirect" Content="{DynamicResource disableWiFiDirectToggle}" Margin="0,10,0,0" Checked="wifiDirect_Checked" Unchecked="wifiDirect_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableApplicationTelemetry" Content="{DynamicResource disableApplicationTelemetryToggle}" Margin="0,10,0,0" Checked="appTelemetry_Checked" Unchecked="appTelemetry_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableWindowsTroubleshooting" Content="{DynamicResource disableWindowsTroubleshootingToggle}" Margin="0,10,0,0" Checked="troubleshooting_Checked" Unchecked="troubleshooting_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableAutoPlay" Content="{DynamicResource disableAutoPlayToggle}" Margin="0,10,0,0" Checked="autoPlay_Checked" Unchecked="autoPlay_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableClipboardHistory" Content="{DynamicResource disableClipboardHistoryToggle}" Margin="0,10,0,0" Checked="clipboardHistory_Checked" Unchecked="clipboardHistory_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableWebSearch" Content="{DynamicResource disableWebSearchToggle}" Margin="0,10,0,0" Checked="webSearch_Checked" Unchecked="webSearch_Unchecked"/>
+                        <ui:ToggleSwitch x:Name="disableXboxGameBar" FontSize="12" Content="{DynamicResource disableXboxGameBarToggle}" Margin="0,10,0,0" Checked="xboxGameBar_Checked" Unchecked="xboxGameBar_Unchecked" ToolTip="{DynamicResource disableXboxGameBarToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableLocationSensors" FontSize="12" Content="{DynamicResource disableLocationSensorsToggle}" Margin="0,10,0,0" Checked="locationSensors_Checked" Unchecked="locationSensors_Unchecked" ToolTip="{DynamicResource disableLocationSensorsToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableWiFiHotspot" FontSize="12" Content="{DynamicResource disableWiFiHotspotToggle}" Margin="0,10,0,0" Checked="wifiHotspot_Checked" Unchecked="wifiHotspot_Unchecked" ToolTip="{DynamicResource disableWiFiHotspotToolTip}"/>
+                        <ui:ToggleSwitch x:Name="LockScreenCameraToggle" FontSize="12" Content="{DynamicResource lockScreenCameraToggle}" Margin="0,10,0,0" Checked="LockScreenCamera_Checked" Unchecked="LockScreenCamera_Unchecked" ToolTip="{DynamicResource lockScreenCameraToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableSpeechRecognition" FontSize="12" Content="{DynamicResource disableSpeechRecognitionToggle}" Margin="0,10,0,0" Checked="speechRecognition_Checked" Unchecked="speechRecognition_Unchecked" ToolTip="{DynamicResource disableSpeechRecognitionToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableOnlineTips" FontSize="12" Content="{DynamicResource disableOnlineTipsToggle}" Margin="0,10,0,0" Checked="onlineTips_Checked" Unchecked="onlineTips_Unchecked" ToolTip="{DynamicResource disableOnlineTipsToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableAppSuggestions" FontSize="12" Content="{DynamicResource disableAppSuggestionsToggle}" Margin="0,10,0,0" Checked="appSuggestions_Checked" Unchecked="appSuggestions_Unchecked" ToolTip="{DynamicResource disableAppSuggestionsToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableUserActivityHistory" FontSize="12" Content="{DynamicResource disableUserActivityHistoryToggle}" Margin="0,10,0,0" Checked="userActivityHistory_Checked" Unchecked="userActivityHistory_Unchecked" ToolTip="{DynamicResource disableUserActivityHistoryToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableWiFiDirect" FontSize="12" Content="{DynamicResource disableWiFiDirectToggle}" Margin="0,10,0,0" Checked="wifiDirect_Checked" Unchecked="wifiDirect_Unchecked" ToolTip="{DynamicResource disableWiFiDirectToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableApplicationTelemetry" FontSize="12" Content="{DynamicResource disableApplicationTelemetryToggle}" Margin="0,10,0,0" Checked="appTelemetry_Checked" Unchecked="appTelemetry_Unchecked" ToolTip="{DynamicResource disableApplicationTelemetryToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableWindowsTroubleshooting" FontSize="12" Content="{DynamicResource disableWindowsTroubleshootingToggle}" Margin="0,10,0,0" Checked="troubleshooting_Checked" Unchecked="troubleshooting_Unchecked" ToolTip="{DynamicResource disableWindowsTroubleshootingToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableAutoPlay" FontSize="12" Content="{DynamicResource disableAutoPlayToggle}" Margin="0,10,0,0" Checked="autoPlay_Checked" Unchecked="autoPlay_Unchecked" ToolTip="{DynamicResource disableAutoPlayToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableClipboardHistory" FontSize="12" Content="{DynamicResource disableClipboardHistoryToggle}" Margin="0,10,0,0" Checked="clipboardHistory_Checked" Unchecked="clipboardHistory_Unchecked" ToolTip="{DynamicResource disableClipboardHistoryToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableWebSearch" FontSize="12" Content="{DynamicResource disableWebSearchToggle}" Margin="0,10,0,0" Checked="webSearch_Checked" Unchecked="webSearch_Unchecked" ToolTip="{DynamicResource disableWebSearchToolTip}"/>
                     </StackPanel>
                     <StackPanel MaxWidth="430" MinWidth="430" Margin="395,-440,0,0">
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableWindowsSpotlight" Content="{DynamicResource disableWindowsSpotlightToggle}" Margin="0,10,0,0" Checked="windowsSpotlight_Checked" Unchecked="windowsSpotlight_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableWindowsInkWorkspace" Content="{DynamicResource disableWindowsInkWorkspaceToggle}" Margin="0,10,0,0" Checked="windowsInkWorkspace_Checked" Unchecked="windowsInkWorkspace_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableEdgeSync" Content="{DynamicResource disableEdgeSyncToggle}" Margin="0,10,0,0" Checked="edgeSync_Checked" Unchecked="edgeSync_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableErrorReporting" Content="{DynamicResource disableErrorReportingToggle}" Margin="0,10,0,0" Checked="errorReportingDisable_Checked" Unchecked="errorReportingDisable_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableCloudContentSuggestions" Content="{DynamicResource disableCloudContentSuggestionsToggle}" Margin="0,10,0,0" Checked="cloudContentSuggestionsDisable_Checked" Unchecked="cloudContentSuggestionsDisable_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableOnlineTipsAndHelp" Content="{DynamicResource disableOnlineTipsAndHelpToggle}" Margin="0,10,0,0" Checked="onlineTipsDisable_Checked" Unchecked="onlineTipsDisable_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="disableMediaDRMInternetAccess" Content="{DynamicResource disableMediaDRMInternetAccessToggle}" Margin="0,10,0,0" Checked="mediaDRMInternetAccessDisable_Checked" Unchecked="mediaDRMInternetAccessDisable_Unchecked"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="CameraAccessToggle" Content="{DynamicResource cameraAccessToggle}" Margin="0,10,0,0" Checked="CameraAccess_Checked" Unchecked="CameraAccess_Unchecked" ToolTip="{DynamicResource cameraAccessToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="MicrophoneAccessToggle" Content="{DynamicResource microphoneAccessToggle}" Margin="0,10,0,0" Checked="MicrophoneAccess_Checked" Unchecked="MicrophoneAccess_Unchecked" ToolTip="{DynamicResource microphoneAccessToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="AppNotificationsToggle" Content="{DynamicResource appNotificationsToggle}" Margin="0,10,0,0" Checked="AppNotifications_Checked" Unchecked="AppNotifications_Unchecked" ToolTip="{DynamicResource appNotificationsToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="SyncWithDevicesToggle" Content="{DynamicResource syncWithDevicesToggle}" Margin="0,10,0,0" Checked="SyncWithDevices_Checked" Unchecked="SyncWithDevices_Unchecked" ToolTip="{DynamicResource syncWithDevicesToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="AppAccountInfoAccessToggle" Content="{DynamicResource appAccountInfoAccessToggle}" Margin="0,10,0,0" Checked="AppAccountInfoAccess_Checked" Unchecked="AppAccountInfoAccess_Unchecked" ToolTip="{DynamicResource appAccountInfoAccessToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="CortanaWebSearchToggle" Content="{DynamicResource cortanaWebSearchToggle}" Margin="0,10,0,0" Checked="CortanaWebSearch_Checked" Unchecked="CortanaWebSearch_Unchecked" ToolTip="{DynamicResource cortanaWebSearchToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="AutoRunRemovableMediaToggle" Content="{DynamicResource autoRunRemovableMediaToggle}" Margin="0,10,0,0" Checked="AutoRunRemovableMedia_Checked" Unchecked="AutoRunRemovableMedia_Unchecked" ToolTip="{DynamicResource autoRunRemovableMediaToolTip}"/>
-                        <ui:ToggleSwitch FontSize="12"  x:Name="GameRecordingToggle" Content="{DynamicResource gameRecordingToggle}" Margin="0,10,0,0" Checked="GameRecording_Checked" Unchecked="GameRecording_Unchecked" ToolTip="{DynamicResource gameRecordingToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableWindowsSpotlight" FontSize="12" Content="{DynamicResource disableWindowsSpotlightToggle}" Margin="0,10,0,0" Checked="windowsSpotlight_Checked" Unchecked="windowsSpotlight_Unchecked" ToolTip="{DynamicResource disableWindowsSpotlightToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableWindowsInkWorkspace" FontSize="12" Content="{DynamicResource disableWindowsInkWorkspaceToggle}" Margin="0,10,0,0" Checked="windowsInkWorkspace_Checked" Unchecked="windowsInkWorkspace_Unchecked" ToolTip="{DynamicResource disableWindowsInkWorkspaceToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableEdgeSync" FontSize="12" Content="{DynamicResource disableEdgeSyncToggle}" Margin="0,10,0,0" Checked="edgeSync_Checked" Unchecked="edgeSync_Unchecked" ToolTip="{DynamicResource disableEdgeSyncToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableErrorReporting" FontSize="12" Content="{DynamicResource disableErrorReportingToggle}" Margin="0,10,0,0" Checked="errorReportingDisable_Checked" Unchecked="errorReportingDisable_Unchecked" ToolTip="{DynamicResource disableErrorReportingToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableCloudContentSuggestions" FontSize="12" Content="{DynamicResource disableCloudContentSuggestionsToggle}" Margin="0,10,0,0" Checked="cloudContentSuggestionsDisable_Checked" Unchecked="cloudContentSuggestionsDisable_Unchecked" ToolTip="{DynamicResource disableCloudContentSuggestionsToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableOnlineTipsAndHelp" FontSize="12" Content="{DynamicResource disableOnlineTipsAndHelpToggle}" Margin="0,10,0,0" Checked="onlineTipsDisable_Checked" Unchecked="onlineTipsDisable_Unchecked" ToolTip="{DynamicResource disableOnlineTipsAndHelpToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableMediaDRMInternetAccess" FontSize="12" Content="{DynamicResource disableMediaDRMInternetAccessToggle}" Margin="0,10,0,0" Checked="mediaDRMInternetAccessDisable_Checked" Unchecked="mediaDRMInternetAccessDisable_Unchecked" ToolTip="{DynamicResource disableMediaDRMInternetAccessToolTip}"/>
+                        <ui:ToggleSwitch x:Name="CameraAccessToggle" FontSize="12" Content="{DynamicResource cameraAccessToggle}" Margin="0,10,0,0" Checked="CameraAccess_Checked" Unchecked="CameraAccess_Unchecked" ToolTip="{DynamicResource cameraAccessToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="MicrophoneAccessToggle" FontSize="12" Content="{DynamicResource microphoneAccessToggle}" Margin="0,10,0,0" Checked="MicrophoneAccess_Checked" Unchecked="MicrophoneAccess_Unchecked" ToolTip="{DynamicResource microphoneAccessToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="AppNotificationsToggle" FontSize="12" Content="{DynamicResource appNotificationsToggle}" Margin="0,10,0,0" Checked="AppNotifications_Checked" Unchecked="AppNotifications_Unchecked" ToolTip="{DynamicResource appNotificationsToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="SyncWithDevicesToggle" FontSize="12" Content="{DynamicResource syncWithDevicesToggle}" Margin="0,10,0,0" Checked="SyncWithDevices_Checked" Unchecked="SyncWithDevices_Unchecked" ToolTip="{DynamicResource syncWithDevicesToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="AppAccountInfoAccessToggle" FontSize="12" Content="{DynamicResource appAccountInfoAccessToggle}" Margin="0,10,0,0" Checked="AppAccountInfoAccess_Checked" Unchecked="AppAccountInfoAccess_Unchecked" ToolTip="{DynamicResource appAccountInfoAccessToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="CortanaWebSearchToggle" FontSize="12" Content="{DynamicResource cortanaWebSearchToggle}" Margin="0,10,0,0" Checked="CortanaWebSearch_Checked" Unchecked="CortanaWebSearch_Unchecked" ToolTip="{DynamicResource cortanaWebSearchToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="AutoRunRemovableMediaToggle" FontSize="12" Content="{DynamicResource autoRunRemovableMediaToggle}" Margin="0,10,0,0" Checked="AutoRunRemovableMedia_Checked" Unchecked="AutoRunRemovableMedia_Unchecked" ToolTip="{DynamicResource autoRunRemovableMediaToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="GameRecordingToggle" FontSize="12" Content="{DynamicResource gameRecordingToggle}" Margin="0,10,0,0" Checked="GameRecording_Checked" Unchecked="GameRecording_Unchecked" ToolTip="{DynamicResource gameRecordingToggleToolTip}"/>
                     </StackPanel>
                     <StackPanel>
 
                     </StackPanel>
                 </WrapPanel>
             </TabItem>
-            
+
             <!-- Tab 6 -->
-            <TabItem MaxWidth="175" MinWidth="175" FontSize="12">
+            <TabItem Width="auto" FontSize="12">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Margin="60,0,0,0">
                         <ui:SymbolIcon Symbol="Settings16" Margin="-40,0,5,0" />
@@ -276,6 +270,8 @@
                 <ComboBoxItem Content="Türkçe"/>
                 <ComboBoxItem Content="German"/>
                 <ComboBoxItem Content="Español"/>
+                <ComboBoxItem Content="中文"/>
+                <ComboBoxItem Content="Українська"/>
             </ComboBox>
                     </TextBlock>
                 </WrapPanel>
@@ -283,15 +279,16 @@
             </TabItem>
 
             <!-- Tab 5 -->
-            <TabItem MaxWidth="155" MinWidth="155" FontSize="12">
+            <TabItem Width="auto" FontSize="12">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Margin="60,0,0,0">
                         <ui:SymbolIcon Symbol="Info20" Margin="-20,0,5,0" />
                         <TextBlock Text="{DynamicResource aboutText}" />
                     </StackPanel>
                 </TabItem.Header>
-                <WrapPanel Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" TextAlignment="Center" Height="426">
+                <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" TextAlignment="Center">
+             <Image Source="flag.png" Margin="0,0,0,0" Width="350" Height="120"/>
             <LineBreak/>
             <Run FontWeight="Bold" Foreground="#E97777" FontSize="28" Text="{DynamicResource aboutHeaderText}"/>
             <LineBreak/>
@@ -319,8 +316,6 @@
         </TextBlock>
                 </WrapPanel>
             </TabItem>
-
         </TabControl>
-        
     </Grid>
 </ui:UiWindow>

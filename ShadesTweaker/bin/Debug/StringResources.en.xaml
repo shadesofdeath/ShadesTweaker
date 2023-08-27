@@ -10,13 +10,25 @@
     <system:String x:Key="compatibilityAssistantToggle">Disable Compatibility Assistant</system:String>
     <system:String x:Key="printSpoolerToggle">Disable Print Workflow Service</system:String>
     <system:String x:Key="sysMainToggle">Disable SysMain Service</system:String>
-
+	<system:String x:Key="errorReportingToggleTooltip">Disables the error reporting service that sends crash data to Microsoft.</system:String>
+	<system:String x:Key="modernStandbyToggleTooltip">Disables modern standby power management feature.</system:String>
+	<system:String x:Key="fastStartupToggleTooltip">Disables fast startup to do a full shutdown instead of hibernation.</system:String>
+	<system:String x:Key="disableMemoryCompressionToggleTooltip">Disables memory compression to reduce memory usage.</system:String>
+	<system:String x:Key="compatibilityAssistantToggleTooltip">Disables the compatibility assistant that identifies app compatibility issues.</system:String>
+	<system:String x:Key="printSpoolerToggleTooltip">Disables the print spooler service for managing print jobs.</system:String> 
+	<system:String x:Key="sysMainToggleTooltip">Disables the SysMain service that handles system tasks like SuperFetch.</system:String>
+	
     <system:String x:Key="windowsDefenderLabel">Windows Defender</system:String>
     <system:String x:Key="disableDefenderAntiSpywareToggle">Disable Defender AntiSpyware</system:String>
     <system:String x:Key="disableDefenderAntivirusToggle">Disable Defender Antivirus</system:String>
     <system:String x:Key="disableDefenderRealTimeToggle">Disable Defender Real-Time Protection</system:String>
     <system:String x:Key="disableSmartScreenToggle">Disable SmartScreen</system:String>
     <system:String x:Key="turnOffFirewallToggle">Turn Off Microsoft Defender Firewall</system:String>
+	<system:String x:Key="defenderToggleToolTip">Disables the Defender AntiSpyware component.</system:String>
+	<system:String x:Key="defenderAntivirusToggleToolTip">Disables the Defender Antivirus component.</system:String>
+	<system:String x:Key="defenderRealTimeToggleToolTip">Disables Defender's real-time protection.</system:String>
+	<system:String x:Key="smartScreenToggleToolTip">Disables SmartScreen filtering for apps and files.</system:String>  
+	<system:String x:Key="firewallToggleToolTip">Completely disables the Windows Defender Firewall.</system:String>
 
     <system:String x:Key="windowsUpdateLabel">Windows Update</system:String>
     <system:String x:Key="disableDeliveryOptimizationToggle">Disable Delivery Optimization</system:String>
@@ -24,6 +36,11 @@
     <system:String x:Key="disableIncludeDriversToggle">Disable Include Drivers</system:String>
     <system:String x:Key="disableFeatureUpdateToggle">Disable Feature Update</system:String>
     <system:String x:Key="blockMicrosoftEdgeInstallToggle">Block Microsoft Edge Automatic Install</system:String>
+	<system:String x:Key="deliveryToggleToolTip">Disables Delivery Optimization for managing Windows updates.</system:String>
+	<system:String x:Key="autoRestartNotificationsToggleToolTip">Disables notifications about pending restarts after updates.</system:String>
+	<system:String x:Key="includeDriversToggleToolTip">Disables automatically including drivers with Windows Updates.</system:String>
+	<system:String x:Key="featureUpdateToggleToolTip">Disables feature updates to Windows.</system:String>
+	<system:String x:Key="blockEdgeToggleToolTip">Blocks automatic installs of the Microsoft Edge browser.</system:String>
 
     <system:String x:Key="diskDrivesLabel">Disk Drives</system:String>
     <system:String x:Key="disableStorageSenseToggle">Disable Storage Sense</system:String>
@@ -31,6 +48,11 @@
     <system:String x:Key="disableSuperfetchToggle">Disable Superfetch</system:String>
     <system:String x:Key="disableHibernationToggle">Disable Hibernation</system:String>
     <system:String x:Key="disableNTFSLastAccessTimeToggle">Disable NTFS Last Access Time Stamp</system:String>
+	<system:String x:Key="storagesenseToggleToolTip">Disables Storage Sense which frees up disk space by removing temporary files and more.</system:String>
+	<system:String x:Key="restoreToggleToolTip">Disables System Restore which monitors system changes and allows rolling back.</system:String>
+	<system:String x:Key="superfetchToggleToolTip">Disables Superfetch which preloads commonly used programs into memory.</system:String>
+	<system:String x:Key="hibernationToggleToolTip">Disables hibernation sleep mode to save power by writing memory to disk.</system:String>
+	<system:String x:Key="ntfstimeToggleToolTip">Disables updating last access timestamp on files and folders on NTFS drives.</system:String>
 
     <system:String x:Key="contextMenuLabel">Context Menu</system:String>
     <system:String x:Key="addWindowsBatchFileToggle">Add Windows Batch File</system:String>
@@ -39,6 +61,12 @@
     <system:String x:Key="removeNVIDIAControlPanelToggle">Remove NVIDIA Control Panel</system:String>
     <system:String x:Key="addTakeOwnershipToggle">Add Take Ownership</system:String>
     <system:String x:Key="addramCleanerToggle">Add RAM Cleaner Shortcut</system:String>
+	<system:String x:Key="batToggleToolTip">Adds a Windows batch file for running commands.</system:String>
+	<system:String x:Key="copyPathToggleToolTip">Adds copy file path option to context menu.</system:String>  
+	<system:String x:Key="vbsToggleToolTip">Adds ability to create VBScript files.</system:String>
+	<system:String x:Key="nvidiaToggleToolTip">Removes NVIDIA Control Panel app.</system:String>
+	<system:String x:Key="ownershipToggleToolTip">Adds take ownership option to context menu.</system:String>
+	<system:String x:Key="ramCleanerToggleToolTip">Adds RAM cleaner option to context menu.</system:String>
 
     <system:String x:Key="tabItemTextCleaning">Cleaning</system:String>
     <system:String x:Key="windowsLogsCheckbox">Windows Logs</system:String>
@@ -52,6 +80,17 @@
     <system:String x:Key="prefetchFilesCheckbox">Prefetch Files</system:String>
     <system:String x:Key="windowsFontCacheCheckbox">Windows Font Cache</system:String>
     <system:String x:Key="windowsInstallerCacheCheckbox">Windows Installer Cache</system:String>
+	<system:String x:Key="logsCheckboxToolTip">Clears Windows event logs</system:String>
+	<system:String x:Key="tempCheckboxToolTip">Deletes files in temp folders</system:String>
+	<system:String x:Key="windowsOldCheckboxToolTip">Deletes previous Windows installation files</system:String>
+	<system:String x:Key="errorReportingCheckboxToolTip">Deletes Windows error reporting files</system:String>
+	<system:String x:Key="programDataCachesCheckboxToolTip">Clears cached data from ProgramData folder</system:String>
+	<system:String x:Key="downloadsCheckboxToolTip">Empties Downloads folder</system:String>
+	<system:String x:Key="recycleBinCheckboxToolTip">Empties Recycle Bin</system:String>
+	<system:String x:Key="searchIndexCheckboxToolTip">Rebuilds search index</system:String>
+	<system:String x:Key="prefetchCheckboxToolTip">Deletes prefetch files</system:String>
+	<system:String x:Key="fontCacheCheckboxToolTip">Clears font cache files</system:String>
+	<system:String x:Key="installerCheckboxToolTip">Deletes installer cache files</system:String>
 
     <system:String x:Key="sizeLabelContent">Size:</system:String>
     <system:String x:Key="analyzeButtonContent">Analyze</system:String>
@@ -73,6 +112,20 @@
     <system:String x:Key="disableAppUpdatesToggle">Disable Automatic App Updates</system:String>
     <system:String x:Key="disableSearchIndex">Disable Search Indexing</system:String>
     <system:String x:Key="oldPhotoViewer">Enable Old Photo Viewer</system:String>
+	<system:String x:Key="enableOldContextMenuToolTip">Enables the old context menu style.</system:String>
+	<system:String x:Key="disableWidgetsToolTip">Disables widgets on desktop.</system:String>
+	<system:String x:Key="disablePeekToolTip">Disables peek at desktop by hovering over taskbar.</system:String>
+	<system:String x:Key="removeMeetNowIconToolTip">Removes Meet Now icon from taskbar.</system:String>
+	<system:String x:Key="enableDarkModeToolTip">Enables dark mode.</system:String>
+	<system:String x:Key="disableTransparencyToolTip">Disables transparency effects.</system:String>
+	<system:String x:Key="showFileExtensionsToolTip">Shows file extensions by default.</system:String>
+	<system:String x:Key="increaseThumbnailSizeToolTip">Increases thumbnail size in Explorer.</system:String>
+	<system:String x:Key="disableLockScreenToolTip">Disables lock screen.</system:String>
+	<system:String x:Key="adjustMenuDelayToolTip">Decreases menu open delay.</system:String>
+	<system:String x:Key="disableCortanaToolTip">Disables Cortana.</system:String>
+	<system:String x:Key="disableAppUpdatesToolTip">Disables automatic app updates.</system:String>
+	<system:String x:Key="disableSearchIndexToolTip">Disables search indexing service.</system:String>
+	<system:String x:Key="oldPhotoViewerToolTip">Enables old photo viewer.</system:String>
 
     <system:String x:Key="windowsServicesHeaderText"> Windows Services</system:String>
     <system:String x:Key="windowsServicesLabel">Windows Services</system:String>
@@ -98,42 +151,39 @@
     <system:String x:Key="WindowsBiometricServiceToolTip">Provides support for fingerprint and other biometric recognition devices.</system:String>
     <system:String x:Key="WindowsTimeServiceToggle">Windows Time Service</system:String>
     <system:String x:Key="WindowsTimeServiceToolTip">Synchronizes the computer's time with a network time server.</system:String>
-    <system:String x:Key="WindowsModulesInstallerToggle">Windows Modules Installer</system:String>
-    <system:String x:Key="WindowsModulesInstallerToolTip">Enables installation, modification, and removal of Windows updates and optional components.</system:String>
     <system:String x:Key="WinRMServerToggle">Windows Remote Management (WinRM) Service</system:String>
     <system:String x:Key="WinRMServerToolTip">Enables remote management and script execution on Windows computers.</system:String>
     <system:String x:Key="EventLogServiceToggle">Windows Event Log Service</system:String>
     <system:String x:Key="EventLogServiceToolTip">Enables logging of system, security, and application events.</system:String>
     <system:String x:Key="RemoteDesktopServicesToggle">Remote Desktop Services</system:String>
+	
     <system:String x:Key="WindowsInsiderServiceToggle">Disable Windows Insider</system:String>
-    <system:String x:Key="RemoteDesktopServicesToolTip">Allows remote access to the computer.</system:String>
     <system:String x:Key="PrintSpoolerServiceToggle">Print Spooler Service</system:String>
-    <system:String x:Key="PrintSpoolerServiceToolTip">Manages print jobs and printer queues.</system:String>
     <system:String x:Key="WindowsErrorReportingServiceToggle">Disable Error Reporting</system:String>
-    <system:String x:Key="SecurityCenterServiceToggle">Security Center Service</system:String>
-    <system:String x:Key="SecurityCenterServiceToolTip">Monitors system security settings and antivirus status.</system:String>
     <system:String x:Key="WindowsErrorReportingServiceT oggle">Windows Error Reporting Service</system:String>
-    <system:String x:Key="WindowsErrorReportingServiceToolTip">Collects and sends error reports to Microsoft.</system:String>
     <system:String x:Key="WMPNetworkSharingServiceToggle">Windows Media Player Network Sharing Service</system:String>
-    <system:String x:Key="WMPNetworkSharingServiceToolTip">Shares Windows Media Player libraries to other networked players and media devices.</system:String>
     <system:String x:Key="WebClientServiceToggle">WebClient Service</system:String>
-    <system:String x:Key="WebClientServiceToolTip">Allows applications to access files and resources on the Internet.</system:String>
     <system:String x:Key="SuperfetchServiceToggle">Superfetch Service</system:String>
-    <system:String x:Key="SuperfetchServiceToolTip">Maintains and improves system performance over time.</system:String>
     <system:String x:Key="RemoteRegistryServiceToggle">Remote Registry Service</system:String>
-    <system:String x:Key="RemoteRegistryServiceToolTip">Enables remote access to the Windows Registry.</system:String>
     <system:String x:Key="BITS_ServiceToggle">Background Intelligent Transfer Service</system:String>
-    <system:String x:Key="BITS_ServiceToolTip">Enables asynchronous transfer of files between machines using idle network bandwidth.</system:String>
     <system:String x:Key="DataUsageServiceToggle">Data Usage Service</system:String>
-    <system:String x:Key="DataUsageServiceToolTip">Tracks and manages data usage on the device.</system:String>
     <system:String x:Key="GeolocationServiceToggle">Geolocation Service</system:String>
-    <system:String x:Key="GeolocationServiceToolTip">Allows apps and websites to request your location.</system:String>
     <system:String x:Key="CredentialManagerServiceToggle">Credential Manager Service</system:String>
-    <system:String x:Key="CredentialManagerServiceToolTip">Saves and manages passwords and credentials for user accounts and applications.</system:String>
-    <system:String x:Key="DistributedLinkTrackingClientToggle">Distributed Link Tracking Client</system:String>
-    <system:String x:Key="DistributedLinkTrackingClientToolTip">Maintains links to files on an NTFS volume when file links are moved or renamed.</system:String>
     <system:String x:Key="SysMainServiceToggle">SysMain Service</system:String>
-    <system:String x:Key="SysMainServiceToolTip">Enables Superfetch to improve system performance over time.</system:String>
+	<system:String x:Key="WindowsInsiderServiceToggleToolTip">Disables the Windows Insider service</system:String>
+	<system:String x:Key="RemoteDesktopServicesToggleToolTip">Disables Remote Desktop Services</system:String>
+	<system:String x:Key="PrintSpoolerServiceToggleToolTip">Disables the Print Spooler service</system:String>
+	<system:String x:Key="WindowsErrorReportingServiceToggleToolTip">Disables Windows Error Reporting</system:String>
+	<system:String x:Key="WMPNetworkSharingServiceToggleToolTip">Disables media streaming via WMP</system:String>
+	<system:String x:Key="WebClientServiceToggleToolTip">Disables the WebClient service</system:String>
+	<system:String x:Key="SuperfetchServiceToggleToolTip">Disables the Superfetch service</system:String>
+	<system:String x:Key="RemoteRegistryServiceToggleToolTip">Disables the Remote Registry service</system:String>
+	<system:String x:Key="BITSServiceToggleToolTip">Disables the BITS background transfer service</system:String>
+	<system:String x:Key="DataUsageServiceToggleToolTip">Disables data usage monitoring</system:String>
+	<system:String x:Key="GeolocationServiceToggleToolTip">Disables location services</system:String>
+	<system:String x:Key="CredentialManagerServiceToggleToolTip">Disables the Credential Manager service</system:String>
+	<system:String x:Key="SysMainServiceToggleToolTip">Disables the SysMain system maintenance task service</system:String>
+
 
     <system:String x:Key="privacyAndSecuritysHeaderText">Privacy and Security</system:String>
     <system:String x:Key="disableActivityFeedToggle">Disable Activity Feed</system:String>
@@ -151,9 +201,23 @@
     <system:String x:Key="disableSmartScreen2Toggle">Disable SmartScreen</system:String>
     <system:String x:Key="disableLocationHistoryToggle">Disable Location History</system:String>
     <system:String x:Key="disableHandwritingDataSharingToggle">Disable Handwriting Data Sharing</system:String>
+	<system:String x:Key="disableActivityFeedToolTip">Disables the activity history feed</system:String>
+	<system:String x:Key="disableTelemetryToolTip">Disables telemetry data collection</system:String>
+	<system:String x:Key="disableCortana2ToolTip">Disables Cortana voice assistant</system:String>
+	<system:String x:Key="disableLocationToolTip">Disables location services</system:String>
+	<system:String x:Key="disableAdvertisingIDToolTip">Disables advertising ID tracking</system:String>
+	<system:String x:Key="disableBiometricToolTip">Disables biometric services</system:String>
+	<system:String x:Key="disableWindowsDefenderToolTip">Disables Windows Defender</system:String>
+	<system:String x:Key="disableOneDriveToolTip">Disables OneDrive integration</system:String>
+	<system:String x:Key="disableFeedbackHubToolTip">Disables the Feedback Hub</system:String>
+	<system:String x:Key="disableWiFiSenseToolTip">Disables WiFi Sense password sharing</system:String>
+	<system:String x:Key="disableDiagnosticDataToolTip">Limits diagnostic data collection level</system:String>
+	<system:String x:Key="disableDiagnosticsTrackingToolTip">Disables usage tracking and error reporting</system:String>
+	<system:String x:Key="disableSmartScreen2ToolTip">Disables SmartScreen filtering</system:String>
+	<system:String x:Key="disableLocationHistoryToolTip">Disables location history</system:String>
+	<system:String x:Key="disableHandwritingDataSharingToolTip">Disables handwriting data sharing</system:String>
 
     <system:String x:Key="disableXboxGameBarToggle">Disable Xbox Game Bar</system:String>
-    <system:String x:Key="disablePasswordRevealButtonToggle">Disable Password Reveal Button</system:String>
     <system:String x:Key="disableLocationSensorsToggle">Disable Location Sensors</system:String>
     <system:String x:Key="disableWiFiHotspotToggle">Disable WiFi Hotspot</system:String>
     <system:String x:Key="lockScreenCameraToggle">Disable Lock Screen Camera</system:String>
@@ -168,6 +232,20 @@
     <system:String x:Key="disableAutoPlayToggle">Disable AutoPlay</system:String>
     <system:String x:Key="disableClipboardHistoryToggle">Disable Clipboard History</system:String>
     <system:String x:Key="disableWebSearchToggle">Disable Web Search</system:String>
+	<system:String x:Key="disableXboxGameBarToolTip">Disables the Xbox Game Bar</system:String>
+	<system:String x:Key="disableLocationSensorsToolTip">Disables location from devices like GPS</system:String>
+	<system:String x:Key="disableWiFiHotspotToolTip">Disables WiFi hotspot feature</system:String>
+	<system:String x:Key="lockScreenCameraToggleToolTip">Disables camera on lock screen</system:String>
+	<system:String x:Key="disableSpeechRecognitionToolTip">Disables speech recognition services</system:String>
+	<system:String x:Key="disableOnlineTipsToolTip">Disables online tips</system:String>
+	<system:String x:Key="disableAppSuggestionsToolTip">Disables app suggestions</system:String>
+	<system:String x:Key="disableUserActivityHistoryToolTip">Disables activity history tracking</system:String>
+	<system:String x:Key="disableWiFiDirectToolTip">Disables WiFi Direct connections</system:String>
+	<system:String x:Key="disableApplicationTelemetryToolTip">Limits app telemetry collection</system:String>
+	<system:String x:Key="disableWindowsTroubleshootingToolTip">Disables Windows troubleshooting wizards</system:String>
+	<system:String x:Key="disableAutoPlayToolTip">Disables autoplay of media</system:String>
+	<system:String x:Key="disableClipboardHistoryToolTip">Disables clipboard history</system:String>
+	<system:String x:Key="disableWebSearchToolTip">Disables Bing web search integration</system:String>
 
     <system:String x:Key="disableWindowsSpotlightToggle">Disable Windows Spotlight</system:String>
     <system:String x:Key="disableWindowsInkWorkspaceToggle">Disable Windows Ink Workspace</system:String>
@@ -177,21 +255,28 @@
     <system:String x:Key="disableOnlineTipsAndHelpToggle">Disable Online Tips and Help</system:String>
     <system:String x:Key="disableMediaDRMInternetAccessToggle">Disable Windows Media DRM Internet Access</system:String>
     <system:String x:Key="cameraAccessToggle">Disable Camera Access</system:String>
-    <system:String x:Key="cameraAccessToolTip">Disables access to the camera for apps.</system:String>
     <system:String x:Key="microphoneAccessToggle">Disable Microphone Access</system:String>
-    <system:String x:Key="microphoneAccessToolTip">Disables access to the microphone for apps.</system:String>
     <system:String x:Key="appNotificationsToggle">Disable App Notifications</system:String>
-    <system:String x:Key="appNotificationsToolTip">Disables notifications from apps.</system:String>
     <system:String x:Key="syncWithDevicesToggle">Disable Sync with Devices</system:String>
-    <system:String x:Key="syncWithDevicesToolTip">Disables synchronization of settings with other devices.</system:String>
     <system:String x:Key="appAccountInfoAccessToggle">Disable App Access to Account Info</system:String>
-    <system:String x:Key="appAccountInfoAccessToolTip">Disables apps from accessing account information.</system:String>
     <system:String x:Key="cortanaWebSearchToggle">Disable Cortana Web Search</system:String>
-    <system:String x:Key="cortanaWebSearchToolTip">Disables web search functionality in Cortana.</system:String>
     <system:String x:Key="autoRunRemovableMediaToggle">Disable AutoRun for Removable Media</system:String>
-    <system:String x:Key="autoRunRemovableMediaToolTip">Disables AutoRun for removable media (USB drives, CDs, etc.).</system:String>
     <system:String x:Key="gameRecordingToggle">Disable Game Recording and Broadcasting</system:String>
-    <system:String x:Key="gameRecordingToolTip">Disables game recording and broadcasting features.</system:String>
+	<system:String x:Key="disableWindowsSpotlightToolTip">Disables Windows Spotlight suggestions</system:String>
+	<system:String x:Key="disableWindowsInkWorkspaceToolTip">Disables Windows Ink Workspace</system:String>
+	<system:String x:Key="disableEdgeSyncToolTip">Disables Edge sync</system:String>
+	<system:String x:Key="disableErrorReportingToolTip">Disables error reporting</system:String>
+	<system:String x:Key="disableCloudContentSuggestionsToolTip">Disables cloud content suggestions</system:String>
+	<system:String x:Key="disableOnlineTipsAndHelpToolTip">Disables online tips</system:String>
+	<system:String x:Key="disableMediaDRMInternetAccessToolTip">Disables internet access for DRM media</system:String>
+	<system:String x:Key="cameraAccessToggleToolTip">Disables camera access for apps</system:String>
+	<system:String x:Key="microphoneAccessToggleToolTip">Disables microphone access for apps</system:String>
+	<system:String x:Key="appNotificationsToggleToolTip">Disables notifications from apps</system:String>
+	<system:String x:Key="syncWithDevicesToggleToolTip">Disables syncing settings across devices</system:String>
+	<system:String x:Key="appAccountInfoAccessToggleToolTip">Disables account info access for apps</system:String>
+	<system:String x:Key="cortanaWebSearchToggleToolTip">Disables Cortana web searches</system:String>
+	<system:String x:Key="autoRunRemovableMediaToggleToolTip">Disables autorun for removable media</system:String>
+	<system:String x:Key="gameRecordingToggleToolTip">Disables game recording and broadcasting</system:String>
 
     <system:String x:Key="presetText">Preset</system:String>
     <system:String x:Key="importText">Import</system:String>

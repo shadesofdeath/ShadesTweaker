@@ -18,9 +18,15 @@ namespace ShadesTweaker
 {
     public partial class MainWindow : UiWindow
     {
+        private const string ConfigFileName = "config.xml";
+        private string configFilePath;
         public MainWindow()
         {
             InitializeComponent();
+            configFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ConfigFileName);
+
+
+            LoadLanguagePreference();
             Loaded += (sender, args) =>
             {
                 if (IsWindows11OrHigher())
@@ -33,7 +39,50 @@ namespace ShadesTweaker
                 }
             };
         }
+        private void LoadLanguagePreference()
+        {
+            if (File.Exists(configFilePath))
+            {
+                XDocument doc = XDocument.Load(configFilePath);
+                XElement languageIndexElement = doc.Element("Config")?.Element("LanguageIndex");
+                if (int.TryParse(languageIndexElement?.Value, out int languageIndex))
+                {
+                    comboBoxLanguage.SelectedIndex = languageIndex;
+                    ApplyLanguage(languageIndex);
+                }
+            }
+        }
 
+        private void SaveLanguagePreference(int languageIndex)
+        {
+            if (!string.IsNullOrEmpty(configFilePath))
+            {
+                XDocument doc = new XDocument(new XElement("Config", new XElement("LanguageIndex", languageIndex)));
+                doc.Save(configFilePath);
+            }
+        }
+
+
+        private void ApplyLanguage(int languageIndex)
+        {
+            ResourceDictionary resourceDictionary = new ResourceDictionary();
+
+            string basePath = AppDomain.CurrentDomain.BaseDirectory;
+            string[] languageFiles = { "StringResources.en.xaml", "StringResources.tr.xaml", "StringResources.de.xaml", "StringResources.es.xaml", "StringResources.zh-cy.xaml","StringResources.ua.xaml" };
+
+            if (languageIndex >= 0 && languageIndex < languageFiles.Length)
+            {
+                resourceDictionary.Source = new Uri(Path.Combine(basePath, languageFiles[languageIndex]));
+                this.Resources.MergedDictionaries.Add(resourceDictionary);
+            }
+        }
+
+        private void comboBoxLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int selectedLanguageIndex = comboBoxLanguage.SelectedIndex;
+            SaveLanguagePreference(selectedLanguageIndex);
+            ApplyLanguage(selectedLanguageIndex);
+        }
         private bool IsWindows11OrHigher()
         {
             // Windows 11 version number: 10.0.22000
@@ -1063,16 +1112,6 @@ namespace ShadesTweaker
             RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\GameDVR", "AllowGameDVR", 1, RegistryValueKind.DWord);
         }
 
-        // Password Reveal Button
-        private void passwordReveal_Checked(object sender, RoutedEventArgs e)
-        {
-            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Policies\Microsoft\Windows\CredUI", "DisablePasswordReveal", 1, RegistryValueKind.DWord);
-        }
-
-        private void passwordReveal_Unchecked(object sender, RoutedEventArgs e)
-        {
-            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Policies\Microsoft\Windows\CredUI", "DisablePasswordReveal", 0, RegistryValueKind.DWord);
-        }
 
         // Location Sensors
         private void locationSensors_Checked(object sender, RoutedEventArgs e)
@@ -1444,7 +1483,6 @@ namespace ShadesTweaker
         private void FileHistoryService_Checked(object sender, RoutedEventArgs e)
         {
             RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\fhsvc", "Start", 4, RegistryValueKind.DWord);
-
         }
         private void FileHistoryService_Unchecked(object sender, RoutedEventArgs e)
         {
@@ -1565,12 +1603,46 @@ namespace ShadesTweaker
         // Security Center Service
         private void SecurityCenterService_Checked(object sender, RoutedEventArgs e)
         {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\wscsvc", "Start", 4, RegistryValueKind.DWord);
+            try
+            {
+                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Services\wscsvc", true))
+                {
+                    if (key != null)
+                    {
+                        key.SetValue("Start", 4, RegistryValueKind.DWord);
+                    }
+                    else
+                    {
+                        // Anahtar bulunamadı
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Hata işleme
+            }
         }
 
         private void SecurityCenterService_Unchecked(object sender, RoutedEventArgs e)
         {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\wscsvc", "Start", 2, RegistryValueKind.DWord);
+            try
+            {
+                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Services\wscsvc", true))
+                {
+                    if (key != null)
+                    {
+                        key.SetValue("Start", 2, RegistryValueKind.DWord);
+                    }
+                    else
+                    {
+                        // Anahtar bulunamadı
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Hata işleme
+            }
         }
 
         // Windows Error Reporting Service
@@ -1933,7 +2005,7 @@ namespace ShadesTweaker
             {
                 if (!MessageBoxShown)
                 {
-                    System.Windows.MessageBox.Show("Bazı dosyalar ve klasörler arkaplanda açık uygulamalar tarafından kullanılıyor, bu dosya ve klasörler silinemeyecek!.");
+                    System.Windows.MessageBox.Show("Some files and folders are used in the background by open applications, these files and folders will not be deleted!.");
                     MessageBoxShown = true; // MessageBox gösterildiğini işaretle
                 }
             }
@@ -1954,7 +2026,7 @@ namespace ShadesTweaker
                 isProcessing = true;
                 await Task.Delay(3000);
 
-                if (LogsCheckbox.IsChecked == true)
+                if (logsCheckbox.IsChecked == true)
                 {
                     string updateLogsPath = @"C:\Windows\Logs\";
                     if (Directory.Exists(updateLogsPath))
@@ -1987,7 +2059,7 @@ namespace ShadesTweaker
                     }
                 }
 
-                if (WindowsOldCheckbox.IsChecked == true)
+                if (windowsOldCheckbox.IsChecked == true)
                 {
                     string windowsOldPath = @"C:\Windows.old\";
                     if (Directory.Exists(windowsOldPath))
@@ -2003,7 +2075,7 @@ namespace ShadesTweaker
                     }
                 }
 
-                if (erroreportingCheckbox.IsChecked == true)
+                if (errorReportingCheckbox.IsChecked == true)
                 {
                     string werPath = @"C:\ProgramData\Microsoft\Windows\WER\";
                     if (Directory.Exists(werPath))
@@ -2019,7 +2091,7 @@ namespace ShadesTweaker
                     }
                 }
 
-                if (programdatacachesCheckbox.IsChecked == true)
+                if (programDataCachesCheckbox.IsChecked == true)
                 {
                     string cachesPath = @"C:\ProgramData\Microsoft\Windows\Caches\";
                     if (Directory.Exists(cachesPath))
@@ -2052,7 +2124,7 @@ namespace ShadesTweaker
                     }
                 }
 
-                if (recyclebinCheckbox.IsChecked == true)
+                if (recycleBinCheckbox.IsChecked == true)
                 {
                     string cachesPath = @"C:\$Recycle.Bin";
                     if (Directory.Exists(cachesPath))
@@ -2068,7 +2140,7 @@ namespace ShadesTweaker
                     }
                 }
 
-                if (searchindexCheckbox.IsChecked == true)
+                if (searchIndexCheckbox.IsChecked == true)
                 {
                     string cachesPath = @"C:\ProgramData\Microsoft\Search\Data\";
                     if (Directory.Exists(cachesPath))
@@ -2100,7 +2172,7 @@ namespace ShadesTweaker
                     }
                 }
 
-                if (fontcacheCheckbox.IsChecked == true)
+                if (fontCacheCheckbox.IsChecked == true)
                 {
                     string cachesPath = @"C:\Windows\ServiceProfiles\LocalService\AppData\Local\FontCache";
                     if (Directory.Exists(cachesPath))
@@ -2116,7 +2188,7 @@ namespace ShadesTweaker
                     }
                 }
 
-                if (ınstallerCheckbox.IsChecked == true)
+                if (installerCheckbox.IsChecked == true)
                 {
                     string cachesPath = @"C:\Windows\Installer";
                     if (Directory.Exists(cachesPath))
@@ -2157,7 +2229,7 @@ namespace ShadesTweaker
 
                 /// CLEAR  BAŞLANGICI ///
 
-                if (LogsCheckbox.IsChecked == true)
+                if (logsCheckbox.IsChecked == true)
                 {
                     selectedPath[0] = @"C:\Windows\Logs\";
                 }
@@ -2168,17 +2240,17 @@ namespace ShadesTweaker
                     selectedPath[1] = Path.Combine(@"C:\Users", username, "AppData", "Local", "Temp");
                 }
 
-                if (WindowsOldCheckbox.IsChecked == true)
+                if (windowsOldCheckbox.IsChecked == true)
                 {
                     selectedPath[2] = Path.Combine(@"C:\Windows.old");
                 }
 
-                if (erroreportingCheckbox.IsChecked == true)
+                if (errorReportingCheckbox.IsChecked == true)
                 {
                     selectedPath[3] = Path.Combine(@"C:\ProgramData\Microsoft\Windows\WER");
                 }
 
-                if (programdatacachesCheckbox.IsChecked == true)
+                if (programDataCachesCheckbox.IsChecked == true)
                 {
                     selectedPath[4] = Path.Combine(@"C:\ProgramData\Microsoft\Windows\Caches");
                 }
@@ -2189,12 +2261,12 @@ namespace ShadesTweaker
                     selectedPath[5] = Path.Combine(@"C:\Users", username, "Downloads");
                 }
 
-                if (recyclebinCheckbox.IsChecked == true)
+                if (recycleBinCheckbox.IsChecked == true)
                 {
                     selectedPath[6] = Path.Combine(@"C:\$Recycle.Bin");
                 }
 
-                if (searchindexCheckbox.IsChecked == true)
+                if (searchIndexCheckbox.IsChecked == true)
                 {
                     selectedPath[7] = Path.Combine(@"C:\ProgramData\Microsoft\Search\Data");
                 }
@@ -2204,12 +2276,12 @@ namespace ShadesTweaker
                     selectedPath[8] = Path.Combine(@"C:\Windows\Prefetch");
                 }
 
-                if (fontcacheCheckbox.IsChecked == true)
+                if (fontCacheCheckbox.IsChecked == true)
                 {
                     selectedPath[9] = Path.Combine(@"C:\Windows\ServiceProfiles\LocalService\AppData\Local\FontCache");
                 }
 
-                if (ınstallerCheckbox.IsChecked == true)
+                if (installerCheckbox.IsChecked == true)
                 {
                     selectedPath[10] = Path.Combine(@"C:\Windows\Installer");
                 }
@@ -2233,34 +2305,6 @@ namespace ShadesTweaker
             {
             }
         }
-
-        private void comboBoxLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ResourceDictionary resourceDictionary = new ResourceDictionary();
-            string basePath = AppDomain.CurrentDomain.BaseDirectory; // Programın çalıştığı dizin
-
-            if (comboBoxLanguage.SelectedIndex == 0)
-            {
-                resourceDictionary.Source = new Uri(Path.Combine(basePath, "StringResources.en.xaml"));
-            }
-            else if (comboBoxLanguage.SelectedIndex == 1)
-            {
-                resourceDictionary.Source = new Uri(Path.Combine(basePath, "StringResources.tr.xaml"));
-            }
-            else if (comboBoxLanguage.SelectedIndex == 2)
-            {
-                resourceDictionary.Source = new Uri(Path.Combine(basePath, "StringResources.de.xaml"));
-            }
-            else if (comboBoxLanguage.SelectedIndex == 3)
-            {
-                resourceDictionary.Source = new Uri(Path.Combine(basePath, "StringResources.es.xaml"));
-            }
-            this.Resources.MergedDictionaries.Add(resourceDictionary);
-        }
-
-
-
-
 
     }
 }
