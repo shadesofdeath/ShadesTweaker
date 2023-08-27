@@ -68,7 +68,7 @@ namespace ShadesTweaker
             ResourceDictionary resourceDictionary = new ResourceDictionary();
 
             string basePath = AppDomain.CurrentDomain.BaseDirectory;
-            string[] languageFiles = { "StringResources.en.xaml", "StringResources.tr.xaml", "StringResources.de.xaml", "StringResources.es.xaml", "StringResources.zh-cy.xaml","StringResources.ua.xaml" };
+            string[] languageFiles = { "StringResources.en.xaml", "StringResources.tr.xaml", "StringResources.de.xaml", "StringResources.es.xaml", "StringResources.zh-cy.xaml", "StringResources.ua.xaml" };
 
             if (languageIndex >= 0 && languageIndex < languageFiles.Length)
             {
@@ -1422,7 +1422,7 @@ namespace ShadesTweaker
 
         // BitLocker Drive Encryption Service
 
-        private void BitLockerDriveEncryptionService_Checked(object sender,RoutedEventArgs e)
+        private void BitLockerDriveEncryptionService_Checked(object sender, RoutedEventArgs e)
         {
             RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\BDESVC", "Start", 4, RegistryValueKind.DWord);
 
@@ -1617,7 +1617,7 @@ namespace ShadesTweaker
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Hata işleme
             }
@@ -1639,7 +1639,7 @@ namespace ShadesTweaker
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Hata işleme
             }

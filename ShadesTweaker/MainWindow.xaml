@@ -288,7 +288,7 @@
                 </TabItem.Header>
                 <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" TextAlignment="Center">
-             <Image Source="flag.png" Margin="0,0,0,0" Width="350" Height="120"/>
+             <Image Source="flag.png" Margin="0,0,0,0" Width="350" Height="100"/>
             <LineBreak/>
             <Run FontWeight="Bold" Foreground="#E97777" FontSize="28" Text="{DynamicResource aboutHeaderText}"/>
             <LineBreak/>
