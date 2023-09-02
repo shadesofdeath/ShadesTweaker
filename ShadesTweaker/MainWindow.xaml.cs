@@ -68,7 +68,7 @@ namespace ShadesTweaker
             ResourceDictionary resourceDictionary = new ResourceDictionary();
 
             string basePath = AppDomain.CurrentDomain.BaseDirectory;
-            string[] languageFiles = { "StringResources.en.xaml", "StringResources.tr.xaml", "StringResources.de.xaml", "StringResources.es.xaml", "StringResources.zh-cy.xaml", "StringResources.ua.xaml" };
+            string[] languageFiles = { "StringResources.en.xaml", "StringResources.tr.xaml", "StringResources.de.xaml", "StringResources.es.xaml", "StringResources.zh-cy.xaml", "StringResources.ua.xaml", "StringResources.ru.xaml" };
 
             if (languageIndex >= 0 && languageIndex < languageFiles.Length)
             {
@@ -1914,395 +1914,231 @@ namespace ShadesTweaker
         }
 
 
-        private bool isProcessing = false;
-        private bool showCleaningCompleteMessage = false;
-
-        private string FormatSize(long size)
-        {
-            string[] sizes = { "B", "KB", "MB", "GB" };
-            int order = 0;
-            while (size >= 1024 && order < sizes.Length - 1)
-            {
-                order++;
-                size /= 1024;
-            }
-            return String.Format("{0:0.##} {1}", size, sizes[order]);
-        }
-
-        private async Task DeleteFilesAndFoldersAsync(params string[] paths)
-        {
-            isProcessing = true;
-
-            foreach (string path in paths)
-            {
-                await DeletePathAsync(path);
-            }
-
-            isProcessing = false;
-
-            if (!showCleaningCompleteMessage)
-            {
-                outputTextBox.Text = string.Empty;
-                MessageBoxShown = false;
-                System.Windows.MessageBox.Show("Cleaning process completed.", "Process Completed", MessageBoxButton.OK, MessageBoxImage.Information);
-
-            }
-
-            sizeLabel.Content = "Size : 0 B";
-        }
-        private bool MessageBoxShown = false; // MessageBox gösterildi mi?
-
-        private async Task DeletePathAsync(string path)
-        {
-            bool deletionErrorOccurred = false; // Hata durumunu kontrol etmek için bir bayrak
-
-            try
-            {
-                if (File.Exists(path))
-                {
-                    await Task.Run(() =>
-                    {
-                        TakeOwnership(path);
-                        File.Delete(path);
-                    });
-                }
-                else if (Directory.Exists(path))
-                {
-                    string[] files = Directory.GetFiles(path);
-                    string[] folders = Directory.GetDirectories(path);
-
-                    foreach (string file in files)
-                    {
-                        await DeletePathAsync(file);
-                    }
-
-                    foreach (string folder in folders)
-                    {
-                        await DeletePathAsync(folder);
-                    }
-
-                    await Task.Run(() =>
-                    {
-                        Directory.Delete(path, true);
-                    });
-                }
-            }
-            catch (UnauthorizedAccessException)
-            {
-                deletionErrorOccurred = true; // Hata durumu olduğunu işaretle
-            }
-            catch (IOException)
-            {
-                deletionErrorOccurred = true; // Hata durumu olduğunu işaretle
-            }
-            catch (Exception)
-            {
-                deletionErrorOccurred = true; // Hata durumu olduğunu işaretle
-            }
-
-            // Tüm işlem bittikten sonra, eğer hata durumu varsa ve daha önce hata gösterilmediyse MessageBox göster
-            if (deletionErrorOccurred)
-            {
-                if (!MessageBoxShown)
-                {
-                    System.Windows.MessageBox.Show("Some files and folders are used in the background by open applications, these files and folders will not be deleted!.");
-                    MessageBoxShown = true; // MessageBox gösterildiğini işaretle
-                }
-            }
-        }
-
-
-
+        // private bool isProcessing = false;
+        // private bool showCleaningCompleteMessage = false;
 
         private async void AnalyzeButton_Click(object sender, RoutedEventArgs e)
         {
-            sizeLabel.Content = "Size : 0 B";
+            sizeLabel.Content = "";
+            outputTextBox.Text = "";
 
-            if (!isProcessing)
+            List<CheckBox> selectedCheckBoxes = GetSelectedCheckBoxes();
+
+            if (selectedCheckBoxes.Count == 0)
             {
-                long totalSize = 0;
-                List<string> selectedPaths = new List<string>();
-                progressBar.IsIndeterminate = true;
-                isProcessing = true;
-                await Task.Delay(3000);
-
-                if (logsCheckbox.IsChecked == true)
-                {
-                    string updateLogsPath = @"C:\Windows\Logs\";
-                    if (Directory.Exists(updateLogsPath))
-                    {
-                        selectedPaths.Add(updateLogsPath);
-
-                        string[] logFiles = Directory.GetFiles(updateLogsPath, "*", SearchOption.AllDirectories);
-
-                        foreach (string file in logFiles)
-                        {
-                            totalSize += new FileInfo(file).Length;
-                        }
-                    }
-                }
-
-                if (tempCheckbox.IsChecked == true)
-                {
-                    string username = Environment.UserName;
-                    string tempPath = Path.Combine(@"C:\Users", username, "AppData", "Local", "Temp");
-                    if (Directory.Exists(tempPath))
-                    {
-                        selectedPaths.Add(tempPath);
-
-                        string[] tempFiles = Directory.GetFiles(tempPath, "*", SearchOption.AllDirectories);
-
-                        foreach (string file in tempFiles)
-                        {
-                            totalSize += new FileInfo(file).Length;
-                        }
-                    }
-                }
-
-                if (windowsOldCheckbox.IsChecked == true)
-                {
-                    string windowsOldPath = @"C:\Windows.old\";
-                    if (Directory.Exists(windowsOldPath))
-                    {
-                        selectedPaths.Add(windowsOldPath);
-
-                        string[] windowsOldFiles = Directory.GetFiles(windowsOldPath, "*", SearchOption.AllDirectories);
-
-                        foreach (string file in windowsOldFiles)
-                        {
-                            totalSize += new FileInfo(file).Length;
-                        }
-                    }
-                }
-
-                if (errorReportingCheckbox.IsChecked == true)
-                {
-                    string werPath = @"C:\ProgramData\Microsoft\Windows\WER\";
-                    if (Directory.Exists(werPath))
-                    {
-                        selectedPaths.Add(werPath);
-
-                        string[] werFiles = Directory.GetFiles(werPath, "*", SearchOption.AllDirectories);
-
-                        foreach (string file in werFiles)
-                        {
-                            totalSize += new FileInfo(file).Length;
-                        }
-                    }
-                }
-
-                if (programDataCachesCheckbox.IsChecked == true)
-                {
-                    string cachesPath = @"C:\ProgramData\Microsoft\Windows\Caches\";
-                    if (Directory.Exists(cachesPath))
-                    {
-                        selectedPaths.Add(cachesPath);
-
-                        string[] cacheFiles = Directory.GetFiles(cachesPath, "*", SearchOption.AllDirectories);
-
-                        foreach (string file in cacheFiles)
-                        {
-                            totalSize += new FileInfo(file).Length;
-                        }
-                    }
-                }
-
-                if (downloadsCheckbox.IsChecked == true)
-                {
-                    string username = Environment.UserName;
-                    string tempPath = Path.Combine(@"C:\Users", username, "Downloads");
-                    if (Directory.Exists(tempPath))
-                    {
-                        selectedPaths.Add(tempPath);
-
-                        string[] tempFiles = Directory.GetFiles(tempPath, "*", SearchOption.AllDirectories);
-
-                        foreach (string file in tempFiles)
-                        {
-                            totalSize += new FileInfo(file).Length;
-                        }
-                    }
-                }
-
-                if (recycleBinCheckbox.IsChecked == true)
-                {
-                    string cachesPath = @"C:\$Recycle.Bin";
-                    if (Directory.Exists(cachesPath))
-                    {
-                        selectedPaths.Add(cachesPath);
-
-                        string[] cacheFiles = Directory.GetFiles(cachesPath, "*", SearchOption.AllDirectories);
-
-                        foreach (string file in cacheFiles)
-                        {
-                            totalSize += new FileInfo(file).Length;
-                        }
-                    }
-                }
-
-                if (searchIndexCheckbox.IsChecked == true)
-                {
-                    string cachesPath = @"C:\ProgramData\Microsoft\Search\Data\";
-                    if (Directory.Exists(cachesPath))
-                    {
-                        selectedPaths.Add(cachesPath);
-
-                        string[] cacheFiles = Directory.GetFiles(cachesPath, "*", SearchOption.AllDirectories);
-
-                        foreach (string file in cacheFiles)
-                        {
-                            totalSize += new FileInfo(file).Length;
-                        }
-                    }
-                }
-
-                if (prefetchCheckbox.IsChecked == true)
-                {
-                    string cachesPath = @"C:\Windows\Prefetch\";
-                    if (Directory.Exists(cachesPath))
-                    {
-                        selectedPaths.Add(cachesPath);
-
-                        string[] cacheFiles = Directory.GetFiles(cachesPath, "*", SearchOption.AllDirectories);
-
-                        foreach (string file in cacheFiles)
-                        {
-                            totalSize += new FileInfo(file).Length;
-                        }
-                    }
-                }
-
-                if (fontCacheCheckbox.IsChecked == true)
-                {
-                    string cachesPath = @"C:\Windows\ServiceProfiles\LocalService\AppData\Local\FontCache";
-                    if (Directory.Exists(cachesPath))
-                    {
-                        selectedPaths.Add(cachesPath);
-
-                        string[] cacheFiles = Directory.GetFiles(cachesPath, "*", SearchOption.AllDirectories);
-
-                        foreach (string file in cacheFiles)
-                        {
-                            totalSize += new FileInfo(file).Length;
-                        }
-                    }
-                }
-
-                if (installerCheckbox.IsChecked == true)
-                {
-                    string cachesPath = @"C:\Windows\Installer";
-                    if (Directory.Exists(cachesPath))
-                    {
-                        selectedPaths.Add(cachesPath);
-
-                        string[] cacheFiles = Directory.GetFiles(cachesPath, "*", SearchOption.AllDirectories);
-
-                        foreach (string file in cacheFiles)
-                        {
-                            totalSize += new FileInfo(file).Length;
-                        }
-                    }
-                }
-
-                // Diğer checkbox'lar için benzer mantık
-
-                List<string> allFiles = new List<string>();
-                foreach (string path in selectedPaths)
-                {
-                    allFiles.AddRange(Directory.GetFiles(path, "*", SearchOption.AllDirectories));
-                }
-
-                outputTextBox.Text = string.Join(Environment.NewLine, allFiles);
-                sizeLabel.Content = "Size : " + FormatSize(totalSize);
-                progressBar.IsIndeterminate = false;
-                isProcessing = false;
+                System.Windows.MessageBox.Show("Lütfen en az bir seçenek işaretleyin.");
+                return;
             }
-        }
 
+            long totalSize = 0;
+            List<string> filePaths = new List<string>();
+
+            foreach (var checkBox in selectedCheckBoxes)
+            {
+                string folderPath = GetFolderPathForCheckbox(checkBox.Name);
+
+                if (!string.IsNullOrEmpty(folderPath))
+                {
+                    var directoryInfo = new DirectoryInfo(folderPath);
+                    totalSize += CalculateDirectorySize(directoryInfo, ref filePaths);
+                }
+            }
+
+            sizeLabel.Content = $"{FindResource("sizeLabelContent")} {FormatFileSize(totalSize)}";
+            outputTextBox.Text = string.Join(Environment.NewLine, filePaths);
+        }
 
         private async void CleanButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!isProcessing) // Check if not already processing
+            List<CheckBox> selectedCheckBoxes = GetSelectedCheckBoxes();
+
+            if (selectedCheckBoxes.Count == 0)
             {
-                isProcessing = true;
-                string[] selectedPath = new string[11];
-
-                /// CLEAR  BAŞLANGICI ///
-
-                if (logsCheckbox.IsChecked == true)
-                {
-                    selectedPath[0] = @"C:\Windows\Logs\";
-                }
-
-                if (tempCheckbox.IsChecked == true)
-                {
-                    string username = Environment.UserName;
-                    selectedPath[1] = Path.Combine(@"C:\Users", username, "AppData", "Local", "Temp");
-                }
-
-                if (windowsOldCheckbox.IsChecked == true)
-                {
-                    selectedPath[2] = Path.Combine(@"C:\Windows.old");
-                }
-
-                if (errorReportingCheckbox.IsChecked == true)
-                {
-                    selectedPath[3] = Path.Combine(@"C:\ProgramData\Microsoft\Windows\WER");
-                }
-
-                if (programDataCachesCheckbox.IsChecked == true)
-                {
-                    selectedPath[4] = Path.Combine(@"C:\ProgramData\Microsoft\Windows\Caches");
-                }
-
-                if (downloadsCheckbox.IsChecked == true)
-                {
-                    string username = Environment.UserName;
-                    selectedPath[5] = Path.Combine(@"C:\Users", username, "Downloads");
-                }
-
-                if (recycleBinCheckbox.IsChecked == true)
-                {
-                    selectedPath[6] = Path.Combine(@"C:\$Recycle.Bin");
-                }
-
-                if (searchIndexCheckbox.IsChecked == true)
-                {
-                    selectedPath[7] = Path.Combine(@"C:\ProgramData\Microsoft\Search\Data");
-                }
-
-                if (prefetchCheckbox.IsChecked == true)
-                {
-                    selectedPath[8] = Path.Combine(@"C:\Windows\Prefetch");
-                }
-
-                if (fontCacheCheckbox.IsChecked == true)
-                {
-                    selectedPath[9] = Path.Combine(@"C:\Windows\ServiceProfiles\LocalService\AppData\Local\FontCache");
-                }
-
-                if (installerCheckbox.IsChecked == true)
-                {
-                    selectedPath[10] = Path.Combine(@"C:\Windows\Installer");
-                }
-                // ... (Diğer checkbox'lar için benzer mantık)
-                await DeleteFilesAndFoldersAsync(selectedPath);
-                sizeLabel.Content = "Size : 0 B";
-                isProcessing = false;
+                System.Windows.MessageBox.Show("Lütfen en az bir seçenek işaretleyin.");
+                return;
             }
+
+            foreach (var checkBox in selectedCheckBoxes)
+            {
+                string folderPath = GetFolderPathForCheckbox(checkBox.Name);
+
+                if (!string.IsNullOrEmpty(folderPath))
+                {
+                    await Task.Run(() => DeleteDirectoryWithMinSudo(folderPath));
+                }
+            }
+
+            outputTextBox.Text = "Seçili dizinler temizlendi.";
         }
 
-        private void TakeOwnership(string filePath)
+        private List<CheckBox> GetSelectedCheckBoxes()
+        {
+            List<CheckBox> checkBoxes = new List<CheckBox>
+            {
+                logsCheckbox, tempCheckbox, windowsOldCheckbox,
+                errorReportingCheckbox, liveKernelCachesCheckbox,
+                downloadsCheckbox, recycleBinCheckbox, searchIndexCheckbox,
+                prefetchCheckbox, fontCacheCheckbox, installerCheckbox, softwareDistributionCheckbox,
+                googleChromeCacheCheckbox, otherLogsCheckbox
+            };
+
+            return checkBoxes.Where(cb => cb.IsChecked == true).ToList();
+        }
+
+        private long CalculateDirectorySize(DirectoryInfo directoryInfo, ref List<string> filePaths)
+        {
+            long totalSize = 0;
+
+            // Dizin var mı yok mu kontrol et.
+            if (directoryInfo.Exists)
+            {
+                foreach (var file in directoryInfo.GetFiles())
+                {
+                    totalSize += file.Length;
+                    filePaths.Add(file.FullName);
+                }
+
+                foreach (var subDirectory in directoryInfo.GetDirectories())
+                {
+                    // PowerShell komutunu çağırmak için kullanabileceğiniz komut metni.
+                    string powershellCommand = $"(Get-ChildItem -Recurse '{subDirectory.FullName}' | Measure-Object -Property Length -Sum).Sum";
+
+                    // PowerShell komutunu çalıştırarak dosya ve klasör boyutunu hesaplayın.
+                    long subDirectorySize = RunPowerShellCommand(powershellCommand);
+
+                    // Hesaplanan boyutu toplam boyuta ekleyin.
+                    totalSize += subDirectorySize;
+
+                    // Diğer işlemler...
+                }
+            }
+            else
+            {
+            }
+
+            return totalSize;
+        }
+
+
+        private long RunPowerShellCommand(string command)
+        {
+            long result = 0;
+
+            using (Process process = new Process())
+            {
+                process.StartInfo.FileName = "powershell";
+                process.StartInfo.Arguments = $"-NoProfile -ExecutionPolicy Bypass -Command \"{command}\"";
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.RedirectStandardOutput = true;
+                process.StartInfo.CreateNoWindow = true;
+
+                process.Start();
+
+                string output = process.StandardOutput.ReadToEnd();
+                process.WaitForExit();
+
+                if (process.ExitCode == 0 && long.TryParse(output, out result))
+                {
+                    return result;
+                }
+            }
+
+            return result;
+        }
+
+        private string FormatFileSize(long bytes)
+        {
+            string[] sizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
+            const int unit = 1024;
+
+            if (bytes == 0)
+                return "0 bytes";
+
+            int order = (int)Math.Log(bytes, unit);
+            double adjustedSize = bytes / Math.Pow(unit, order);
+            string sizeSuffix = sizeSuffixes[order];
+
+            return $"{adjustedSize:0.##} {sizeSuffix}";
+        }
+
+        private void DeleteDirectoryWithMinSudo(string directoryPath)
         {
             try
             {
-                System.Security.Principal.WindowsIdentity identity = System.Security.Principal.WindowsIdentity.GetCurrent();
-                System.Security.AccessControl.FileSecurity fSecurity = File.GetAccessControl(filePath);
-                fSecurity.SetOwner(identity.User);
-                File.SetAccessControl(filePath, fSecurity);
+                Process process = new Process();
+
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    FileName = "MinSudo.exe",
+                    Arguments = $"--TrustedInstaller --NoLogo --Privileged --Verbose cmd.exe /C del /Q /F /S \"{directoryPath}\\*.*\" & rmdir /Q /S \"{directoryPath}\"",
+                    RedirectStandardOutput = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                    WorkingDirectory = Environment.CurrentDirectory
+                };
+
+                process.StartInfo = startInfo;
+                process.Start();
+
+                string output = process.StandardOutput.ReadToEnd();
+                process.WaitForExit();
+
+                if (process.ExitCode != 0)
+                {
+                    System.Windows.MessageBox.Show($"Dizin silme hatası: {output}");
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                System.Windows.MessageBox.Show($"Hata oluştu: {ex.Message}");
+            }
+        }
+
+        public class LogPaths
+        {
+            public string FirstPath { get; set; }
+            public string SecondPath { get; set; }
+        }
+        private string GetFolderPathForCheckbox(string checkboxName)
+        {
+            switch (checkboxName)
+            {
+                case "logsCheckbox":
+                    return Environment.GetFolderPath(Environment.SpecialFolder.Windows) + @"\logs";
+                case "otherLogsCheckbox":
+                    return Environment.GetFolderPath(Environment.SpecialFolder.Windows) + @"\System32\LogFiles";
+                case "tempCheckbox":
+                    return Path.GetTempPath();
+                case "windowsOldCheckbox":
+                    return @"C:\Windows.old";
+                case "errorReportingCheckbox":
+                    return @"C:\ProgramData\Microsoft\Windows\WER";
+                case "liveKernelCachesCheckbox":
+                    return @"C:\Windows\LiveKernelReports";
+                case "downloadsCheckbox":
+                    return Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Downloads";
+                case "recycleBinCheckbox":
+                    string recycleBinPath = @"C:\$Recycle.Bin";
+                    return recycleBinPath;
+                case "searchIndexCheckbox":
+                    return Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\Microsoft\Search\Data\Applications\Windows";
+                case "prefetchCheckbox":
+                    return @"C:\\Windows\\Prefetch";
+                case "fontCacheCheckbox":
+                    return Environment.GetFolderPath(Environment.SpecialFolder.Windows) + @"\ServiceProfiles\LocalService\AppData\Local\FontCache";
+                case "installerCheckbox":
+                    return Environment.GetFolderPath(Environment.SpecialFolder.Windows) + @"\Installer";
+                case "softwareDistributionCheckbox":
+                    return @"C:\Windows\SoftwareDistribution";
+                case "googleChromeCacheCheckbox":
+                    return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Google\Chrome\User Data\Default\Cache\Cache_Data";
+                
+                    
+                    
+                    
+                    // Diğer checkboxlar için aynı şekilde klasör yollarını ekleyin.
+                default:
+                    return null;
             }
         }
 

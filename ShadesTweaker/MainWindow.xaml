@@ -82,15 +82,19 @@
                         <CheckBox x:Name="tempCheckbox" FontSize="12" Content="{DynamicResource tempFilesCheckbox}" ToolTip="{DynamicResource tempCheckboxToolTip}"/>
                         <CheckBox x:Name="windowsOldCheckbox" FontSize="12" Content="{DynamicResource clearPreviousWindowsInstallationsCheckbox}" ToolTip="{DynamicResource windowsOldCheckboxToolTip}"/>
                         <CheckBox x:Name="errorReportingCheckbox" FontSize="12" Content="{DynamicResource errorReportingFilesCheckbox}" ToolTip="{DynamicResource errorReportingCheckboxToolTip}"/>
-                        <CheckBox x:Name="programDataCachesCheckbox" FontSize="12" Content="{DynamicResource programDataCacheCheckbox}" ToolTip="{DynamicResource programDataCachesCheckboxToolTip}"/>
+                        <CheckBox x:Name="liveKernelCachesCheckbox" FontSize="12" Content="{DynamicResource liveKernelCachesCheckbox}" ToolTip="{DynamicResource liveKernelCachesCheckboxToolTip}"/>
                         <CheckBox x:Name="downloadsCheckbox" FontSize="12" Content="{DynamicResource downloadsFolderCheckbox}" ToolTip="{DynamicResource downloadsCheckboxToolTip}"/>
                         <CheckBox x:Name="recycleBinCheckbox" FontSize="12" Content="{DynamicResource recycleBinCheckbox}" ToolTip="{DynamicResource recycleBinCheckboxToolTip}"/>
                         <CheckBox x:Name="searchIndexCheckbox" FontSize="12" Content="{DynamicResource windowsSearchIndexCheckbox}" ToolTip="{DynamicResource searchIndexCheckboxToolTip}"/>
                         <CheckBox x:Name="prefetchCheckbox" FontSize="12" Content="{DynamicResource prefetchFilesCheckbox}" ToolTip="{DynamicResource prefetchCheckboxToolTip}"/>
                         <CheckBox x:Name="fontCacheCheckbox" FontSize="12" Content="{DynamicResource windowsFontCacheCheckbox}" ToolTip="{DynamicResource fontCacheCheckboxToolTip}"/>
                         <CheckBox x:Name="installerCheckbox" FontSize="12" Content="{DynamicResource windowsInstallerCacheCheckbox}" ToolTip="{DynamicResource installerCheckboxToolTip}"/>
+                        <CheckBox x:Name="softwareDistributionCheckbox" FontSize="12" Content="{DynamicResource softwareDistributionCheckbox}" ToolTip="{DynamicResource softwareDistributionCheckboxTooltip}"/>
+                        <CheckBox x:Name="googleChromeCacheCheckbox" FontSize="12" Content="{DynamicResource googleChromeCacheCheckbox}" ToolTip="{DynamicResource googleChromeCacheCheckboxTooltip}"/>
+                        <CheckBox x:Name="otherLogsCheckbox" FontSize="12" Content="{DynamicResource otherLogsCheckbox}" ToolTip="{DynamicResource otherLogsCheckboxTooltip}"/>
+
                         <StackPanel Margin="0,15,0,0" >
-                            <Label FontSize="18" x:Name="sizeLabel" Foreground="#7F8487" Content="{DynamicResource sizeLabelContent}" />
+                            <Label x:Name="sizeLabel" FontSize="18" Foreground="#7F8487" Content="{DynamicResource sizeLabelContent}" />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Margin="10,10,15,10" HorizontalAlignment="Right">
@@ -104,7 +108,6 @@
                 </Grid>
             </TabItem>
 
-            <!-- Tab 3 -->
             <!-- Tab 3 -->
             <TabItem Width="auto" FontSize="12">
                 <TabItem.Header>
@@ -272,6 +275,7 @@
                 <ComboBoxItem Content="Español"/>
                 <ComboBoxItem Content="中文"/>
                 <ComboBoxItem Content="Українська"/>
+                <ComboBoxItem Content="Русский"/>
             </ComboBox>
                     </TextBlock>
                 </WrapPanel>
