@@ -19,3 +19,11 @@ C:\Users\berkay\Desktop\ShadesTweaker\ShadesTweaker\ShadesTweaker\obj\Debug\Shad
 C:\Users\berkay\Desktop\ShadesTweaker\ShadesTweaker\ShadesTweaker\obj\Debug\ShadesTweaker.csproj.CopyComplete
 C:\Users\berkay\Desktop\ShadesTweaker\ShadesTweaker\ShadesTweaker\obj\Debug\ShadesTweaker.exe
 C:\Users\berkay\Desktop\ShadesTweaker\ShadesTweaker\ShadesTweaker\obj\Debug\ShadesTweaker.pdb
+C:\Users\berkay\Desktop\ShadesTweaker\ShadesTweaker\ShadesTweaker\bin\Debug\System.CodeDom.dll
+C:\Users\berkay\Desktop\ShadesTweaker\ShadesTweaker\ShadesTweaker\bin\Debug\System.CodeDom.xml
+C:\Users\berkay\Desktop\ShadesTweaker\ShadesTweaker\ShadesTweaker\bin\Debug\System.Diagnostics.EventLog.dll
+C:\Users\berkay\Desktop\ShadesTweaker\ShadesTweaker\ShadesTweaker\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\berkay\Desktop\ShadesTweaker\ShadesTweaker\ShadesTweaker\bin\Debug\System.ServiceProcess.ServiceController.dll
+C:\Users\berkay\Desktop\ShadesTweaker\ShadesTweaker\ShadesTweaker\bin\Debug\System.Diagnostics.EventLog.xml
+C:\Users\berkay\Desktop\ShadesTweaker\ShadesTweaker\ShadesTweaker\bin\Debug\System.Security.Principal.Windows.xml
+C:\Users\berkay\Desktop\ShadesTweaker\ShadesTweaker\ShadesTweaker\bin\Debug\System.ServiceProcess.ServiceController.xml

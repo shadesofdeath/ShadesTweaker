@@ -17,12 +17,14 @@
 	<system:String x:Key="compatibilityAssistantToggleTooltip">Uygulama uyumluluk sorunlarını belirleyen uyumluluk yardımcısını devre dışı bırakır.</system:String>
 	<system:String x:Key="printSpoolerToggleTooltip">Yazdırma işlerini yöneten yazdırma biriktirici hizmetini devre dışı bırakır.</system:String>
 	<system:String x:Key="sysMainToggleTooltip">SuperFetch gibi sistem görevlerini işleyen SysMain hizmetini devre dışı bırakır.</system:String>
+	<system:String x:Key="disableWindowsSearchToggle">Windows Arama Hizmetini Devre Dışı Bırak</system:String>
+	<system:String x:Key="disableWindowsSearchToggleToolTip">Dosyaları ve uygulamaları hızlı bir şekilde bulmanızı sağlayan bir hizmettir. Dosya arama, uygulama başlatma ve dosya düzenleme gibi işlevleri hızlandırır.</system:String>
 	
 	<system:String x:Key="windowsDefenderLabel">Windows Defender</system:String>
 	<system:String x:Key="disableDefenderAntiSpywareToggle">Defender Casus Yazılım Korumasını Devre Dışı Bırak</system:String>
 	<system:String x:Key="disableDefenderAntivirusToggle">Defender Antivirüsü Devre Dışı Bırak</system:String>
 	<system:String x:Key="disableDefenderRealTimeToggle">Defender Gerçek Zamanlı Korumayı Devre Dışı Bırak</system:String>
-	<system:String x:Key="disableSmartScreenToggle">Akıllı Ekranı Devre Dışı Bırak</system:String>
+	<system:String x:Key="disableSmartScreenToggle">Akıllı Ekranı Devre Dışı Bırak (Smartscreen)</system:String>
 	<system:String x:Key="turnOffFirewallToggle">Microsoft Defender Güvenlik Duvarını Kapat</system:String>
 	<system:String x:Key="defenderToggleToolTip">Defender Casus Yazılım Koruması bileşenini devre dışı bırakır.</system:String>
 	<system:String x:Key="defenderAntivirusToggleToolTip">Defender Antivirüs bileşenini devre dışı bırakır.</system:String>
@@ -99,7 +101,7 @@
 	<system:String x:Key="installerCheckboxToolTip">Kurucu önbellek dosyalarını siler</system:String>
 		
 	<system:String x:Key="sizeLabelContent">Boyut:</system:String>
-	<system:String x:Key="analyzeButtonContent">Çözümle</system:String>
+	<system:String x:Key="analyzeButtonContent">Analiz</system:String>
 	<system:String x:Key="cleanButtonContent">Temizle</system:String>
 
 	<system:String x:Key="enableOldContextMenuToggle">Eski Bağlam Menüsünü Etkinleştir</system:String>
@@ -298,5 +300,10 @@
 	<system:String x:Key="buyMeCoffeeText">Bana Kahve Ismarla</system:String>
 	<system:String x:Key="sourceCodeText">Kaynak Kodu</system:String>
 	<system:String x:Key="settingsText">Ayarlar</system:String>
+	
+	<system:String x:Key="themeText">Tema</system:String>
+	<system:String x:Key="themeOption1">Otomatik</system:String>
+	<system:String x:Key="themeOption2">Açık</system:String>
+	<system:String x:Key="themeOption3">Karanlık</system:String>
 	
 </ResourceDictionary>

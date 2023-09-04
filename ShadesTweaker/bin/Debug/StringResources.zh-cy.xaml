@@ -17,6 +17,8 @@
 	<system:String x:Key="compatibilityAssistantToggleTooltip">禁用识别应用程序兼容性问题的兼容性助手。</system:String>
 	<system:String x:Key="printSpoolerToggleTooltip">禁用管理打印作业的打印后台服务。</system:String>
 	<system:String x:Key="sysMainToggleTooltip">禁用处理系统任务如 SuperFetch 的 SysMain 服务。</system:String>
+	<system:String x:Key="disableWindowsSearchToggle">禁用 Windows 搜索服务</system:String>
+	<system:String x:Key="disableWindowsSearchToggleToolTip">它是一项允许您快速查找文件和应用程序的服务。它可加快文件搜索、应用程序启动和文件编辑等功能的速度</system:String>
 	
 	<system:String x:Key="windowsDefenderLabel">Windows Defender</system:String>
 	<system:String x:Key="disableDefenderAntiSpywareToggle">禁用 Defender 反间谍软件保护</system:String>
@@ -298,5 +300,10 @@
 	<system:String x:Key="buyMeCoffeeText">买咖啡支持</system:String>
 	<system:String x:Key="sourceCodeText">源代码</system:String>
 	<system:String x:Key="settingsText">设置</system:String>
+	
+	<system:String x:Key="themeText">Theme</system:String>
+	<system:String x:Key="themeOption1">自动</system:String>
+	<system:String x:Key="themeOption2">打开</system:String>
+	<system:String x:Key="themeOption3">暗</system:String>
 
 </ResourceDictionary>

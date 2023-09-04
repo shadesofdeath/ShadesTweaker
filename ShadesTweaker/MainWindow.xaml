@@ -2,8 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:rs="clr-namespace:ShadesTweaker.Properties"
-             MinWidth="1400" MinHeight="650"
+             MinWidth="1500" MinHeight="650"
         ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen"
         ExtendsContentIntoTitleBar="True"
@@ -11,7 +10,7 @@
         WindowCornerPreference="Round"
         WindowStyle="None">
     <Grid>
-        <ui:TitleBar ShowClose="True" Title="Shades Tweaker v1.4" ShowMaximize="False" ShowHelp="False" ShowMinimize="True" CanMaximize="False"  VerticalAlignment="Top" />
+        <ui:TitleBar ShowClose="True" Title="Shades Tweaker v1.5" ShowMaximize="False" ShowHelp="False" ShowMinimize="True" CanMaximize="False"  VerticalAlignment="Top" />
         <TabControl x:Name="myTabControl" Margin="0,42,0,0">
             <!-- Tab 1 -->
             <TabItem Width="auto" FontSize="12">
@@ -48,7 +47,7 @@
                         <ui:ToggleSwitch x:Name="featureUpdateToggle" FontSize="12" Content="{DynamicResource disableFeatureUpdateToggle}" Margin="0,10,0,0" Checked="FeatureUpdate_Checked" Unchecked="FeatureUpdate_Unchecked" ToolTip="{DynamicResource featureUpdateToggleToolTip}"/>
                         <ui:ToggleSwitch x:Name="blockEdgeToggle" FontSize="12" Content="{DynamicResource blockMicrosoftEdgeInstallToggle}" Margin="0,10,0,0" Checked="blockedge_Checked" Unchecked="blockedge_Unchecked" ToolTip="{DynamicResource blockEdgeToggleToolTip}"/>
                     </StackPanel>
-                    <StackPanel Margin="400,0,0,0" MaxWidth="400" MinWidth="400" HorizontalAlignment="Left">
+                    <StackPanel Margin="430,0,0,0" MaxWidth="400" MinWidth="400" HorizontalAlignment="Left">
                         <Label Foreground="#7F8487" Content="{DynamicResource diskDrivesLabel}" />
                         <ui:ToggleSwitch x:Name="storagesenseToggle" FontSize="12" Content="{DynamicResource disableStorageSenseToggle}" Margin="0,5,0,0" Checked="storagesenseToggle_Checked" Unchecked="storagesenseToggle_Unchecked" ToolTip="{DynamicResource storagesenseToggleToolTip}"/>
                         <ui:ToggleSwitch x:Name="restoreToggle" FontSize="12" Content="{DynamicResource disableSystemRestoreToggle}" Margin="0,10,0,0" Checked="restore_Checked" Unchecked="restore_Unchecked" ToolTip="{DynamicResource restoreToggleToolTip}"/>
@@ -56,7 +55,7 @@
                         <ui:ToggleSwitch x:Name="hibernationToggle" FontSize="12" Content="{DynamicResource disableHibernationToggle}" Margin="0,10,0,0" Checked="hibernation_Checked" Unchecked="hibernation_Unchecked" ToolTip="{DynamicResource hibernationToggleToolTip}"/>
                         <ui:ToggleSwitch x:Name="ntfstimeToggle" FontSize="12" Content="{DynamicResource disableNTFSLastAccessTimeToggle}" Margin="0,10,0,0" Checked="ntfstime_Checked" Unchecked="ntfstime_Unchecked" ToolTip="{DynamicResource ntfstimeToggleToolTip}"/>
                     </StackPanel>
-                    <StackPanel Margin="-160,240,0,0" MaxWidth="420" MinWidth="420">
+                    <StackPanel Margin="-190,240,0,0" MaxWidth="420" MinWidth="420">
                         <Label Foreground="#7F8487" Content="{DynamicResource contextMenuLabel}" />
                         <ui:ToggleSwitch x:Name="batToggle" FontSize="12" Content="{DynamicResource addWindowsBatchFileToggle}" Margin="0,5,0,0" Checked="bat_Checked" Unchecked="bat_Unchecked" ToolTip="{DynamicResource batToggleToolTip}"/>
                         <ui:ToggleSwitch x:Name="copyPathToggle" FontSize="12" Content="{DynamicResource addCopyAsPathToggle}" Margin="0,10,0,0" Checked="copypath_Checked" Unchecked="copypath_Unchecked" ToolTip="{DynamicResource copyPathToggleToolTip}"/>
@@ -99,7 +98,7 @@
                     </StackPanel>
                     <StackPanel Margin="10,10,15,10" HorizontalAlignment="Right">
                         <ui:TextBox x:Name="outputTextBox" FontSize="12" MinHeight="380" MaxHeight="380" MinWidth="900" MaxWidth="900"/>
-                        <ProgressBar x:Name="progressBar" Margin="0,5,0,0" IsIndeterminate="False" />
+                        <ProgressBar x:Name="progressBar" Margin="0,5,0,0" />
                         <WrapPanel Margin="10,10,15,10" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Button Width="100" Margin="-10,0,0,0" Content="{DynamicResource analyzeButtonContent}" Click="AnalyzeButton_Click" />
                             <Button Width="100" Margin="10,0,0,0" Content="{DynamicResource cleanButtonContent}" Click="CleanButton_Click" />
@@ -179,6 +178,7 @@
                         <ui:ToggleSwitch x:Name="GeolocationServiceToggle" FontSize="12" Content="{DynamicResource GeolocationServiceToggle}" Margin="0,10,0,0" Checked="GeolocationService_Checked" Unchecked="GeolocationService_Unchecked" ToolTip="{DynamicResource GeolocationServiceToggleToolTip}"/>
                         <ui:ToggleSwitch x:Name="CredentialManagerServiceToggle" FontSize="12" Content="{DynamicResource CredentialManagerServiceToggle}" Margin="0,10,0,0" Checked="CredentialManagerService_Checked" Unchecked="CredentialManagerService_Unchecked" ToolTip="{DynamicResource CredentialManagerServiceToggleToolTip}"/>
                         <ui:ToggleSwitch x:Name="SysMainServiceToggle" FontSize="12" Content="{DynamicResource SysMainServiceToggle}" Margin="0,10,0,0" Checked="SysMainService_Checked" Unchecked="SysMainService_Unchecked" ToolTip="{DynamicResource SysMainServiceToggleToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableWindowsSearchToggle" FontSize="12" Content="{DynamicResource disableWindowsSearchToggle}" Margin="0,10,0,0" Checked="disableWindowsSearch_Checked" Unchecked="disableWindowsSearch_Unchecked" ToolTip="{DynamicResource disableWindowsSearchToggleToolTip}"/>
                     </StackPanel>
                 </WrapPanel>
             </TabItem>
@@ -246,8 +246,84 @@
                     </StackPanel>
                 </WrapPanel>
             </TabItem>
-
             <!-- Tab 6 -->
+            <TabItem MaxWidth="175" MinWidth="175" FontSize="12">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Margin="60,0,0,0">
+                        <ui:SymbolIcon Symbol="Delete20" Margin="-10,0,5,0" />
+                        <TextBlock Text="Debloat"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <WrapPanel Margin="10">
+                    <StackPanel MaxWidth="260" MinWidth="260" Margin="5,5,0,0">
+                        <CheckBox Content="Zune Music" Margin="0,0,0,0" x:Name="ZuneMusic"/>
+                        <CheckBox Content="Zune Video" Margin="0,5,0,0" x:Name="ZuneVideo"/>
+                        <CheckBox Content="Windows Maps" Margin="0,5,0,0" x:Name="WindowsMaps"/>
+                        <CheckBox Content="Netflix" Margin="0,5,0,0" x:Name="Netflix"/>
+                        <CheckBox Content="Xbox TCUI" Margin="0,5,0,0" x:Name="XboxTCUI"/>
+                        <CheckBox Content="Windows Alarms" Margin="0,5,0,0" x:Name="WindowsAlarms"/>
+                        <CheckBox Content="Web Media Extensions" Margin="0,5,0,0" x:Name="WebMediaExtensions"/>
+                        <CheckBox Content="Office OneNote" Margin="0,5,0,0" x:Name="OfficeOneNote"/>
+                        <CheckBox Content="Windows Terminal" Margin="0,5,0,0" x:Name="WindowsTerminal"/>
+                        <CheckBox Content="OfficeHub" Margin="0,5,0,0" x:Name="OfficeHub"/>
+                    </StackPanel>
+                    <StackPanel MaxWidth="260" MinWidth="260" Margin="5,5,0,0">
+                        <CheckBox Content="Bing Weather" Margin="0,0,0,0" x:Name="BingWeather"/>
+                        <CheckBox Content="Microsoft People" Margin="0,5,0,0" x:Name="MicrosoftPeople"/>
+                        <CheckBox Content="GetHelp" Margin="0,5,0,0" x:Name="GetHelp"/>
+                        <CheckBox Content="Xbox Game Overlay" Margin="0,5,0,0" x:Name="XboxGameOverlay"/>
+                        <CheckBox Content="Xbox Identity Provider" Margin="0,5,0,0" x:Name="XboxIdentityProvider"/>
+                        <CheckBox Content="VP9 Video Extensions" Margin="0,5,0,0" x:Name="VP9VideoExtensions"/>
+                        <CheckBox Content="Windows Calculator" Margin="0,5,0,0" x:Name="WindowsCalculator"/>
+                        <CheckBox Content="Raw Image Extension" Margin="0,5,0,0" x:Name="RawImageExtension"/>
+                        <CheckBox Content="Windows Camera" Margin="0,5,0,0" x:Name="WindowsCamera"/>
+                        <CheckBox Content="Xbox Game CallableUI" Margin="0,5,0,0" x:Name="XboxGameCallableUI"/>
+                    </StackPanel>
+                    <StackPanel MaxWidth="260" MinWidth="260" Margin="5,5,0,0">
+                        <CheckBox Content="Content Delivery Manager" Margin="0,0,0,0" x:Name="ContentDeliveryManager"/>
+                        <CheckBox Content="Microsoft Wallet" Margin="0,5,0,0" x:Name="MicrosoftWallet"/>
+                        <CheckBox Content="Spotify" Margin="0,5,0,0" x:Name="Spotify"/>
+                        <CheckBox Content="WhatsApp" Margin="0,5,0,0" x:Name="WhatsApp"/>
+                        <CheckBox Content="Xbox Speech To Text Overlay" Margin="0,5,0,0" x:Name="XboxSpeechToTextOverlay"/>
+                        <CheckBox Content="Mixed Reality Portal" Margin="0,5,0,0" x:Name="MixedRealityPortal"/>
+                        <CheckBox Content="Microsoft Sticky Notes" Margin="0,5,0,0" x:Name="MicrosoftStickyNotes"/>
+                        <CheckBox Content="Windows Feedback Hub" Margin="0,5,0,0" x:Name="WindowsFeedbackHub"/>
+                        <CheckBox Content="Windows Sound Recorder" Margin="0,5,0,0" x:Name="WindowsSoundRecorder"/>
+                        <CheckBox Content="Microsoft Paint" Margin="0,5,0,0" x:Name="MicrosoftPaint"/>
+                    </StackPanel>
+                    <StackPanel MaxWidth="260" MinWidth="260" Margin="5,5,0,0">
+                        <CheckBox Content="Xbox App" Margin="0,0,0,0" x:Name="XboxApp"/>
+                        <CheckBox Content="Microsoft Getstarted" Margin="0,5,0,0" x:Name="MicrosoftGetstarted"/>
+                        <CheckBox Content="Microsoft Store Purchase App" Margin="0,5,0,0" x:Name="MicrosoftStorePurchaseApp"/>
+                        <CheckBox Content="Windows Store" Margin="0,5,0,0" x:Name="WindowsStore"/>
+                        <CheckBox Content="HEIF Image Extension" Margin="0,5,0,0" x:Name="HEIFImageExtension"/>
+                        <CheckBox Content="Microsoft Screen Sketch" Margin="0,5,0,0" x:Name="MicrosoftScreenSketch"/>
+                        <CheckBox Content="Microsoft Solitaire Collection" Margin="0,5,0,0" x:Name="MicrosoftSolitaireCollection"/>
+                        <CheckBox Content="Microsoft 3D Viewer" Margin="0,5,0,0" x:Name="Microsoft3DViewer"/>
+                        <CheckBox Content="Desktop App Installer" Margin="0,5,0,0" x:Name="DesktopAppInstaller"/>
+                        <CheckBox Content="Xbox Gaming Overlay" Margin="0,5,0,0" x:Name="XboxGamingOverlay"/>
+                    </StackPanel>
+                    <StackPanel MaxWidth="260" MinWidth="260" Margin="5,5,0,0">
+                        <CheckBox Content="Webp Image Extension" Margin="0,0,0,0" x:Name="WebpImageExtension"/>
+                        <CheckBox Content="Your Phone" Margin="0,5,0,0" x:Name="YourPhone"/>
+                        <CheckBox Content="Windows Photos" Margin="0,5,0,0" x:Name="WindowsPhotos"/>
+                        <CheckBox Content="Skype App" Margin="0,5,0,0" x:Name="SkypeApp"/>
+                        <CheckBox Content="Gaming App" Margin="0,5,0,0" x:Name="GamingApp"/>
+                        <CheckBox Content="HEVC Video Extension" Margin="0,5,0,0" x:Name="HEVCVideoExtension"/>
+                        <CheckBox Content="Windows Notepad" Margin="0,5,0,0" x:Name="WindowsNotepad"/>
+                        <CheckBox Content="Power Automate Desktop" Margin="0,5,0,0" x:Name="PowerAutomateDesktop"/>
+                        <CheckBox Content="Microsoft To-Do" Margin="0,5,0,0" x:Name="Todo"/>
+                        <CheckBox Content="Microsoft Family" Margin="0,5,0,0" x:Name="Family"/>
+                        <CheckBox Content="Microsoft News" Margin="0,5,0,0" x:Name="BingNews"/>
+                    </StackPanel>
+                    <Grid >
+                        <ProgressBar x:Name="progressBar2"  Width="400" Margin="530,-30,0,0" />
+                        <ui:Button Content="Debloat" Icon="Delete20" Margin="680,85,0,0"  Click="DebloatButton_Click"/>
+                    </Grid>
+                </WrapPanel>
+            </TabItem>
+
+            <!-- Tab 7 -->
             <TabItem Width="auto" FontSize="12">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Margin="60,0,0,0">
@@ -256,7 +332,7 @@
                     </StackPanel>
                 </TabItem.Header>
                 <WrapPanel Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" TextAlignment="Center" Height="426">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" TextAlignment="Center" Width="Auto" Height="Auto">
             <LineBreak/>
             <Run FontWeight="Bold" Foreground="#E97777" FontSize="28" Text="{DynamicResource presetText}"/>
         <LineBreak/>
@@ -276,13 +352,25 @@
                 <ComboBoxItem Content="中文"/>
                 <ComboBoxItem Content="Українська"/>
                 <ComboBoxItem Content="Русский"/>
+                <ComboBoxItem Content="Português"/>
+                <ComboBoxItem Content="Português ( Brasil )"/>
             </ComboBox>
+            <LineBreak/>
+            <LineBreak/>
+            <!-- <Run FontWeight="Bold" Foreground="#E97777" FontSize="28" Text="{DynamicResource themeText}"/> -->
+            <!-- <LineBreak/> -->
+            <!-- <LineBreak/> -->
+            <!-- <ComboBox x:Name="comboBoxTheme"> -->
+            <!--     <ComboBoxItem Content="{DynamicResource themeOption1}"/> -->
+            <!--     <ComboBoxItem Content="{DynamicResource themeOption2}"/> -->
+            <!--     <ComboBoxItem Content="{DynamicResource themeOption3}"/> -->
+            <!-- </ComboBox> -->
+
                     </TextBlock>
                 </WrapPanel>
-
             </TabItem>
 
-            <!-- Tab 5 -->
+            <!-- Tab 8 -->
             <TabItem Width="auto" FontSize="12">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Margin="60,0,0,0">
@@ -292,8 +380,6 @@
                 </TabItem.Header>
                 <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" TextAlignment="Center">
-             <Image Source="flag.png" Margin="0,0,0,0" Width="350" Height="100"/>
-            <LineBreak/>
             <Run FontWeight="Bold" Foreground="#E97777" FontSize="28" Text="{DynamicResource aboutHeaderText}"/>
             <LineBreak/>
             <Run FontSize="18" Text="{DynamicResource aboutAppDescription1}"/>

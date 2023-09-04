@@ -7,12 +7,12 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security.Principal;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Xml.Linq;
 using Wpf.Ui.Controls;
-
 
 namespace ShadesTweaker
 {
@@ -20,25 +20,168 @@ namespace ShadesTweaker
     {
         private const string ConfigFileName = "config.xml";
         private string configFilePath;
+        private Dictionary<string, string> appPackageDictionary = new Dictionary<string, string>();
+        private CheckBox[] checkBoxes;
         public MainWindow()
         {
             InitializeComponent();
+            InitializeAppPackageDictionary();
             configFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ConfigFileName);
-
-
             LoadLanguagePreference();
+            StartupAppsManager startupManager = new StartupAppsManager();
+            DataContext = this;
+            progressBar.Visibility = Visibility.Hidden;
+            progressBar.IsIndeterminate = false; // Dönme durdu
             Loaded += (sender, args) =>
             {
-                if (IsWindows11OrHigher())
-                {
-                    SetAcrylicTheme();
-                }
-                else
-                {
-                    SetTabbedTheme();
-                }
+                Wpf.Ui.Appearance.Watcher.Watch(this, Wpf.Ui.Appearance.BackgroundType.Mica, true);
+            };
+
+            // CheckBox'ları diziye ekleyin.
+            checkBoxes = new CheckBox[]
+            {
+        ZuneMusic, ZuneVideo, WindowsMaps, Netflix, XboxTCUI, WindowsAlarms, WebMediaExtensions,
+        OfficeOneNote, WindowsTerminal, OfficeHub, BingWeather, MicrosoftPeople, GetHelp, XboxGameOverlay,
+        XboxIdentityProvider, VP9VideoExtensions, WindowsCalculator, RawImageExtension, WindowsCamera,
+        XboxGameCallableUI, ContentDeliveryManager, MicrosoftWallet, Spotify, WhatsApp,
+        XboxSpeechToTextOverlay, MixedRealityPortal, MicrosoftStickyNotes, WindowsFeedbackHub,
+        WindowsSoundRecorder, MicrosoftPaint, XboxApp, MicrosoftGetstarted, MicrosoftStorePurchaseApp,
+        WindowsStore, HEIFImageExtension, MicrosoftScreenSketch, MicrosoftSolitaireCollection,
+        Microsoft3DViewer, DesktopAppInstaller, XboxGamingOverlay, WebpImageExtension, YourPhone,
+        WindowsPhotos, SkypeApp, GamingApp, HEVCVideoExtension, WindowsNotepad, PowerAutomateDesktop, Todo,
+        Family, BingNews
             };
         }
+
+        private void InitializeAppPackageDictionary()
+        {
+            // CheckBox'lar ve paket adları arasındaki ilişkiyi belirleyen bir sözlük oluşturun.
+            appPackageDictionary.Add("ZuneMusic", "Microsoft.ZuneMusic");
+            appPackageDictionary.Add("ZuneVideo", "Microsoft.ZuneVideo");
+            appPackageDictionary.Add("WindowsMaps", "Microsoft.WindowsMaps");
+            appPackageDictionary.Add("Netflix", "4DF9E0F8.Netflix");
+            appPackageDictionary.Add("XboxTCUI", "Microsoft.Xbox.TCUI");
+            appPackageDictionary.Add("WindowsAlarms", "Microsoft.WindowsAlarms");
+            appPackageDictionary.Add("WebMediaExtensions", "Microsoft.WebMediaExtensions");
+            appPackageDictionary.Add("OfficeOneNote", "Microsoft.Office.OneNote");
+            appPackageDictionary.Add("WindowsTerminal", "Microsoft.WindowsTerminal");
+            appPackageDictionary.Add("OfficeHub", "Microsoft.MicrosoftOfficeHub");
+            appPackageDictionary.Add("BingWeather", "Microsoft.BingWeather");
+            appPackageDictionary.Add("MicrosoftPeople", "Microsoft.People");
+            appPackageDictionary.Add("GetHelp", "Microsoft.GetHelp");
+            appPackageDictionary.Add("XboxGameOverlay", "Microsoft.XboxGameOverlay");
+            appPackageDictionary.Add("XboxIdentityProvider", "Microsoft.XboxIdentityProvider");
+            appPackageDictionary.Add("VP9VideoExtensions", "Microsoft.VP9VideoExtensions");
+            appPackageDictionary.Add("WindowsCalculator", "Microsoft.WindowsCalculator");
+            appPackageDictionary.Add("RawImageExtension", "Microsoft.RawImageExtension");
+            appPackageDictionary.Add("WindowsCamera", "Microsoft.WindowsCamera");
+            appPackageDictionary.Add("XboxGameCallableUI", "Microsoft.XboxGameCallableUI");
+            appPackageDictionary.Add("ContentDeliveryManager", "Microsoft.Windows.ContentDeliveryManager");
+            appPackageDictionary.Add("MicrosoftWallet", "Microsoft.Wallet");
+            appPackageDictionary.Add("Spotify", "SpotifyAB.SpotifyMusic");
+            appPackageDictionary.Add("WhatsApp", "5319275A.WhatsAppDesktop");
+            appPackageDictionary.Add("XboxSpeechToTextOverlay", "Microsoft.XboxSpeechToTextOverlay");
+            appPackageDictionary.Add("MixedRealityPortal", "Microsoft.MixedReality.Portal");
+            appPackageDictionary.Add("MicrosoftStickyNotes", "Microsoft.MicrosoftStickyNotes");
+            appPackageDictionary.Add("WindowsFeedbackHub", "Microsoft.WindowsFeedbackHub");
+            appPackageDictionary.Add("WindowsSoundRecorder", "Microsoft.WindowsSoundRecorder");
+            appPackageDictionary.Add("MicrosoftPaint", "Microsoft.MSPaint");
+            appPackageDictionary.Add("XboxApp", "Microsoft.XboxApp");
+            appPackageDictionary.Add("MicrosoftGetstarted", "Microsoft.Getstarted");
+            appPackageDictionary.Add("MicrosoftStorePurchaseApp", "Microsoft.StorePurchaseApp");
+            appPackageDictionary.Add("WindowsStore", "Microsoft.WindowsStore");
+            appPackageDictionary.Add("HEIFImageExtension", "Microsoft.HEIFImageExtension");
+            appPackageDictionary.Add("ScreenSketch", "Microsoft.ScreenSketch");
+            appPackageDictionary.Add("MicrosoftSolitaireCollection", "Microsoft.MicrosoftSolitaireCollection");
+            appPackageDictionary.Add("Microsoft3DViewer", "Microsoft.Microsoft3DViewer");
+            appPackageDictionary.Add("DesktopAppInstaller", "Microsoft.DesktopAppInstaller");
+            appPackageDictionary.Add("XboxGamingOverlay", "Microsoft.XboxGamingOverlay");
+            appPackageDictionary.Add("WebpImageExtension", "Microsoft.WebpImageExtension");
+            appPackageDictionary.Add("YourPhone", "Microsoft.YourPhone");
+            appPackageDictionary.Add("WindowsPhotos", "Microsoft.Windows.Photos");
+            appPackageDictionary.Add("SkypeApp", "Microsoft.SkypeApp");
+            appPackageDictionary.Add("GamingApp", "Microsoft.GamingApp");
+            appPackageDictionary.Add("HEVCVideoExtension", "Microsoft.HEVCVideoExtension");
+            appPackageDictionary.Add("WindowsNotepad", "Microsoft.WindowsNotepad");
+            appPackageDictionary.Add("PowerAutomateDesktop", "Microsoft.PowerAutomateDesktop");
+            appPackageDictionary.Add("Todo", "Todos");
+            appPackageDictionary.Add("Family", "MicrosoftCorporationII.MicrosoftFamily");
+            appPackageDictionary.Add("BingNews", "Microsoft.BingNews");
+        }
+
+        private async void DebloatButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Seçilen uygulamaların paket adlarını alın.
+            string[] selectedApps = GetSelectedApps();
+
+            if (selectedApps.Length == 0)
+            {
+                System.Windows.MessageBox.Show("Lütfen en az bir uygulama seçin.");
+                return;
+            }
+
+            // ProgressBar'ı göster
+            progressBar2.Visibility = Visibility.Visible;
+            progressBar2.IsIndeterminate = true;
+
+            foreach (string app in selectedApps)
+            {
+                if (appPackageDictionary.ContainsKey(app))
+                {
+                    string packageFullName = appPackageDictionary[app];
+                    string powershellCommand = $"Get-AppxPackage -AllUser *{packageFullName}* | Remove-AppxPackage";
+
+                    // Powershell komutunu asenkron olarak çalıştırın
+                    await RunPowershellCommandAsync(powershellCommand);
+                }
+            }
+
+            // ProgressBar'ı gizle
+            progressBar2.Visibility = Visibility.Hidden;
+            progressBar2.IsIndeterminate = false; // Dönme durdu
+
+            System.Windows.MessageBox.Show("Your apps have been uninstalled");
+        }
+
+        private async Task RunPowershellCommandAsync(string command)
+        {
+            await Task.Run(() =>
+            {
+                Process process = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = "powershell.exe",
+                        Arguments = $"-ExecutionPolicy Bypass -Command \"{command}\"",
+                        UseShellExecute = false,
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true,
+                        CreateNoWindow = true,
+                        Verb = "runas"
+                    }
+                };
+
+                process.Start();
+                process.WaitForExit();
+            });
+        }
+
+        private string[] GetSelectedApps()
+        {
+            // CheckBox kontrollerini dönerek seçilen uygulamaların isimlerini alın.
+            List<string> selectedApps = new List<string>();
+
+            foreach (CheckBox checkBox in checkBoxes)
+            {
+                if (checkBox.IsChecked == true)
+                {
+                    selectedApps.Add(checkBox.Name);
+                }
+            }
+
+            return selectedApps.ToArray();
+        }
+
         private void LoadLanguagePreference()
         {
             if (File.Exists(configFilePath))
@@ -62,13 +205,15 @@ namespace ShadesTweaker
             }
         }
 
-
         private void ApplyLanguage(int languageIndex)
         {
             ResourceDictionary resourceDictionary = new ResourceDictionary();
 
             string basePath = AppDomain.CurrentDomain.BaseDirectory;
-            string[] languageFiles = { "StringResources.en.xaml", "StringResources.tr.xaml", "StringResources.de.xaml", "StringResources.es.xaml", "StringResources.zh-cy.xaml", "StringResources.ua.xaml", "StringResources.ru.xaml" };
+            string[] languageFiles = { "StringResources.en.xaml", "StringResources.tr.xaml", 
+                "StringResources.de.xaml", "StringResources.es.xaml", "StringResources.zh-cy.xaml", 
+                "StringResources.ua.xaml", "StringResources.ru.xaml", "StringResources.pt.xaml",
+                "StringResources.pt-br.xaml"};
 
             if (languageIndex >= 0 && languageIndex < languageFiles.Length)
             {
@@ -83,23 +228,7 @@ namespace ShadesTweaker
             SaveLanguagePreference(selectedLanguageIndex);
             ApplyLanguage(selectedLanguageIndex);
         }
-        private bool IsWindows11OrHigher()
-        {
-            // Windows 11 version number: 10.0.22000
-            Version win11Version = new Version(10, 0, 22000, 0);
-            return Environment.OSVersion.Platform == PlatformID.Win32NT &&
-                   Environment.OSVersion.Version >= win11Version;
-        }
 
-        private void SetAcrylicTheme()
-        {
-            Wpf.Ui.Appearance.Watcher.Watch(this, Wpf.Ui.Appearance.BackgroundType.Mica, true);
-        }
-
-        private void SetTabbedTheme()
-        {
-            Wpf.Ui.Appearance.Watcher.Watch(this, Wpf.Ui.Appearance.BackgroundType.Mica, true);
-        }
 
         public class ToggleSwitchState
         {
@@ -1410,6 +1539,18 @@ namespace ShadesTweaker
             RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\WSearch", "Start", 2, RegistryValueKind.DWord);
         }
 
+        // Disable Windows Search
+        private void disableWindowsSearch_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\WSearch", "Start", 4, RegistryValueKind.DWord);
+
+        }
+
+        private void disableWindowsSearch_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\WSearch", "Start", 2, RegistryValueKind.DWord);
+        }
+
         // AVCTP service
         private void AVCTP_Checked(object sender, RoutedEventArgs e)
         {
@@ -1570,12 +1711,12 @@ namespace ShadesTweaker
         // Windows Insider Service
         private void WindowsInsiderService_Checked(object sender, RoutedEventArgs e)
         {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\WaaSMedicSvc", "Start", 4, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\wisvc", "Start", 4, RegistryValueKind.DWord);
         }
 
         private void WindowsInsiderService_Unchecked(object sender, RoutedEventArgs e)
         {
-            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\WaaSMedicSvc", "Start", 3, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SYSTEM\CurrentControlSet\Services\wisvc", "Start", 3, RegistryValueKind.DWord);
         }
 
         // Remote Desktop Services
@@ -1919,6 +2060,10 @@ namespace ShadesTweaker
 
         private async void AnalyzeButton_Click(object sender, RoutedEventArgs e)
         {
+            // Analiz işlemi başladığında ProgressBar'ı görünür yap
+            progressBar.Visibility = Visibility.Visible;
+            progressBar.IsIndeterminate = true; // Dönme başlasın
+
             sizeLabel.Content = "";
             outputTextBox.Text = "";
 
@@ -1927,6 +2072,9 @@ namespace ShadesTweaker
             if (selectedCheckBoxes.Count == 0)
             {
                 System.Windows.MessageBox.Show("Lütfen en az bir seçenek işaretleyin.");
+                // Analiz işlemi tamamlandığında ProgressBar'ı gizle
+                progressBar.Visibility = Visibility.Hidden;
+                progressBar.IsIndeterminate = false; // Dönme durdu
                 return;
             }
 
@@ -1940,21 +2088,32 @@ namespace ShadesTweaker
                 if (!string.IsNullOrEmpty(folderPath))
                 {
                     var directoryInfo = new DirectoryInfo(folderPath);
-                    totalSize += CalculateDirectorySize(directoryInfo, ref filePaths);
+                    totalSize += await AnalyzeDirectoryAsync(directoryInfo, filePaths);
                 }
             }
 
             sizeLabel.Content = $"{FindResource("sizeLabelContent")} {FormatFileSize(totalSize)}";
             outputTextBox.Text = string.Join(Environment.NewLine, filePaths);
+
+            // Analiz işlemi tamamlandığında ProgressBar'ı gizle
+            progressBar.Visibility = Visibility.Hidden;
+            progressBar.IsIndeterminate = false; // Dönme durdu
         }
+
 
         private async void CleanButton_Click(object sender, RoutedEventArgs e)
         {
+            // Temizleme işlemi başladığında ProgressBar'ı görünür yap
+            progressBar.Visibility = Visibility.Visible;
+            progressBar.IsIndeterminate = true; // Dönme başlasın
+
             List<CheckBox> selectedCheckBoxes = GetSelectedCheckBoxes();
 
             if (selectedCheckBoxes.Count == 0)
             {
                 System.Windows.MessageBox.Show("Lütfen en az bir seçenek işaretleyin.");
+                // Temizleme işlemi tamamlandığında ProgressBar'ı gizle
+                progressBar.Visibility = Visibility.Hidden;
                 return;
             }
 
@@ -1964,32 +2123,21 @@ namespace ShadesTweaker
 
                 if (!string.IsNullOrEmpty(folderPath))
                 {
-                    await Task.Run(() => DeleteDirectoryWithMinSudo(folderPath));
+                    await CleanDirectoryAsync(folderPath);
                 }
             }
 
-            outputTextBox.Text = "Seçili dizinler temizlendi.";
+            // Temizleme işlemi tamamlandığında ProgressBar'ı gizle
+            progressBar.Visibility = Visibility.Hidden;
+            progressBar.IsIndeterminate = false; // Dönme durdu
+            System.Windows.MessageBox.Show("Cleanup successfully completed!");
         }
 
-        private List<CheckBox> GetSelectedCheckBoxes()
-        {
-            List<CheckBox> checkBoxes = new List<CheckBox>
-            {
-                logsCheckbox, tempCheckbox, windowsOldCheckbox,
-                errorReportingCheckbox, liveKernelCachesCheckbox,
-                downloadsCheckbox, recycleBinCheckbox, searchIndexCheckbox,
-                prefetchCheckbox, fontCacheCheckbox, installerCheckbox, softwareDistributionCheckbox,
-                googleChromeCacheCheckbox, otherLogsCheckbox
-            };
 
-            return checkBoxes.Where(cb => cb.IsChecked == true).ToList();
-        }
-
-        private long CalculateDirectorySize(DirectoryInfo directoryInfo, ref List<string> filePaths)
+        private async Task<long> AnalyzeDirectoryAsync(DirectoryInfo directoryInfo, List<string> filePaths)
         {
             long totalSize = 0;
 
-            // Dizin var mı yok mu kontrol et.
             if (directoryInfo.Exists)
             {
                 foreach (var file in directoryInfo.GetFiles())
@@ -2000,68 +2148,20 @@ namespace ShadesTweaker
 
                 foreach (var subDirectory in directoryInfo.GetDirectories())
                 {
-                    // PowerShell komutunu çağırmak için kullanabileceğiniz komut metni.
                     string powershellCommand = $"(Get-ChildItem -Recurse '{subDirectory.FullName}' | Measure-Object -Property Length -Sum).Sum";
-
-                    // PowerShell komutunu çalıştırarak dosya ve klasör boyutunu hesaplayın.
-                    long subDirectorySize = RunPowerShellCommand(powershellCommand);
-
-                    // Hesaplanan boyutu toplam boyuta ekleyin.
+                    long subDirectorySize = await RunPowerShellCommandAsync(powershellCommand);
                     totalSize += subDirectorySize;
 
-                    // Diğer işlemler...
+                    // İlerlemeyi güncelle
+                    ReportProgress(totalSize, totalSize);
                 }
-            }
-            else
-            {
             }
 
             return totalSize;
         }
 
 
-        private long RunPowerShellCommand(string command)
-        {
-            long result = 0;
-
-            using (Process process = new Process())
-            {
-                process.StartInfo.FileName = "powershell";
-                process.StartInfo.Arguments = $"-NoProfile -ExecutionPolicy Bypass -Command \"{command}\"";
-                process.StartInfo.UseShellExecute = false;
-                process.StartInfo.RedirectStandardOutput = true;
-                process.StartInfo.CreateNoWindow = true;
-
-                process.Start();
-
-                string output = process.StandardOutput.ReadToEnd();
-                process.WaitForExit();
-
-                if (process.ExitCode == 0 && long.TryParse(output, out result))
-                {
-                    return result;
-                }
-            }
-
-            return result;
-        }
-
-        private string FormatFileSize(long bytes)
-        {
-            string[] sizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
-            const int unit = 1024;
-
-            if (bytes == 0)
-                return "0 bytes";
-
-            int order = (int)Math.Log(bytes, unit);
-            double adjustedSize = bytes / Math.Pow(unit, order);
-            string sizeSuffix = sizeSuffixes[order];
-
-            return $"{adjustedSize:0.##} {sizeSuffix}";
-        }
-
-        private void DeleteDirectoryWithMinSudo(string directoryPath)
+        private async Task CleanDirectoryAsync(string directoryPath)
         {
             try
             {
@@ -2080,8 +2180,8 @@ namespace ShadesTweaker
                 process.StartInfo = startInfo;
                 process.Start();
 
-                string output = process.StandardOutput.ReadToEnd();
-                process.WaitForExit();
+                string output = await process.StandardOutput.ReadToEndAsync();
+                process.WaitForExit(); // Bekleme işlemi burada kullanılır
 
                 if (process.ExitCode != 0)
                 {
@@ -2094,15 +2194,27 @@ namespace ShadesTweaker
             }
         }
 
-        public class LogPaths
+
+
+        private List<CheckBox> GetSelectedCheckBoxes()
         {
-            public string FirstPath { get; set; }
-            public string SecondPath { get; set; }
+            List<CheckBox> checkBoxes = new List<CheckBox>
+            {
+                logsCheckbox, tempCheckbox, windowsOldCheckbox,
+                errorReportingCheckbox, liveKernelCachesCheckbox,
+                downloadsCheckbox, recycleBinCheckbox, searchIndexCheckbox,
+                prefetchCheckbox, fontCacheCheckbox, installerCheckbox, softwareDistributionCheckbox,
+                googleChromeCacheCheckbox, otherLogsCheckbox
+            };
+
+            return checkBoxes.Where(cb => cb.IsChecked == true).ToList();
         }
+
         private string GetFolderPathForCheckbox(string checkboxName)
         {
             switch (checkboxName)
             {
+                // Checkbox'lara uygun klasör yollarını ekleyin.
                 case "logsCheckbox":
                     return Environment.GetFolderPath(Environment.SpecialFolder.Windows) + @"\logs";
                 case "otherLogsCheckbox":
@@ -2132,15 +2244,73 @@ namespace ShadesTweaker
                     return @"C:\Windows\SoftwareDistribution";
                 case "googleChromeCacheCheckbox":
                     return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Google\Chrome\User Data\Default\Cache\Cache_Data";
-                
-                    
-                    
-                    
-                    // Diğer checkboxlar için aynı şekilde klasör yollarını ekleyin.
+
+                // Diğer checkbox'lar için aynı şekilde klasör yollarını ekleyin.
                 default:
                     return null;
             }
         }
 
+        private async Task<long> RunPowerShellCommandAsync(string command)
+        {
+            long result = 0;
+
+            using (Process process = new Process())
+            {
+                process.StartInfo.FileName = "powershell";
+                process.StartInfo.Arguments = $"-NoProfile -ExecutionPolicy Bypass -Command \"{command}\"";
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.RedirectStandardOutput = true;
+                process.StartInfo.CreateNoWindow = true;
+
+                process.Start();
+
+                string output = await process.StandardOutput.ReadToEndAsync();
+                process.WaitForExit();
+
+                if (process.ExitCode == 0 && long.TryParse(output, out result))
+                {
+                    return result;
+                }
+            }
+
+            return result;
+        }
+
+        private void ReportProgress(long current, long total)
+        {
+            if (total == 0)
+            {
+                // total sıfır ise, progressPercentage'yi 0 olarak ayarlayın
+                Dispatcher.Invoke(() =>
+                {
+                    progressBar.Value = 0;
+                });
+            }
+            else
+            {
+                double progressPercentage = (double)current / total * 100;
+                Dispatcher.Invoke(() =>
+                {
+                    progressBar.Value = progressPercentage;
+                });
+            }
+        }
+
+
+        private string FormatFileSize(long bytes)
+        {
+            string[] sizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
+            const int unit = 1024;
+
+            if (bytes == 0)
+                return "0 bytes";
+
+            int order = (int)Math.Log(bytes, unit);
+            double adjustedSize = bytes / Math.Pow(unit, order);
+            string sizeSuffix = sizeSuffixes[order];
+
+            return $"{adjustedSize:0.##} {sizeSuffix}";
+        }
     }
 }

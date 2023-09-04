@@ -10,6 +10,7 @@
     <system:String x:Key="compatibilityAssistantToggle">Disable Compatibility Assistant</system:String>
     <system:String x:Key="printSpoolerToggle">Disable Print Workflow Service</system:String>
     <system:String x:Key="sysMainToggle">Disable SysMain Service</system:String>
+	<system:String x:Key="disableWindowsSearchToggle">Disable Windows Search Service</system:String>
 	<system:String x:Key="errorReportingToggleTooltip">Disables the error reporting service that sends crash data to Microsoft.</system:String>
 	<system:String x:Key="modernStandbyToggleTooltip">Disables modern standby power management feature.</system:String>
 	<system:String x:Key="fastStartupToggleTooltip">Disables fast startup to do a full shutdown instead of hibernation.</system:String>
@@ -17,6 +18,7 @@
 	<system:String x:Key="compatibilityAssistantToggleTooltip">Disables the compatibility assistant that identifies app compatibility issues.</system:String>
 	<system:String x:Key="printSpoolerToggleTooltip">Disables the print spooler service for managing print jobs.</system:String> 
 	<system:String x:Key="sysMainToggleTooltip">Disables the SysMain service that handles system tasks like SuperFetch.</system:String>
+	<system:String x:Key="disableWindowsSearchToggleToolTip">It is a service that allows you to quickly find files and applications. It speeds up functions such as file searching, application launching and file editing.</system:String>
 	
     <system:String x:Key="windowsDefenderLabel">Windows Defender</system:String>
     <system:String x:Key="disableDefenderAntiSpywareToggle">Disable Defender AntiSpyware</system:String>
@@ -300,7 +302,11 @@
     <system:String x:Key="donateText">Donate</system:String>
     <system:String x:Key="buyMeCoffeeText">BuyMeCoffee</system:String>
     <system:String x:Key="sourceCodeText">Source Code</system:String>
-
     <system:String x:Key="settingsText">Settings</system:String>
+	
+	<system:String x:Key="themeText">Theme</system:String>
+	<system:String x:Key="themeOption1">Automatic</system:String>
+	<system:String x:Key="themeOption2">Light</system:String>
+	<system:String x:Key="themeOption3">Darkness</system:String>
 
 </ResourceDictionary>

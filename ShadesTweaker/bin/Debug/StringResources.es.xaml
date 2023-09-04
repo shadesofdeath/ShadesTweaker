@@ -17,6 +17,8 @@
 	<system:String x:Key="compatibilityAssistantToggleTooltip">Desactiva el Asistente de compatibilidad para identificar problemas de compatibilidad de aplicaciones.</system:String>
 	<system:String x:Key="printSpoolerToggleTooltip">Desactiva el Servicio Spooler de impresión que administra trabajos de impresión.</system:String>
 	<system:String x:Key="sysMainToggleTooltip">Desactiva el servicio SysMain que maneja tareas del sistema como SuperFetch.</system:String>
+	<system:String x:Key="disableWindowsSearchToggle">Desactivar el servicio de búsqueda de Windows</system:String>
+	<system:String x:Key="disableWindowsSearchToggleToolTip">Es un servicio que permite encontrar rápidamente archivos y aplicaciones. Acelera funciones como la búsqueda de archivos, el inicio de aplicaciones y la edición de archivos.</system:String>
 	
 	<system:String x:Key="windowsDefenderLabel">Windows Defender</system:String>
 	<system:String x:Key="disableDefenderAntiSpywareToggle">Desactivar Protección contra software espía de Defender</system:String>
@@ -299,5 +301,10 @@
 	<system:String x:Key="buyMeCoffeeText">Invítame a un café</system:String>
 	<system:String x:Key="sourceCodeText">Código fuente</system:String>
 	<system:String x:Key="settingsText">Ajustes</system:String>
+	
+	<system:String x:Key="themeText">Tema</system:String>
+	<system:String x:Key="themeOption1">Automático</system:String>
+	<system:String x:Key="themeOption2">Abierto</system:String>
+	<system:String x:Key="themeOption3">Oscuro</system:String>
 	
 </ResourceDictionary>

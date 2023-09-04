@@ -17,6 +17,8 @@
 	<system:String x:Key="compatibilityAssistantToggleTooltip">Отключает помощника совместимости, который выявляет проблемы совместимости приложений.</system:String>
 	<system:String x:Key="printSpoolerToggleTooltip">Отключает службу спулера печати, которая управляет заданиями печати.</system:String>
 	<system:String x:Key="sysMainToggleTooltip">Отключает службу SysMain, которая обрабатывает системные задачи, такие как SuperFetch.</system:String>
+	<system:String x:Key="disableWindowsSearchToggle">Отключить службу поиска Windows</system:String>
+	<system:String x:Key="disableWindowsSearchToggleToolTip">Это служба, позволяющая быстро находить файлы и приложения. Она ускоряет такие функции, как поиск файлов, запуск приложений и редактирование файлов.</system:String>
 	
 	<system:String x:Key="windowsDefenderLabel">Windows Defender</system:String>
 	<system:String x:Key="disableDefenderAntiSpywareToggle">Отключить защиту от шпионских программ Defender</system:String>
@@ -298,5 +300,10 @@
 	<system:String x:Key="buyMeCoffeeText">Купите мне кофе</system:String>
 	<system:String x:Key="sourceCodeText">Код источника</system:String>
 	<system:String x:Key="settingsText">Настройки</system:String>
+	
+	<system:String x:Key="themeText">Тема</system:String>
+	<system:String x:Key="themeOption1">Автоматическая</system:String>
+	<system:String x:Key="themeOption2">Open</system:String>
+	<system:String x:Key="themeOption3">Темный</system:String>
 	
 </ResourceDictionary>

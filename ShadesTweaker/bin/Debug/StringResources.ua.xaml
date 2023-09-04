@@ -17,6 +17,8 @@
 	<system:String x:Key="compatibilityAssistantToggleTooltip">Вимикає помічника із сумісності, який виявляє проблеми сумісності програм.</system:String>
 	<system:String x:Key="printSpoolerToggleTooltip">Вимикає службу друку, яка керує друкарськими завданнями.</system:String>
 	<system:String x:Key="sysMainToggleTooltip">Вимикає службу SysMain, яка обробляє системні завдання, такі як SuperFetch.</system:String>
+	<system:String x:Key="disableWindowsSearchToggle">Вимкнути службу пошуку Windows</system:String>
+	<system:String x:Key="disableWindowsSearchToggleToolTip">Це служба, яка дозволяє швидко знаходити файли і програми. Вона прискорює такі функції, як пошук файлів, запуск програм і редагування файлів.</system:String>
 	
 	<system:String x:Key="windowsDefenderLabel">Захисник Windows</system:String>
 	<system:String x:Key="disableDefenderAntiSpywareToggle">Вимкнути захист від шпигунських програм Захисника</system:String>
@@ -298,6 +300,10 @@
 	<system:String x:Key="sourceCodeText">Вихідний код</system:String>
 	<system:String x:Key="settingsText">Налаштування</system:String>
 	
+	<system:String x:Key="themeText">Тема</system:String>
+	<system:String x:Key="themeOption1">Автоматичний</system:String>
+	<system:String x:Key="themeOption2">Відкрито</system:String>
+	<system:String x:Key="themeOption3">Темний</system:String>
 </ResourceDictionary>
 	
 	
