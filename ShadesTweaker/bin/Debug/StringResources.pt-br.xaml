@@ -322,6 +322,7 @@
 	<system:String x:Key="buyMeCoffeeText">Compre-me café</system:String>
 	<system:String x:Key="sourceCodeText">Código-fonte</system:String>
 	<system:String x:Key="settingsText">Configurações</system:String>
+	<system:String x:Key="updateBtn">Verificar se há atualizações</system:String>
 	
 	<system:String x:Key="themeText">Tema</system:String>
 	<system:String x:Key="themeOption1">Automático</system:String>

@@ -3031,16 +3031,22 @@ namespace ShadesTweaker
                 // Sürüm numaralarını karşılaştırın
                 if (latestVersion.Trim() == currentVersion.Trim())
                 {
-                    System.Windows.MessageBox.Show("Uygulama güncel değil. Güncelleme bulunamadı.");
+                    System.Windows.MessageBox.Show("The application is out of date. No update found.");
                 }
                 else
                 {
-                    System.Windows.MessageBox.Show("Güncelleme mevcut. Yeni sürümü indirin ve yükleyin.");
+                    MessageBoxResult result = System.Windows.MessageBox.Show("Update available. Download new version.", "Update Found", MessageBoxButton.OKCancel);
+
+                    if (result == MessageBoxResult.OK)
+                    {
+                        // Kullanıcı "Tamam" tuşuna tıkladığında belirtilen web sitesine yönlendirin
+                        System.Diagnostics.Process.Start("https://github.com/shadesofdeath/ShadesTweaker/releases");
+                    }
                 }
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show("Güncelleme kontrolü sırasında bir hata oluştu: " + ex.Message);
+                System.Windows.MessageBox.Show("An error occurred during the update check: " + ex.Message);
             }
         }
     }

@@ -321,6 +321,7 @@
 	<system:String x:Key="buyMeCoffeeText">Купити мені каву</system:String>
 	<system:String x:Key="sourceCodeText">Вихідний код</system:String>
 	<system:String x:Key="settingsText">Налаштування</system:String>
+	<system:String x:Key="updateBtn">Перевірити наявність оновлень</system:String>
 	
 	<system:String x:Key="themeText">Тема</system:String>
 	<system:String x:Key="themeOption1">Автоматичний</system:String>

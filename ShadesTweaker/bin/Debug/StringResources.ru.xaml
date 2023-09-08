@@ -322,6 +322,7 @@
 	<system:String x:Key="buyMeCoffeeText">Купите мне кофе</system:String>
 	<system:String x:Key="sourceCodeText">Код источника</system:String>
 	<system:String x:Key="settingsText">Настройки</system:String>
+	<system:String x:Key="updateBtn">Проверка обновлений</system:String>
 	
 	<system:String x:Key="themeText">Тема</system:String>
 	<system:String x:Key="themeOption1">Автоматическая</system:String>

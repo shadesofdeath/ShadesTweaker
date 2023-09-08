@@ -322,6 +322,7 @@
 	<system:String x:Key="buyMeCoffeeText">Bana Kahve Ismarla</system:String>
 	<system:String x:Key="sourceCodeText">Kaynak Kodu</system:String>
 	<system:String x:Key="settingsText">Ayarlar</system:String>
+	<system:String x:Key="updateBtn">Güncellemeleri Denetle</system:String>
 	
 	<system:String x:Key="themeText">Tema</system:String>
 	<system:String x:Key="themeOption1">Otomatik</system:String>

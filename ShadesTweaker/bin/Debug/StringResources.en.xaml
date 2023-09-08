@@ -325,6 +325,7 @@
     <system:String x:Key="buyMeCoffeeText">BuyMeCoffee</system:String>
     <system:String x:Key="sourceCodeText">Source Code</system:String>
     <system:String x:Key="settingsText">Settings</system:String>
+	<system:String x:Key="updateBtn">Check for Updates</system:String>
 	
 	<system:String x:Key="themeText">Theme</system:String>
 	<system:String x:Key="themeOption1">Automatic</system:String>
