@@ -16,6 +16,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Xml.Linq;
 using Wpf.Ui.Controls;
+using System.Net.Http;
+using System.Net;
 
 namespace ShadesTweaker
 {
@@ -25,6 +27,7 @@ namespace ShadesTweaker
         private string configFilePath;
         private Dictionary<string, string> appPackageDictionary = new Dictionary<string, string>();
         private CheckBox[] checkBoxes;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -56,7 +59,7 @@ namespace ShadesTweaker
             };
         }
 
-        private void InitializeAppPackageDictionary()
+            private void InitializeAppPackageDictionary()
         {
             // CheckBox'lar ve paket adları arasındaki ilişkiyi belirleyen bir sözlük oluşturun.
             appPackageDictionary.Add("ZuneMusic", "Microsoft.ZuneMusic");
@@ -3009,6 +3012,36 @@ namespace ShadesTweaker
             string sizeSuffix = sizeSuffixes[order];
 
             return $"{adjustedSize:0.##} {sizeSuffix}";
+        }
+
+        private void CheckForUpdatesButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Sürüm dosyasının URL'sini belirleyin
+            string versionUrl = "https://github.com/shadesofdeath/ShadesTweaker/raw/main/version.txt";
+
+            try
+            {
+                // URL'den sürüm numarasını indirin
+                WebClient webClient = new WebClient();
+                string latestVersion = webClient.DownloadString(versionUrl);
+
+                // Uygulamanın içindeki sürüm numarasını alın (örneğin, uygulamanızın içinde bir değişken olarak saklanıyor olabilir)
+                string currentVersion = "1.6"; // Bu kısmı kendi uygulamanızın sürüm numarasını alacak şekilde güncelleyin
+
+                // Sürüm numaralarını karşılaştırın
+                if (latestVersion.Trim() == currentVersion.Trim())
+                {
+                    System.Windows.MessageBox.Show("Uygulama güncel değil. Güncelleme bulunamadı.");
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Güncelleme mevcut. Yeni sürümü indirin ve yükleyin.");
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("Güncelleme kontrolü sırasında bir hata oluştu: " + ex.Message);
+            }
         }
     }
 }

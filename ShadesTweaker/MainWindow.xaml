@@ -375,6 +375,7 @@
             </ComboBox>
             <LineBreak/>
             <LineBreak/>
+             <Button Margin="0,0,0,0" Content="{DynamicResource updateBtn}" Click="CheckForUpdatesButton_Click"/>
 
                     </TextBlock>
                 </WrapPanel>
