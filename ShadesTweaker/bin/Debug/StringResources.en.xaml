@@ -21,6 +21,8 @@
 	<system:String x:Key="disableWindowsSearchToggleToolTip">It is a service that allows you to quickly find files and applications. It speeds up functions such as file searching, application launching and file editing.</system:String>
 	
     <system:String x:Key="windowsDefenderLabel">Windows Defender</system:String>
+	<system:String x:Key="defenderFullToggle">Turn Off Defender Completely</system:String>
+	<system:String x:Key="defenderFullToggleTooltip">Turns off Windows Defender and all necessary components.</system:String>
     <system:String x:Key="disableDefenderAntiSpywareToggle">Disable Defender AntiSpyware</system:String>
     <system:String x:Key="disableDefenderAntivirusToggle">Disable Defender Antivirus</system:String>
     <system:String x:Key="disableDefenderRealTimeToggle">Disable Defender Real-Time Protection</system:String>
@@ -86,6 +88,8 @@
 	<system:String x:Key="softwareDistributionCheckbox">Software Distribution</system:String>
 	<system:String x:Key="googleChromeCacheCheckbox">GoogleChrome Cache</system:String>
 	<system:String x:Key="googleChromeCacheCheckboxToolTip">Clears Google Chrome cache</system:String>
+	<system:String x:Key="edgeCacheCheckbox">Microsoft Edge Cache</system:String>
+	<system:String x:Key="edgeCacheCheckboxToolTip">Cleans Microsoft Edge cache</system:String>
 	<system:String x:Key="otherLogsCheckbox">Other Log Files</system:String>
 	<system:String x:Key="otherLogsCheckboxToolTip">Deletes some log files in System32</system:String>
 	<system:String x:Key="logsCheckboxToolTip">Clears Windows event logs</system:String>
@@ -120,6 +124,8 @@
     <system:String x:Key="disableAppUpdatesToggle">Disable Automatic App Updates</system:String>
     <system:String x:Key="disableSearchIndex">Disable Search Indexing</system:String>
     <system:String x:Key="oldPhotoViewer">Enable Old Photo Viewer</system:String>
+	<system:String x:Key="oneDriveRemove">Remove OneDrive</system:String>
+	<system:String x:Key="oneDriveRemoveTooltip">Removes oneDrive and all its components from my site.</system:String>
 	<system:String x:Key="enableOldContextMenuToolTip">Enables the old context menu style.</system:String>
 	<system:String x:Key="disableWidgetsToolTip">Disables widgets on desktop.</system:String>
 	<system:String x:Key="disablePeekToolTip">Disables peek at desktop by hovering over taskbar.</system:String>
@@ -134,7 +140,23 @@
 	<system:String x:Key="disableAppUpdatesToolTip">Disables automatic app updates.</system:String>
 	<system:String x:Key="disableSearchIndexToolTip">Disables search indexing service.</system:String>
 	<system:String x:Key="oldPhotoViewerToolTip">Enables old photo viewer.</system:String>
-
+	<system:String x:Key="clockSecond">Show seconds next to the clock</system:String>
+	<system:String x:Key="clockSecondToolTip">Displays the second next to the clock in the taskbar.</system:String>
+	<system:String x:Key="explorerNetworkFolder">Removes the "Network" folder in explorer</system:String>
+	<system:String x:Key="explorerNetworkFolderToolTip">Removes the Network folder from the left menu when you enter My Computer.</system:String>
+	<system:String x:Key="disableUAC">Disable User Account Control (UAC)</system:String>
+	<system:String x:Key="disableUACToolTip">Allows you to turn off user account control settings (UAC)</system:String>
+	<system:String x:Key="attachmentManager">Turn off security warnings when initializing downloaded files</system:String>
+	<system:String x:Key="attachmentManagerToolTip">Initializes a security warning when launching files downloaded from the Internet, allowing you to disable it.</system:String>
+	<system:String x:Key="explorerOptimization">Minor optimization for explorer</system:String>
+	<system:String x:Key="explorerOptimizationToolTip">Hide Files and Folders: Files and folders are hidden.
+	Show File Extensions: File extensions are not hidden.
+	Start Location: File Explorer starts in the partition known as "This PC" or "My Computer".
+	Separate Operation: Each File Explorer window runs as a separate process.
+	Synchronization Provider Notifications: Synchronization provider notifications are not shown</system:String>
+	<system:String x:Key="NumLock">Enable NumLock at startup</system:String>
+	<system:String x:Key="NumLockToolTip">Enables NumLock on every Windows startup.</system:String>
+	
     <system:String x:Key="windowsServicesHeaderText"> Windows Services</system:String>
     <system:String x:Key="windowsServicesLabel">Windows Services</system:String>
     <system:String x:Key="AVCTPServiceToggle">Disable AVCTP Service</system:String>

@@ -21,6 +21,8 @@
 	<system:String x:Key="disableWindowsSearchToggleToolTip">它是一项允许您快速查找文件和应用程序的服务。它可加快文件搜索、应用程序启动和文件编辑等功能的速度</system:String>
 	
 	<system:String x:Key="windowsDefenderLabel">Windows Defender</system:String>
+	<system:String x:Key="defenderFullToggle">完全关闭 Defender</system:String>
+	<system:String x:Key="defenderFullToggleTooltip">关闭 Windows Defender 和所有必需的组件</system:String>
 	<system:String x:Key="disableDefenderAntiSpywareToggle">禁用 Defender 反间谍软件保护</system:String>
 	<system:String x:Key="disableDefenderAntivirusToggle">禁用 Defender 反病毒</system:String>
 	<system:String x:Key="disableDefenderRealTimeToggle">禁用 Defender 实时保护</system:String>
@@ -86,6 +88,8 @@
 	<system:String x:Key="softwareDistributionCheckbox">软件分发</system:String>
 	<system:String x:Key="googleChromeCacheCheckbox">GoogleChrome 缓存</system:String>
 	<system:String x:Key="googleChromeCacheCheckboxToolTip"> 清除 Google Chrome 浏览器缓存</system:String>
+	<system:String x:Key="edgeCacheCheckbox">Microsoft Edge 缓存</system:String>
+	<system:String x:Key="edgeCacheCheckboxToolTip"> 清除 Microsoft Edge 缓存</system:String>
 	<system:String x:Key="otherLogsCheckbox">其他日志文件</system:String>
 	<system:String x:Key="otherLogsCheckboxToolTip"> 删除 System32 中的一些日志文件</system:String>
 	<system:String x:Key="logsCheckboxToolTip">清除 Windows 事件日志。</system:String>
@@ -120,6 +124,8 @@
 	<system:String x:Key="disableAppUpdatesToggle">禁用自动应用程序更新</system:String>
 	<system:String x:Key="disableSearchIndex">禁用搜索索引</system:String>
 	<system:String x:Key="oldPhotoViewer">启用旧版图片查看器</system:String>
+	<system:String x:Key="oneDriveRemove">移除 OneDrive</system:String>
+	<system:String x:Key="oneDriveRemoveTooltip">从我的网站删除 oneDrive 及其所有组件</system:String>
 	<system:String x:Key="enableOldContextMenuToolTip">启用旧版上下文菜单样式。</system:String>
 	<system:String x:Key="disableWidgetsToolTip">禁用桌面小组件。</system:String>
 	<system:String x:Key="disablePeekToolTip">禁用悬停在任务栏上预览桌面的功能。</system:String>
@@ -134,7 +140,23 @@
 	<system:String x:Key="disableAppUpdatesToolTip">禁用自动应用程序更新。</system:String>
 	<system:String x:Key="disableSearchIndexToolTip">禁用搜索索引服务。</system:String>
 	<system:String x:Key="oldPhotoViewerToolTip">启用旧版图片查看器。</system:String>
-
+	<system:String x:Key="clockSecond">在时钟旁显示秒钟</system:String>
+	<system:String x:Key="clockSecondToolTip">在任务栏的时钟旁显示秒钟</system:String>
+	<system:String x:Key="explorerNetworkFolder">删除资源管理器中的 "网络 "文件夹</system:String>
+	<system:String x:Key="explorerNetworkFolderToolTip">当你进入我的计算机时，从左侧菜单中移除 "网络 "文件夹</system:String>
+	<system:String x:Key="disableUAC">禁用用户帐户控制 (UAC)</system:String>
+	<system:String x:Key="disableUACToolTip">允许您关闭用户帐户控制设置（UAC）</system:String>
+	<system:String x:Key="attachmentManager">初始化下载文件时关闭安全警告</system:String>
+	<system:String x:Key="attachmentManagerToolTip">启动从互联网下载的文件时初始化安全警告，允许您禁用它</system:String>
+	<system:String x:Key="explorerOptimization">对资源管理器进行轻微优化</system:String>
+	<system:String x:Key="explorerOptimizationToolTip">隐藏文件和文件夹：隐藏文件和文件夹。
+	显示文件扩展名：不隐藏文件扩展名。
+	启动位置： 文件资源管理器从 "此电脑 "或 "我的电脑 "分区启动。
+	单独运行： 每个文件资源管理器窗口都作为独立进程运行。
+	同步提供商通知： 不显示同步提供程序通知</system:String>
+	<system:String x:Key="NumLock">启动时启用 NumLock</system:String>
+	<system:String x:Key="NumLockToolTip">在每次 Windows 启动时启用 NumLock</system:String>
+	
 	<system:String x:Key="windowsServicesHeaderText"> Windows 服务</system:String>
 	<system:String x:Key="windowsServicesLabel">Windows 服务</system:String>
 	<system:String x:Key="AVCTPServiceToggle">禁用 AVCTP 服务</system:String>

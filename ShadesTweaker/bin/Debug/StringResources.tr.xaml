@@ -21,6 +21,8 @@
 	<system:String x:Key="disableWindowsSearchToggleToolTip">Dosyaları ve uygulamaları hızlı bir şekilde bulmanızı sağlayan bir hizmettir. Dosya arama, uygulama başlatma ve dosya düzenleme gibi işlevleri hızlandırır.</system:String>
 	
 	<system:String x:Key="windowsDefenderLabel">Windows Defender</system:String>
+	<system:String x:Key="defenderFullToggle">Defenderi Tamamen Kapat</system:String>
+	<system:String x:Key="defenderFullToggleTooltip">Windows Defenderi ve gerekli tüm bileşenleri kapatır.</system:String>
 	<system:String x:Key="disableDefenderAntiSpywareToggle">Defender Casus Yazılım Korumasını Devre Dışı Bırak</system:String>
 	<system:String x:Key="disableDefenderAntivirusToggle">Defender Antivirüsü Devre Dışı Bırak</system:String>
 	<system:String x:Key="disableDefenderRealTimeToggle">Defender Gerçek Zamanlı Korumayı Devre Dışı Bırak</system:String>
@@ -86,6 +88,8 @@
 	<system:String x:Key="softwareDistributionCheckbox">Yazılım Dağıtımı</system:String>
 	<system:String x:Key="googleChromeCacheCheckbox">GoogleChrome Önbelleği</system:String>
 	<system:String x:Key="googleChromeCacheCheckboxToolTip">Google Chrome önbelleğini temizler</system:String>
+	<system:String x:Key="edgeCacheCheckbox">Microsoft Edge Önbelleği</system:String>
+	<system:String x:Key="edgeCacheCheckboxToolTip">Microsoft Edge önbelleğini temizler</system:String>
 	<system:String x:Key="otherLogsCheckbox">Diğer Günlük Dosyaları</system:String>
 	<system:String x:Key="otherLogsCheckboxToolTip">System32'deki bazı günlük dosyalarını siler</system:String>
 	<system:String x:Key="logsCheckboxToolTip">Windows olay günlüklerini temizler</system:String>
@@ -119,6 +123,8 @@
 	<system:String x:Key="disableCortanaToggle">Cortana'yı Devre Dışı Bırak</system:String>
 	<system:String x:Key="disableAppUpdatesToggle">Otomatik Uygulama Güncellemelerini Devre Dışı Bırak</system:String>
 	<system:String x:Key="disableSearchIndex">Arama Dizinlemeyi Devre Dışı Bırak</system:String>
+	<system:String x:Key="oneDriveRemove">OneDrive Kaldır</system:String>
+	<system:String x:Key="oneDriveRemoveTooltip">OneDrive ve tüm bileşenlerini sitemden kaldırır.</system:String>
 	<system:String x:Key="oldPhotoViewer">Eski Fotoğraf Görüntüleyiciyi Etkinleştir</system:String>
 	<system:String x:Key="enableOldContextMenuToolTip">Eski bağlam menüsü stilini etkinleştirir.</system:String>
 	<system:String x:Key="disableWidgetsToolTip">Masaüstündeki araçları devre dışı bırakır.</system:String>
@@ -134,8 +140,24 @@
 	<system:String x:Key="disableAppUpdatesToolTip">Otomatik uygulama güncellemelerini devre dışı bırakır.</system:String>
 	<system:String x:Key="disableSearchIndexToolTip">Arama dizinleme hizmetini devre dışı bırakır.</system:String>
 	<system:String x:Key="oldPhotoViewerToolTip">Eski fotoğraf görüntüleyiciyi etkinleştirir.</system:String>
-
-	<system:String x:Key="windowsServicesHeaderText"> Windows Servisleri</system:String>
+	<system:String x:Key="clockSecond">Saatin yanında saniye göster</system:String>
+	<system:String x:Key="clockSecondToolTip">Görev çubuğunda bulunan saatin yanında saniyeyi gösterir.</system:String>
+	<system:String x:Key="explorerNetworkFolder">Explorer de bulunan "Ağ" klasörünü kaldırır</system:String>
+	<system:String x:Key="explorerNetworkFolderToolTip">Bilgisayarıma girdiğinizda sol menüde bulunan Ağ klasörünü kaldırır.</system:String>
+	<system:String x:Key="disableUAC">Kullanıcı Hesabı Denetimini devre dışı bırak (UAC)</system:String>
+	<system:String x:Key="disableUACToolTip">Kullanıcı hesabı denetimi ayarlarını kapatmanızı sağlar (UAC)</system:String>
+	<system:String x:Key="attachmentManager">İndirilen dosyaları başlatırken güvenlik uyarılarını kapat</system:String>
+	<system:String x:Key="attachmentManagerToolTip">İnternet'ten indirilen dosyaları başlatırken güvenlik uyarısı yöneltir bunu devre dışı bırakmanızı sağlar.</system:String>
+	<system:String x:Key="explorerOptimization">Explorer için küçük optimizasyon</system:String>
+	<system:String x:Key="explorerOptimizationToolTip">Dosya ve Klasör Gizleme: Dosya ve klasörler gizlenir.
+	Dosya Uzantıları Gösterme: Dosya uzantıları gizlenmez.
+	Başlangıç Konumu: Dosya Gezgini, "Bu PC" veya "Benim Bilgisayarım" olarak bilinen bölüme başlar.
+	Ayrı İşlem: Her Dosya Gezgini penceresi ayrı bir işlem olarak çalışır.
+	Eşitleme Sağlayıcı Bildirimleri: Eşitleme sağlayıcı bildirimleri gösterilmez</system:String>
+	<system:String x:Key="NumLock">Başlangıç da NumLock etkinleştir</system:String>
+	<system:String x:Key="NumLockToolTip">Her Windows başlangıcında NumLock etkin hale getirir.</system:String>
+	
+	<system:String x:Key="windowsServicesHeaderText">Windows Servisleri</system:String>
 	<system:String x:Key="windowsServicesLabel">Windows Servisleri</system:String>
 	<system:String x:Key="AVCTPServiceToggle">AVCTP Servisini Devre Dışı Bırak</system:String>
 	<system:String x:Key="AVCTPServiceToolTip">Bluetooth Ses Cihazı veya Kablosuz Kulaklık kullanmıyorsanız.</system:String>

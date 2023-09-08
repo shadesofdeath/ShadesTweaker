@@ -21,6 +21,8 @@
 	<system:String x:Key="disableWindowsSearchToggleToolTip">Это служба, позволяющая быстро находить файлы и приложения. Она ускоряет такие функции, как поиск файлов, запуск приложений и редактирование файлов.</system:String>
 	
 	<system:String x:Key="windowsDefenderLabel">Windows Defender</system:String>
+	<system:String x:Key="defenderFullToggle">Полное отключение защитника</system:String>
+	<system:String x:Key="defenderFullToggleTooltip">Выключает Windows Defender и все необходимые компоненты.</system:String>
 	<system:String x:Key="disableDefenderAntiSpywareToggle">Отключить защиту от шпионских программ Defender</system:String>
 	<system:String x:Key="disableDefenderAntivirusToggle">Отключить антивирус Defender</system:String>
 	<system:String x:Key="disableDefenderRealTimeToggle">Отключить Defender Real-Time Protection</system:String>
@@ -86,6 +88,8 @@
 	<system:String x:Key="softwareDistributionCheckbox">Распространение программного обеспечения</system:String>
 	<system:String x:Key="googleChromeCacheCheckbox">GoogleChrome Cache</system:String>
 	<system:String x:Key="googleChromeCacheCheckboxToolTip">Очистка кэша Google Chrome</system:String>
+	<system:String x:Key="edgeCacheCheckbox">Microsoft Edge Cache</system:String>
+	<system:String x:Key="edgeCacheCheckboxToolTip">Очистка кэша Microsoft Edge</system:String>
 	<system:String x:Key="otherLogsCheckbox">Другие файлы журналов</system:String>
 	<system:String x:Key="otherLogsCheckboxToolTip">Удаляет некоторые файлы журналов в System32</system:String>
 	<system:String x:Key="logsCheckboxToolTip">Очищает журналы событий Windows</system:String>
@@ -120,6 +124,8 @@
 	<system:String x:Key="disableAppUpdatesToggle">Отключить автоматическое обновление приложений</system:String>
 	<system:String x:Key="disableSearchIndex">Отключить индексирование поиска</system:String>
 	<system:String x:Key="oldPhotoViewer">Включить просмотр старых фотографий</system:String>
+	<system:String x:Key="oneDriveRemove">Удаление OneDrive</system:String>
+	<system:String x:Key="oneDriveRemoveTooltip">Удаление OneDrive и всех его компонентов с моего сайта.</system:String>
 	<system:String x:Key="enableOldContextMenuToolTip">Включает старый стиль контекстного меню.</system:String>
 	<system:String x:Key="disableWidgetsToolTip">Отключает виджеты на рабочем столе.</system:String>
 	<system:String x:Key="disablePeekToolTip">Отключает просмотр рабочего стола при наведении курсора на панель задач.</system:String>
@@ -134,7 +140,23 @@
 	<system:String x:Key="disableAppUpdatesToolTip">Отключение автоматического обновления приложений.</system:String>
 	<system:String x:Key="disableSearchIndexToolTip">Отключает службу поискового индексирования.</system:String>
 	<system:String x:Key="oldPhotoViewerToolTip">Включает старую программу просмотра фотографий.</system:String>
-
+	<system:String x:Key="clockSecond">Показывать секунды рядом с часами</system:String>
+	<system:String x:Key="clockSecondToolTip">Отображает секунды рядом с часами на панели задач.</system:String>
+	<system:String x:Key="explorerNetworkFolder">Удаляет папку "Сеть" в проводнике</system:String>
+	<system:String x:Key="explorerNetworkFolderToolTip">Удаляет папку "Сеть" из левого меню при входе на мой компьютер.</system:String>
+	<system:String x:Key="disableUAC">Отключение контроля учетных записей пользователей (UAC)</system:String>
+	<system:String x:Key="disableUACToolTip">Позволяет отключить настройки контроля учетных записей пользователей (UAC)</system:String>
+	<system:String x:Key="attachmentManager">Отключить предупреждения безопасности при инициализации загруженных файлов</system:String>
+	<system:String x:Key="attachmentManagerToolTip">Инициализирует предупреждение о безопасности при запуске файлов, загруженных из Интернета, позволяя отключить его.</system:String>
+	<system:String x:Key="explorerOptimization">Минимальная оптимизация для проводника</system:String>
+	<system:String x:Key="explorerOptimizationToolTip">Скрыть файлы и папки: файлы и папки скрыты.
+	Показать расширения файлов: расширения файлов не скрываются.
+	Start Location: File Explorer запускается в разделе, известном как "Этот ПК" или "Мой компьютер".
+	Отдельная работа: Каждое окно File Explorer запускается как отдельный процесс.
+	Уведомления поставщика синхронизации: Уведомления поставщика синхронизации не отображаются</system:String>
+	<system:String x:Key="NumLock">Включение NumLock при запуске</system:String>
+	<system:String x:Key="NumLockToolTip">Включает NumLock при каждом запуске Windows.</system:String>
+	
 	<system:String x:Key="windowsServicesHeaderText"> Службы Windows</system:String>
 	<system:String x:Key="windowsServicesLabel">Службы Windows</system:String>
 	<system:String x:Key="AVCTPServiceToggle">Отключить службу AVCTP</system:String>

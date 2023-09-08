@@ -10,7 +10,7 @@
         WindowCornerPreference="Round"
         WindowStyle="None">
     <Grid>
-        <ui:TitleBar ShowClose="True" Title="Shades Tweaker v1.5" ShowMaximize="False" ShowHelp="False" ShowMinimize="True" CanMaximize="False"  VerticalAlignment="Top" />
+        <ui:TitleBar ShowClose="True" Title="Shades Tweaker v1.6" ShowMaximize="False" ShowHelp="False" ShowMinimize="True" CanMaximize="False"  VerticalAlignment="Top" />
         <TabControl x:Name="myTabControl" Margin="0,42,0,0">
             <!-- Tab 1 -->
             <TabItem Width="auto" FontSize="12">
@@ -32,8 +32,9 @@
                         <ui:ToggleSwitch FontSize="12" Margin="0,10,0,0" x:Name="sysMainToggle" Checked="SysMain_Checked" Unchecked="SysMain_Unchecked" Content="{DynamicResource sysMainToggle}" ToolTip="{DynamicResource sysMainToggleTooltip}" />
                     </StackPanel>
                     <StackPanel Margin="800,0,0,0" MaxWidth="430" MinWidth="430" HorizontalAlignment="Center">
-                        <Label Foreground="#7F8487" Content="{DynamicResource windowsDefenderLabel}" />
-                        <ui:ToggleSwitch x:Name="defenderToggle" FontSize="12" Content="{DynamicResource disableDefenderAntiSpywareToggle}" Margin="0,5,0,0" Checked="defender_Checked" Unchecked="defender_Unchecked" ToolTip="{DynamicResource defenderToggleToolTip}"/>
+                        <Label Foreground="#7F8487" Content="{DynamicResource windowsDefenderLabel}"/>
+                        <ui:ToggleSwitch x:Name="defenderFullToggle" FontSize="12" Content="{DynamicResource defenderFullToggle}" Margin="0,10,0,0" Checked="defender_full_Checked" Unchecked="defender_full_Unchecked" ToolTip="{DynamicResource defenderFullToggleTooltip}"/>
+                        <ui:ToggleSwitch x:Name="defenderToggle" FontSize="12" Content="{DynamicResource disableDefenderAntiSpywareToggle}" Margin="0,10,0,0" Checked="defender_Checked" Unchecked="defender_Unchecked" ToolTip="{DynamicResource defenderToggleToolTip}"/>
                         <ui:ToggleSwitch x:Name="defenderAntivirusToggle" FontSize="12" Content="{DynamicResource disableDefenderAntivirusToggle}" Margin="0,10,0,0" Checked="defender_antivirus_Checked" Unchecked="defender_antivirus_Unchecked" ToolTip="{DynamicResource defenderAntivirusToggleToolTip}"/>
                         <ui:ToggleSwitch x:Name="defenderRealTimeToggle" FontSize="12" Content="{DynamicResource disableDefenderRealTimeToggle}" Margin="0,10,0,0" Checked="defender_real_Checked" Unchecked="defender_real_Unchecked" ToolTip="{DynamicResource defenderRealTimeToggleToolTip}"/>
                         <ui:ToggleSwitch x:Name="smartScreenToggle" FontSize="12" Content="{DynamicResource disableSmartScreenToggle}" Margin="0,10,0,0" Checked="smartscreen_Checked" Unchecked="smartScreen_Checked" ToolTip="{DynamicResource smartScreenToggleToolTip}"/>
@@ -90,14 +91,15 @@
                         <CheckBox x:Name="installerCheckbox" FontSize="12" Content="{DynamicResource windowsInstallerCacheCheckbox}" ToolTip="{DynamicResource installerCheckboxToolTip}"/>
                         <CheckBox x:Name="softwareDistributionCheckbox" FontSize="12" Content="{DynamicResource softwareDistributionCheckbox}" ToolTip="{DynamicResource softwareDistributionCheckboxTooltip}"/>
                         <CheckBox x:Name="googleChromeCacheCheckbox" FontSize="12" Content="{DynamicResource googleChromeCacheCheckbox}" ToolTip="{DynamicResource googleChromeCacheCheckboxTooltip}"/>
+                        <CheckBox x:Name="edgeCacheCheckbox" FontSize="12" Content="{DynamicResource edgeCacheCheckbox}" ToolTip="{DynamicResource edgeCacheCheckboxTooltip}"/>
                         <CheckBox x:Name="otherLogsCheckbox" FontSize="12" Content="{DynamicResource otherLogsCheckbox}" ToolTip="{DynamicResource otherLogsCheckboxTooltip}"/>
-
+                     
                         <StackPanel Margin="0,15,0,0" >
-                            <Label x:Name="sizeLabel" FontSize="18" Foreground="#7F8487" Content="{DynamicResource sizeLabelContent}" />
+                            <Label x:Name="sizeLabel" FontWeight="Bold" FontSize="18" Foreground="#7F8487" Content="{DynamicResource sizeLabelContent}" />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Margin="10,10,15,10" HorizontalAlignment="Right">
-                        <ui:TextBox x:Name="outputTextBox" FontSize="12" MinHeight="380" MaxHeight="380" MinWidth="900" MaxWidth="900"/>
+                        <ui:TextBox x:Name="outputTextBox" FontSize="12" MinHeight="460" MaxHeight="460" MinWidth="1100" MaxWidth="110"/>
                         <ProgressBar x:Name="progressBar" Margin="0,5,0,0" />
                         <WrapPanel Margin="10,10,15,10" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Button Width="100" Margin="-10,0,0,0" Content="{DynamicResource analyzeButtonContent}" Click="AnalyzeButton_Click" />
@@ -133,6 +135,21 @@
                         <ui:ToggleSwitch x:Name="disableAppUpdates" FontSize="12" Content="{DynamicResource disableAppUpdatesToggle}" Margin="0,10,0,0" Checked="disableAppUpdates_Checked" Unchecked="disableAppUpdates_Unchecked" ToolTip="{DynamicResource disableAppUpdatesToolTip}"/>
                         <ui:ToggleSwitch x:Name="disableSearchIndex" FontSize="12" Content="{DynamicResource disableSearchIndex}" Margin="0,10,0,0" Checked="disableSearchIndex_Checked" Unchecked="disableSearchIndex_Unchecked" ToolTip="{DynamicResource disableSearchIndexToolTip}"/>
                         <ui:ToggleSwitch x:Name="oldPhotoViewer" FontSize="12" Content="{DynamicResource oldPhotoViewer}" Margin="0,10,0,0" Checked="oldPhotoViewer_Checked" Unchecked="oldPhotoViewer_Unchecked" ToolTip="{DynamicResource oldPhotoViewerToolTip}"/>
+                        <ui:ToggleSwitch x:Name="oneDriveRemove" FontSize="12" Content="{DynamicResource oneDriveRemove}" Margin="0,10,0,0" Checked="oneDriveRemove_Checked" ToolTip="{DynamicResource oneDriveRemoveToolTip}"/>
+                        <ui:ToggleSwitch x:Name="clockSecond" FontSize="12" Content="{DynamicResource clockSecond}" Margin="0,10,0,0" Checked="clockSecond_Checked" Unchecked="clockSecond_Unchecked" ToolTip="{DynamicResource clockSecondToolTip}"/>
+                    </StackPanel >
+                    <StackPanel MaxWidth="400" MinWidth="400" HorizontalAlignment="Left">
+                        <ui:ToggleSwitch x:Name="explorerNetworkFolder" FontSize="12" Content="{DynamicResource explorerNetworkFolder}" Margin="0,10,0,0" Checked="explorerNetworkFolder_Checked" Unchecked="explorerNetworkFolder_Unchecked" ToolTip="{DynamicResource explorerNetworkFolderToolTip}"/>
+                        <ui:ToggleSwitch x:Name="disableUAC" FontSize="12" Content="{DynamicResource disableUAC}" Margin="0,10,0,0" Checked="disableUAC_Checked" Unchecked="disableUAC_Unchecked" ToolTip="{DynamicResource disableUACToolTip}"/>
+                        <ui:ToggleSwitch x:Name="attachmentManager" Margin="0,10,0,0" Checked="attachmentManager_Checked" Unchecked="attachmentManager_Unchecked" ToolTip="{DynamicResource attachmentManagerToolTip}">
+                            <TextBlock FontSize="12" Text="{DynamicResource attachmentManager}" TextWrapping="Wrap"/>
+                        </ui:ToggleSwitch>
+                        <ui:ToggleSwitch x:Name="explorerOptimization" Margin="0,10,0,0" Checked="explorerOptimization_Checked" Unchecked="explorerOptimization_Unchecked" ToolTip="{DynamicResource explorerOptimizationToolTip}">
+                            <TextBlock FontSize="12" Text="{DynamicResource explorerOptimization}" TextWrapping="Wrap"/>
+                        </ui:ToggleSwitch>
+                        <ui:ToggleSwitch x:Name="NumLock" Margin="0,10,0,0" Checked="NumLock_Checked" Unchecked="NumLock_Unchecked" ToolTip="{DynamicResource NumLockToolTip}">
+                            <TextBlock FontSize="12" Text="{DynamicResource NumLock}" TextWrapping="Wrap"/>
+                        </ui:ToggleSwitch>
                     </StackPanel>
                     <StackPanel Margin="15,0,0,0" MaxWidth="300" MinWidth="300" HorizontalAlignment="Left">
                     </StackPanel>
@@ -266,6 +283,7 @@
                         <CheckBox Content="Office OneNote" Margin="0,5,0,0" x:Name="OfficeOneNote"/>
                         <CheckBox Content="Windows Terminal" Margin="0,5,0,0" x:Name="WindowsTerminal"/>
                         <CheckBox Content="OfficeHub" Margin="0,5,0,0" x:Name="OfficeHub"/>
+                        <CheckBox Content="Microsoft Teams" Margin="0,5,0,0" x:Name="MicrosoftTeams"/>
                     </StackPanel>
                     <StackPanel MaxWidth="260" MinWidth="260" Margin="5,5,0,0">
                         <CheckBox Content="Bing Weather" Margin="0,0,0,0" x:Name="BingWeather"/>
@@ -332,7 +350,7 @@
                     </StackPanel>
                 </TabItem.Header>
                 <WrapPanel Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" TextAlignment="Center" Width="Auto" Height="Auto">
+                    <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" TextAlignment="Center" Width="Auto" Height="Auto">
             <LineBreak/>
             <Run FontWeight="Bold" Foreground="#E97777" FontSize="28" Text="{DynamicResource presetText}"/>
         <LineBreak/>
@@ -357,14 +375,6 @@
             </ComboBox>
             <LineBreak/>
             <LineBreak/>
-            <!-- <Run FontWeight="Bold" Foreground="#E97777" FontSize="28" Text="{DynamicResource themeText}"/> -->
-            <!-- <LineBreak/> -->
-            <!-- <LineBreak/> -->
-            <!-- <ComboBox x:Name="comboBoxTheme"> -->
-            <!--     <ComboBoxItem Content="{DynamicResource themeOption1}"/> -->
-            <!--     <ComboBoxItem Content="{DynamicResource themeOption2}"/> -->
-            <!--     <ComboBoxItem Content="{DynamicResource themeOption3}"/> -->
-            <!-- </ComboBox> -->
 
                     </TextBlock>
                 </WrapPanel>

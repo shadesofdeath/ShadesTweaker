@@ -1,11 +1,14 @@
 ﻿using Microsoft.Win32;
 using SophiApp.Helpers;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Remoting.Channels;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,7 +52,7 @@ namespace ShadesTweaker
         WindowsStore, HEIFImageExtension, MicrosoftScreenSketch, MicrosoftSolitaireCollection,
         Microsoft3DViewer, DesktopAppInstaller, XboxGamingOverlay, WebpImageExtension, YourPhone,
         WindowsPhotos, SkypeApp, GamingApp, HEVCVideoExtension, WindowsNotepad, PowerAutomateDesktop, Todo,
-        Family, BingNews
+        Family, BingNews,MicrosoftTeams
             };
         }
 
@@ -107,6 +110,7 @@ namespace ShadesTweaker
             appPackageDictionary.Add("Todo", "Todos");
             appPackageDictionary.Add("Family", "MicrosoftCorporationII.MicrosoftFamily");
             appPackageDictionary.Add("BingNews", "Microsoft.BingNews");
+            appPackageDictionary.Add("MicrosoftTeams", "MicrosoftTeams");
         }
 
         private async void DebloatButton_Click(object sender, RoutedEventArgs e)
@@ -492,11 +496,17 @@ namespace ShadesTweaker
         private void defender_real_Checked(object sender, RoutedEventArgs e)
         {
             RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection", "DisableRealtimeMonitoring", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows Defender", "DisableRealtimeMonitoring", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection", "DisableIOAVProtection", 1, RegistryValueKind.DWord);
+
         }
 
         private void defender_real_Unchecked(object sender, RoutedEventArgs e)
         {
             RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection", "DisableRealtimeMonitoring", 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows Defender", "DisableRealtimeMonitoring", 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection", "DisableIOAVProtection", 0, RegistryValueKind.DWord);
+
         }
 
         // Defender Antivirus
@@ -510,6 +520,432 @@ namespace ShadesTweaker
             RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows Defender", "DisableAntiVirus", 0, RegistryValueKind.DWord);
         }
 
+        // Defender Antivirus
+        private void defender_full_Checked(object sender, RoutedEventArgs e)
+        {
+            string batFilePath = Path.Combine(Environment.CurrentDirectory, "Defender.bat");
+
+            using (StreamWriter writer = new StreamWriter(batFilePath))
+            {
+                string[] batchCommands = {
+            "@echo off",
+            "reg add \"HKLM\\SYSTEM\\ControlSet001\\Services\\MsSecFlt\" /v \"Start\" /t REG_DWORD /d \"4\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SYSTEM\\ControlSet001\\Services\\SecurityHealthService\" /v \"Start\" /t REG_DWORD /d \"4\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SYSTEM\\ControlSet001\\Services\\Sense\" /v \"Start\" /t REG_DWORD /d \"4\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SYSTEM\\ControlSet001\\Services\\WdBoot\" /v \"Start\" /t REG_DWORD /d \"4\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SYSTEM\\ControlSet001\\Services\\WdFilter\" /v \"Start\" /t REG_DWORD /d \"4\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SYSTEM\\ControlSet001\\Services\\WdNisDrv\" /v \"Start\" /t REG_DWORD /d \"4\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SYSTEM\\ControlSet001\\Services\\WdNisSvc\" /v \"Start\" /t REG_DWORD /d \"4\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SYSTEM\\ControlSet001\\Services\\WinDefend\" /v \"Start\" /t REG_DWORD /d \"4\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\" /v \"SecurityHealth\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SYSTEM\\ControlSet001\\Services\\SgrmAgent\" /v \"Start\" /t REG_DWORD /d \"4\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SYSTEM\\ControlSet001\\Services\\SgrmBroker\" /v \"Start\" /t REG_DWORD /d \"4\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SYSTEM\\ControlSet001\\Services\\webthreatdefsvc\" /v \"Start\" /t REG_DWORD /d \"4\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SYSTEM\\ControlSet001\\Services\\webthreatdefusersvc\" /v \"Start\" /t REG_DWORD /d \"4\" /f >NUL 2>nul",
+            "for /f %%i in ('reg query \"HKLM\\SYSTEM\\ControlSet001\\Services\" /s /k \"webthreatdefusersvc\" /f 2^>nul ^| find /i \"webthreatdefusersvc\" ') do (" +
+            "reg add \"%%i\" /v \"Start\" /t REG_DWORD /d \"4\" /f >NUL 2>nul" +
+            ")",
+            "reg add \"HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\smartscreen.exe\" /v \"Debugger\" /t REG_SZ /d \"%%windir%%\\System32\\taskkill.exe\" /f >NUL 2>nul",
+            "reg add \"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Associations\" /v \"DefaultFileTypeRisk\" /t REG_DWORD /d \"6152\" /f >NUL 2>nul",
+            "reg add \"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Attachments\" /v \"SaveZoneInformation\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Associations\" /v \"LowRiskFileTypes\" /t REG_SZ /d \".avi;.bat;.com;.cmd;.exe;.htm;.html;.lnk;.mpg;.mpeg;.mov;.mp3;.msi;.m3u;.rar;.reg;.txt;.vbs;.wav;.zip;\" /f >NUL 2>nul",
+            "reg add \"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Associations\" /v \"ModRiskFileTypes\" /t REG_SZ /d \".bat;.exe;.reg;.vbs;.chm;.msi;.js;.cmd\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\" /v \"SmartScreenEnabled\" /t REG_SZ /d \"Off\" /f >NUL 2>nul",
+            "reg add \"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\SmartScreen\" /v \"ConfigureAppInstallControlEnabled\" /t REG_DWORD /d \"0\" /f >NUL 2>nul",
+            "reg add \"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\SmartScreen\" /v \"ConfigureAppInstallControl\" /t REG_DWORD /d \"0\" /f >NUL 2>nul",
+            "reg add \"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\SmartScreen\" /v \"EnableSmartScreen\" /t REG_DWORD /d \"0\" /f >NUL 2>nul",
+            "reg add \"HKCU\\Software\\Policies\\Microsoft\\MicrosoftEdge\\PhishingFilter\" /v \"EnabledV9\" /t REG_DWORD /d \"0\" /f >NUL 2>nul",
+            "reg add \"HKLM\\Software\\Policies\\Microsoft\\MicrosoftEdge\\PhishingFilter\" /v \"EnabledV9\" /t REG_DWORD /d \"0\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" /v \"DisableWinDefender\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" /v \"DisableAntispyware\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",        
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" /v \"AllowFastServiceStartup\" /t REG_DWORD /d \"0\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" /v \"DisableLocalAdminMerge\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" /v \"DisableRoutinelyTakingAction\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" /v \"HideExclusionsFromLocalAdmins\" /t REG_DWORD /d \"0\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" /v \"ServiceKeepAlive\" /t REG_DWORD /d \"0\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\MpEngine\" /v \"EnableFileHashComputation\" /t REG_DWORD /d \"0\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\NIS\" /v \"DisableProtocolRecognition\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\NIS\\Consumers\\IPS\" /v \"DisableSignatureRetirement\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"DisableBehaviorMonitoring\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"DisableIOAVProtection\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"DisableOnAccessProtection\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"DisableRawWriteNotification\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"DisableRealtimeMonitoring\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"DisableScanOnRealtimeEnable\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"LocalSettingOverrideDisableBehaviorMonitoring\" /t REG_DWORD /d \"0\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"LocalSettingOverrideDisableIOAVProtection\" /t REG_DWORD /d \"0\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"LocalSettingOverrideDisableOnAccessProtection\" /t REG_DWORD /d \"0\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"LocalSettingOverrideDisableRealtimeMonitoring\" /t REG_DWORD /d \"0\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"LocalSettingOverrideRealtimeScanDirection\" /t REG_DWORD /d \"0\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Remediation\" /v \"LocalSettingOverrideScan_ScheduleTime\" /t REG_DWORD /d \"0\" /f >NUL 2>nul",   
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"CheckForSignaturesBeforeRunningScan\" /t REG_DWORD /d \"0\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisableArchiveScanning\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisableCatchupFullScan\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisableCatchupQuickScan\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisableEmailScanning\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisableHeuristics\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisablePackedExeScanning\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisableRemovableDriveScanning\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisableReparsePointScanning\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisableRestorePoint\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisableScanningMappedNetworkDrivesForFullScan\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisableScanningNetworkFiles\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\SmartScreen\" /v \"ConfigureAppInstallControlEnabled\" /t REG_DWORD /d \"0\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Spynet\" /v \"DisableBlockAtFirstSeen\" /t REG_DWORD /d \"1\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Spynet\" /v \"LocalSettingOverrideSpynetReporting\" /t REG_DWORD /d \"0\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\" /v \"SmartScreenEnabled\" /t REG_SZ /d \"Off\" /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WINEVT\\Channels\\Microsoft-Windows-Windows Defender/Operational\" /v \"Enabled\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WINEVT\\Channels\\Microsoft-Windows-Windows Defender/WHC\" /v \"Enabled\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SOFTWARE\\Microsoft\\Windows Defender\" /v \"DisableAntiSpyware\" /t REG_DWORD /d 1 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SOFTWARE\\Microsoft\\Windows Defender\" /v \"DisableAntiVirus\" /t REG_DWORD /d 1 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\System\" /v \"EnableSmartScreen\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" /v \"AllowFastServiceStartup\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" /v \"DisableAntiSpyware\" /t REG_DWORD /d 1 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" /v \"ServiceKeepAlive\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\SmartScreen\" /v \"ConfigureAppInstallControlEnabled\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender Security Center\\Notifications\" /v \"DisableNotifications\" /t REG_DWORD /d 1 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender Security Center\\Systray\" /v \"HideSystray\" /t REG_DWORD /d 1 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\CI\\Config\" /v \"VulnerableDriverBlocklistEnable\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\CI\\Policy\" /v \"VerifiedAndReputablePolicyState\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\DeviceGuard\\Scenarios\\CredentialGuard\" /v \"Enabled\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\DeviceGuard\\Scenarios\\HypervisorEnforcedCodeIntegrity\" /v \"Enabled\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\kernel\" /v \"MitigationAuditOptions\" /t REG_BINARY /d 0000000000000000000000000000000000000000 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\kernel\" /v \"MitigationOptions\" /t REG_BINARY /d 2222000002000000000000000000000000000000 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\WMI\\Autologger\\DefenderApiLogger\" /v \"Start\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\WMI\\Autologger\\DefenderAuditLogger\" /v \"Start\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\SecurityHealthService\" /v \"ErrorControl\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\SecurityHealthService\" /v \"LaunchProtected\" /t REG_DWORD /d 4 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\SecurityHealthService\" /v \"Start\" /t REG_DWORD /d 4 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\Sense\" /v \"ErrorControl\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\Sense\" /v \"LaunchProtected\" /t REG_DWORD /d 4 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\Sense\" /v \"Start\" /t REG_DWORD /d 4 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\SgrmAgent\" /v \"ErrorControl\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\SgrmAgent\" /v \"Start\" /t REG_DWORD /d 4 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\SgrmBroker\" /v \"DelayedAutoStart\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\SgrmBroker\" /v \"ErrorControl\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\SgrmBroker\" /v \"LaunchProtected\" /t REG_DWORD /d 4 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\SgrmBroker\" /v \"Start\" /t REG_DWORD /d 4 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WdBoot\" /v \"ErrorControl\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WdBoot\" /v \"Start\" /t REG_DWORD /d 4 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WdFilter\" /v \"ErrorControl\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WdFilter\" /v \"Start\" /t REG_DWORD /d 4 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WdNisDrv\" /v \"ErrorControl\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WdNisDrv\" /v \"Start\" /t REG_DWORD /d 4 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WdNisSvc\" /v \"ErrorControl\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WdNisSvc\" /v \"LaunchProtected\" /t REG_DWORD /d 4 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WdNisSvc\" /v \"Start\" /t REG_DWORD /d 4 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\webthreatdefsvc\" /v \"ErrorControl\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\webthreatdefsvc\" /v \"Start\" /t REG_DWORD /d 4 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\webthreatdefusersvc\" /v \"ErrorControl\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\webthreatdefusersvc\" /v \"Start\" /t REG_DWORD /d 4 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WinDefend\" /v \"ErrorControl\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WinDefend\" /v \"LaunchProtected\" /t REG_DWORD /d 4 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WinDefend\" /v \"Start\" /t REG_DWORD /d 4 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\wscsvc\" /v \"DelayedAutoStart\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\wscsvc\" /v \"ErrorControl\" /t REG_DWORD /d 0 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\wscsvc\" /v \"LaunchProtected\" /t REG_DWORD /d 4 /f >NUL 2>nul\"",
+            "reg add \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\wscsvc\" /v \"Start\" /t REG_DWORD /d 4 /f >NUL 2>nul\"",
+             };
+
+                foreach (string command in batchCommands)
+                {
+                    writer.WriteLine(command);
+                }
+            }
+
+            // Şimdi bat dosyasını çalıştır
+            DefenderDisableCommand(batFilePath);
+
+            // Bat dosyasını sildikten sonra temizle
+            File.Delete(batFilePath);
+        }
+
+        private void DefenderDisableCommand(string batFilePath)
+        {
+            Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = "MinSudo.exe",
+                Arguments = $"--TrustedInstaller --NoLogo --Privileged --Verbose cmd.exe /C \"{batFilePath}\"",
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                WorkingDirectory = Environment.CurrentDirectory
+            };
+
+            process.StartInfo = startInfo;
+            process.Start();
+            string output = process.StandardOutput.ReadToEnd();
+            process.WaitForExit();
+        }
+
+        private void defender_full_Unchecked(object sender, RoutedEventArgs e)
+        {
+            string batFilePath = Path.Combine(Environment.CurrentDirectory, "Defender.bat");
+
+            using (StreamWriter writer = new StreamWriter(batFilePath))
+            {
+                string[] batchCommands = {
+            "@echo off",
+            "reg delete \"HKLM\\SYSTEM\\ControlSet001\\Services\\MsSecFlt\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\ControlSet001\\Services\\SecurityHealthService\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\ControlSet001\\Services\\Sense\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\ControlSet001\\Services\\WdBoot\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\ControlSet001\\Services\\WdFilter\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\ControlSet001\\Services\\WdNisDrv\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\ControlSet001\\Services\\WdNisSvc\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\ControlSet001\\Services\\WinDefend\" /f >NUL 2>nul",
+            "reg add \"HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\" /v \"SecurityHealth\" /t REG_SZ /d \"C:\\Program Files\\Windows Defender\\MSASCui.exe\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\ControlSet001\\Services\\SgrmAgent\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\ControlSet001\\Services\\SgrmBroker\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\ControlSet001\\Services\\webthreatdefsvc\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\ControlSet001\\Services\\webthreatdefusersvc\" /f >NUL 2>nul",
+            "for /f %%i in ('reg query \"HKLM\\SYSTEM\\ControlSet001\\Services\" /s /k \"webthreatdefusersvc\" /f 2^>nul ^| find /i \"webthreatdefusersvc\" ') do (" +
+            "reg delete \"%%i\" /f >NUL 2>nul" +
+            ")",
+            "reg delete \"HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options\\smartscreen.exe\" /v \"Debugger\" /f >NUL 2>nul",
+            "reg delete \"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Associations\" /v \"DefaultFileTypeRisk\" /f >NUL 2>nul",
+            "reg delete \"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Attachments\" /v \"SaveZoneInformation\" /f >NUL 2>nul",
+            "reg delete \"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Associations\" /v \"LowRiskFileTypes\" /f >NUL 2>nul",
+            "reg delete \"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Associations\" /v \"ModRiskFileTypes\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\" /v \"SmartScreenEnabled\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\SmartScreen\" /v \"ConfigureAppInstallControlEnabled\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\SmartScreen\" /v \"ConfigureAppInstallControl\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\SmartScreen\" /v \"EnableSmartScreen\" /f >NUL 2>nul",
+            "reg delete \"HKCU\\Software\\Policies\\Microsoft\\MicrosoftEdge\\PhishingFilter\" /v \"EnabledV9\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\Software\\Policies\\Microsoft\\MicrosoftEdge\\PhishingFilter\" /v \"EnabledV9\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" /v \"DisableWinDefender\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" /v \"DisableAntispyware\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" /v \"AllowFastServiceStartup\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" /v \"DisableLocalAdminMerge\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" /v \"DisableRoutinelyTakingAction\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" /v \"HideExclusionsFromLocalAdmins\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" /v \"ServiceKeepAlive\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\MpEngine\" /v \"EnableFileHashComputation\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\NIS\" /v \"DisableProtocolRecognition\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\NIS\\Consumers\\IPS\" /v \"DisableSignatureRetirement\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"DisableBehaviorMonitoring\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"DisableIOAVProtection\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"DisableOnAccessProtection\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"DisableRawWriteNotification\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"DisableRealtimeMonitoring\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"DisableScanOnRealtimeEnable\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"LocalSettingOverrideDisableBehaviorMonitoring\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"LocalSettingOverrideDisableIOAVProtection\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"LocalSettingOverrideDisableOnAccessProtection\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"LocalSettingOverrideDisableRealtimeMonitoring\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\" /v \"LocalSettingOverrideRealtimeScanDirection\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Remediation\" /v \"LocalSettingOverrideScan_ScheduleTime\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"CheckForSignaturesBeforeRunningScan\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisableArchiveScanning\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisableCatchupFullScan\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisableCatchupQuickScan\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisableEmailScanning\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisableHeuristics\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisablePackedExeScanning\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisableRemovableDriveScanning\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisableReparsePointScanning\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisableRestorePoint\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisableScanningMappedNetworkDrivesForFullScan\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Scan\" /v \"DisableScanningNetworkFiles\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\SmartScreen\" /v \"ConfigureAppInstallControlEnabled\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Spynet\" /v \"DisableBlockAtFirstSeen\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Spynet\" /v \"LocalSettingOverrideSpynetReporting\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\" /v \"SmartScreenEnabled\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WINEVT\\Channels\\Microsoft-Windows-Windows Defender/Operational\" /v \"Enabled\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WINEVT\\Channels\\Microsoft-Windows-Windows Defender/WHC\" /v \"Enabled\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Microsoft\\Windows Defender\" /v \"DisableAntiSpyware\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Microsoft\\Windows Defender\" /v \"DisableAntiVirus\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\System\" /v \"EnableSmartScreen\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" /v \"AllowFastServiceStartup\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" /v \"DisableAntiSpyware\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" /v \"ServiceKeepAlive\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\SmartScreen\" /v \"ConfigureAppInstallControlEnabled\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender Security Center\\Notifications\" /v \"DisableNotifications\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender Security Center\\Systray\" /v \"HideSystray\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\CI\\Config\" /v \"VulnerableDriverBlocklistEnable\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\CI\\Policy\" /v \"VerifiedAndReputablePolicyState\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\DeviceGuard\\Scenarios\\CredentialGuard\" /v \"Enabled\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\DeviceGuard\\Scenarios\\HypervisorEnforcedCodeIntegrity\" /v \"Enabled\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\kernel\" /v \"MitigationAuditOptions\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\kernel\" /v \"MitigationOptions\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\WMI\\Autologger\\DefenderApiLogger\" /v \"Start\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Control\\WMI\\Autologger\\DefenderAuditLogger\" /v \"Start\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\SecurityHealthService\" /v \"ErrorControl\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\SecurityHealthService\" /v \"LaunchProtected\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\SecurityHealthService\" /v \"Start\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\Sense\" /v \"ErrorControl\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\Sense\" /v \"LaunchProtected\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\Sense\" /v \"Start\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\SgrmAgent\" /v \"ErrorControl\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\SgrmAgent\" /v \"Start\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\SgrmBroker\" /v \"DelayedAutoStart\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\SgrmBroker\" /v \"ErrorControl\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\SgrmBroker\" /v \"LaunchProtected\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\SgrmBroker\" /v \"Start\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WdBoot\" /v \"ErrorControl\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WdBoot\" /v \"Start\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WdFilter\" /v \"ErrorControl\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WdFilter\" /v \"Start\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WdNisDrv\" /v \"ErrorControl\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WdNisDrv\" /v \"Start\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WdNisSvc\" /v \"ErrorControl\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WdNisSvc\" /v \"LaunchProtected\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WdNisSvc\" /v \"Start\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\webthreatdefsvc\" /v \"ErrorControl\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\webthreatdefsvc\" /v \"Start\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\webthreatdefusersvc\" /v \"ErrorControl\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WinDefend\" /v \"ErrorControl\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WinDefend\" /v \"LaunchProtected\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\WinDefend\" /v \"Start\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\wscsvc\" /v \"DelayedAutoStart\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\wscsvc\" /v \"ErrorControl\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\wscsvc\" /v \"LaunchProtected\" /f >NUL 2>nul",
+            "reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\wscsvc\" /v \"Start\" /f >NUL 2>nul"
+        };
+
+                foreach (string command in batchCommands)
+                {
+                    writer.WriteLine(command);
+                }
+            }
+
+            // Şimdi bat dosyasını çalıştır
+            DefenderEnableCommand(batFilePath);
+
+            // Bat dosyasını sildikten sonra temizle
+            File.Delete(batFilePath);
+        }
+
+        private void DefenderEnableCommand(string batFilePath)
+        {
+            Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = "MinSudo.exe",
+                Arguments = $"--TrustedInstaller --NoLogo --Privileged --Verbose cmd.exe /C \"{batFilePath}\"",
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                WorkingDirectory = Environment.CurrentDirectory
+            };
+
+            process.StartInfo = startInfo;
+            process.Start();
+
+            // Çıktıyı oku
+            string output = process.StandardOutput.ReadToEnd();
+
+            process.WaitForExit();
+
+            // Çıktıyı gerektiğine göre işle
+            // Gerekiyorsa kaydet veya görüntüle
+        }
+
+        // OneDrive
+        private void oneDriveRemove_Checked(object sender, RoutedEventArgs e)
+        {
+            string batFilePath = Path.Combine(Environment.CurrentDirectory, "OneDrive.bat");
+
+            using (StreamWriter writer = new StreamWriter(batFilePath))
+            {
+                string[] batchCommands = {
+               "@echo off",
+               "tasklist /fi \"ImageName eq OneDrive.exe\" /fo csv 2>NUL | find /i \"OneDrive.exe\">NUL && (",
+               "    echo OneDrive.exe is running and will be killed.",
+               "    taskkill /f /im OneDrive.exe",
+               ") || (",
+               "    echo Skipping, OneDrive.exe is not running.",
+               ")",
+               "if exist \"%SystemRoot%\\System32\\OneDriveSetup.exe\" (",
+               "    \"%SystemRoot%\\System32\\OneDriveSetup.exe\" /uninstall",
+               ") else (",
+               "    if exist \"%SystemRoot%\\SysWOW64\\OneDriveSetup.exe\" (",
+               "        \"%SystemRoot%\\SysWOW64\\OneDriveSetup.exe\" /uninstall",
+               "    ) else (",
+               "        echo Failed to uninstall, uninstaller could not be found. 1>&2",
+               "    )",
+               ")",
+               "reg delete \"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\" /v \"OneDrive\" /f 2>nul",
+               "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\OneDrive\" /t REG_DWORD /v \"DisableFileSyncNGSC\" /d 1 /f",
+               "reg add \"HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\OneDrive\" /t REG_DWORD /v \"DisableFileSync\" /d 1 /f",
+               "reg add \"HKCR\\CLSID\\{018D5C66-4533-4307-9B53-224DE2ED1FE6}\" /v \"System.IsPinnedToNameSpaceTree\" /d \"0\" /t REG_DWORD /f",
+               "reg add \"HKCR\\Wow6432Node\\{018D5C66-4533-4307-9B53-224DE2ED1FE6}\" /v \"System.IsPinnedToNameSpaceTree\" /d \"0\" /t REG_DWORD /f",
+               "reg delete \"HKCU\\Environment\" /v \"OneDrive\" /f 2>nul",
+               "PowerShell -ExecutionPolicy Unrestricted -Command \"$tasks=$(; Get-ScheduledTask 'OneDrive Reporting Task-*'; Get-ScheduledTask 'OneDrive Standalone Update Task-*'; ); if($tasks.Length -eq 0) {; Write-Host 'Skipping, no OneDrive tasks exists.'; } else {; Write-Host '^\"Total found OneDrive tasks: $($tasks.Length).^\"'; foreach ($task in $tasks) {; $fullPath = $task.TaskPath + $task.TaskName; Write-Host '^\"Deleting ^\"$fullPath^\"^\"'^\"; schtasks /DELETE /TN '^\"$fullPath^\"' /f; }; }\"",
+               "PowerShell -ExecutionPolicy Unrestricted -Command \"reg delete '^\"HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run^\"' /v '^\"OneDriveSetup^\"' /f 2>$null\"",
+               "if exist \"%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Microsoft OneDrive.lnk\" (",
+               "    del \"%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Microsoft OneDrive.lnk\" /s /f /q",
+               ")",
+               "if exist \"%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\OneDrive.lnk\" (",
+               "    del \"%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\OneDrive.lnk\" /s /f /q",
+               ")",
+               "if exist \"%USERPROFILE%\\Links\\OneDrive.lnk\" (",
+               "    del \"%USERPROFILE%\\Links\\OneDrive.lnk\" /s /f /q",
+               ")",
+               "if exist \"%SystemDrive%\\Windows\\ServiceProfiles\\LocalService\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\OneDrive.lnk\" (",
+               "    del \"%SystemDrive%\\Windows\\ServiceProfiles\\LocalService\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\OneDrive.lnk\" /s /f /q",
+               ")",
+               "if exist \"%SystemDrive%\\Windows\\ServiceProfiles\\NetworkService\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\OneDrive.lnk\" (",
+               "    del \"%SystemDrive%\\Windows\\ServiceProfiles\\NetworkService\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\OneDrive.lnk\" /s /f /q",
+               ")",
+               "PowerShell -ExecutionPolicy Unrestricted -Command \"Set-Location '^\"HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Desktop\\NameSpace^\"'; Get-ChildItem | ForEach-Object {Get-ItemProperty $_.pspath} | ForEach-Object {; $leftnavNodeName = $_.'^\"(default)^\"';; if (($leftnavNodeName -eq '^\"OneDrive^\"') -Or ($leftnavNodeName -eq '^\"OneDrive - Personal^\"')) {; if (Test-Path $_.pspath) {; Write-Host '^\"Deleting $($_.pspath).^\"'; Remove-Item $_.pspath;; }; }; }\"",
+               "if exist \"%UserProfile%\\OneDrive\" (",
+               "    rd \"%UserProfile%\\OneDrive\" /q /s",
+               ")",
+               "if exist \"%LocalAppData%\\Microsoft\\OneDrive\" (",
+               "    rd \"%LocalAppData%\\Microsoft\\OneDrive\" /q /s",
+               ")",
+               "if exist \"%ProgramData%\\Microsoft OneDrive\" (",
+               "    rd \"%ProgramData%\\Microsoft OneDrive\" /q /s",
+               ")",
+               "if exist \"%SystemDrive%\\OneDriveTemp\" (",
+               "    rd \"%SystemDrive%\\OneDriveTemp\" /q /s",
+               ")"
+            };
+
+
+                foreach (string command in batchCommands)
+                {
+                    writer.WriteLine(command);
+                }
+            }
+
+            // Şimdi bat dosyasını çalıştır
+            OneDriveCommand(batFilePath);
+
+            // Bat dosyasını sildikten sonra temizle
+            File.Delete(batFilePath);
+        }
+
+        private void OneDriveCommand(string batFilePath)
+        {
+            Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = "MinSudo.exe",
+                Arguments = $"--TrustedInstaller --NoLogo --Privileged --Verbose cmd.exe /C \"{batFilePath}\"",
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                WorkingDirectory = Environment.CurrentDirectory
+            };
+
+            process.StartInfo = startInfo;
+            process.Start();
+
+            // Çıktıyı oku
+            string output = process.StandardOutput.ReadToEnd();
+
+            process.WaitForExit();
+
+            // Çıktıyı gerektiğine göre işle
+            // Gerekiyorsa kaydet veya görüntüle
+        }
+
+
+
+
         // Smartscreen
         private void smartscreen_Checked(object sender, RoutedEventArgs e)
         {
@@ -519,6 +955,87 @@ namespace ShadesTweaker
         private void smartscreen_Unchecked(object sender, RoutedEventArgs e)
         {
             RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer", "SmartScreenEnabled", "On", RegistryValueKind.String);
+        }
+
+        // Explorer'daki "Ağ" klasörünü kaldırır
+        private void explorerNetworkFolder_Checked(object sender, RoutedEventArgs e)
+        {
+            string batFilePath = Path.Combine(Environment.CurrentDirectory, "explorerNetworkFolder.bat");
+
+            using (StreamWriter writer = new StreamWriter(batFilePath))
+            {
+                string[] batchCommands = {
+       "@echo off",
+       "reg add \"HKEY_CLASSES_ROOT\\CLSID\\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}\\ShellFolder\" /v \"Attributes\" /t REG_DWORD /d 0xb0940064 /f",
+        "taskkill /f /im explorer.exe && start explorer.exe"
+                };
+
+
+                foreach (string command in batchCommands)
+                {
+                    writer.WriteLine(command);
+                }
+            }
+            explorerNetworkFolderCommand(batFilePath);
+            File.Delete(batFilePath);
+        }
+
+        private void explorerNetworkFolderCommand(string batFilePath)
+        {
+            Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = "MinSudo.exe",
+                Arguments = $"--TrustedInstaller --NoLogo --Privileged --Verbose cmd.exe /C \"{batFilePath}\"",
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                WorkingDirectory = Environment.CurrentDirectory
+            };
+            process.StartInfo = startInfo;
+            process.Start();
+            string output = process.StandardOutput.ReadToEnd();
+            process.WaitForExit();
+        }
+
+        private void explorerNetworkFolder_Unchecked(object sender, RoutedEventArgs e)
+        {
+            string batFilePath = Path.Combine(Environment.CurrentDirectory, "explorerNetworkFolder.bat");
+
+            using (StreamWriter writer = new StreamWriter(batFilePath))
+            {
+                string[] batchCommands = {
+       "@echo off",
+       "reg add \"HKEY_CLASSES_ROOT\\CLSID\\{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}\\ShellFolder\" /v \"Attributes\" /t REG_DWORD /d 0xb0040064 /f",
+       "taskkill /f /im explorer.exe && start explorer.exe"
+        };
+
+
+                foreach (string command in batchCommands)
+                {
+                    writer.WriteLine(command);
+                }
+            }
+            explorerNetworkFolder2Command(batFilePath);
+            File.Delete(batFilePath);
+        }
+
+        private void explorerNetworkFolder2Command(string batFilePath)
+        {
+            Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = "MinSudo.exe",
+                Arguments = $"--TrustedInstaller --NoLogo --Privileged --Verbose cmd.exe /C \"{batFilePath}\"",
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                WorkingDirectory = Environment.CurrentDirectory
+            };
+            process.StartInfo = startInfo;
+            process.Start();
+            string output = process.StandardOutput.ReadToEnd();
+            process.WaitForExit();
         }
 
         // SystemRestore
@@ -863,23 +1380,56 @@ namespace ShadesTweaker
         // Remove Microsoft Teams Icon on Taskbar
         private void teams_Checked(object sender, RoutedEventArgs e)
         {
-            RegHelper.SetValue(RegistryHive.CurrentUser, @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "TaskbarMn", 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "TaskbarMn", 0, RegistryValueKind.DWord);
         }
 
         private void teams_Unchecked(object sender, RoutedEventArgs e)
         {
-            RegHelper.SetValue(RegistryHive.CurrentUser, @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "TaskbarMn", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "TaskbarMn", 1, RegistryValueKind.DWord);
         }
 
         // Remove Microsoft Teams Icon on Taskbar
         private void bing_Checked(object sender, RoutedEventArgs e)
         {
-            RegHelper.SetValue(RegistryHive.CurrentUser, @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Search", "BingSearchEnabled", 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Windows Search", "AllowCloudSearch", 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Windows Search", "AllowCortana", 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Windows Search", "DisableWebSearch", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Search", "BingSearchEnabled", 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Search", "ConnectedSearchUseWeb", 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Search", "DisableWebSearch", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Policies\Microsoft\Windows\Explorer", "DisableSearchBoxSuggestions", 1, RegistryValueKind.DWord);
         }
 
         private void bing_Unchecked(object sender, RoutedEventArgs e)
         {
-            RegHelper.SetValue(RegistryHive.CurrentUser, @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Search", "BingSearchEnabled", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Windows Search", "AllowCloudSearch", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Windows Search", "AllowCortana", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Policies\Microsoft\Windows\Windows Search", "DisableWebSearch", 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Search", "BingSearchEnabled", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Search", "ConnectedSearchUseWeb", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Search", "DisableWebSearch", 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Policies\Microsoft\Windows\Explorer", "DisableSearchBoxSuggestions", 0, RegistryValueKind.DWord);
+        }
+
+        // Remove Microsoft Teams Icon on Taskbar
+        private void disableUAC_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System", "ConsentPromptBehaviorAdmin", 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System", "ConsentPromptBehaviorUser", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System", "EnableInstallerDetection", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System", "EnableLUA", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System", "EnableSecureUIAPaths", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System", "PromptOnSecureDesktop", 0, RegistryValueKind.DWord);
+        }
+
+        private void disableUAC_Unchecked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System", "ConsentPromptBehaviorAdmin", 5, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System", "ConsentPromptBehaviorUser", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System", "EnableInstallerDetection", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System", "EnableLUA", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System", "EnableSecureUIAPaths", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System", "PromptOnSecureDesktop", 1, RegistryValueKind.DWord);
         }
 
         // Dark Mode
@@ -1464,7 +2014,6 @@ namespace ShadesTweaker
 
         // Add Ram Cleaner Shortcut
 
-
         private void ramCleaner_Checked(object sender, RoutedEventArgs e)
         {
             RegHelper.SetValue(RegistryHive.ClassesRoot, @"Directory\Background\shell\ClearMemory", "", "Clear RAM", RegistryValueKind.String);
@@ -1508,12 +2057,9 @@ namespace ShadesTweaker
 
                 if (File.Exists(filePathToDelete))
                 {
-                    File.Delete(filePathToDelete);
-                    Console.WriteLine($"Deleted: {filePathToDelete}");
-                }
+                    File.Delete(filePathToDelete);                }
                 else
                 {
-                    Console.WriteLine($"File not found: {filePathToDelete}");
                 }
             }
         }
@@ -1984,6 +2530,19 @@ namespace ShadesTweaker
             RegHelper.SetValue(RegistryHive.LocalMachine, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer", "NoDriveTypeAutoRun", 145, RegistryValueKind.DWord);
         }
 
+        // Clock Second
+
+        private void clockSecond_Checked(object sender, RoutedEventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "ShowSecondsInSystemClock", 1, RegistryValueKind.DWord);
+        }
+
+
+        private void clockSecond_Unchecked(object sender, EventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "ShowSecondsInSystemClock", 0, RegistryValueKind.DWord);
+        }
+
         // Disable Lock Screen Camera
         private void LockScreenCamera_Checked(object sender, RoutedEventArgs e)
         {
@@ -2007,59 +2566,198 @@ namespace ShadesTweaker
 
         }
 
-
         // Old Photo Viewer
         private void oldPhotoViewer_Checked(object sender, RoutedEventArgs e)
         {
-            // Önce çalışma dizininin yolunu alalım
-            string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string batFilePath = Path.Combine(Environment.CurrentDirectory, "oldPhotoViewer.bat");
 
-            // Resources klasörü içindeki "photo-viewer.ps1" dosyasının tam yolunu oluşturalım
-            string ps1FilePath = Path.Combine(currentDirectory, "Resources", "photo-viewer.ps1");
-
-            // Eğer kullanıcı yönetici yetkisine sahipse, PowerShell betiğini gizli olarak çalıştıralım
-            if (IsAdministrator())
+            using (StreamWriter writer = new StreamWriter(batFilePath))
             {
-                ProcessStartInfo psi = new ProcessStartInfo
-                {
-                    FileName = "powershell.exe",
-                    Arguments = $"-ExecutionPolicy Bypass -WindowStyle Hidden -File \"{ps1FilePath}\"",
-                    Verb = "runas"  // Yönetici yetkisiyle çalıştırma için
-                };
+                string[] batchCommands = {
+                "@echo off",
+                "reg add \"HKEY_CLASSES_ROOT\\Applications\\photoviewer.dll\\shell\\open\" /v \"MuiVerb\" /t REG_EXPAND_SZ /d \"@photoviewer.dll,-3043\"",
+                "reg add \"HKEY_CLASSES_ROOT\\Applications\\photoviewer.dll\\shell\\open\\command\" /ve /t REG_EXPAND_SZ /d \"\\\"%SystemRoot%\\System32\\rundll32.exe\\\" \\\"%ProgramFiles%\\Windows Photo Viewer\\PhotoViewer.dll\\\", ImageView_Fullscreen %1\"",
+                "reg add \"HKEY_CLASSES_ROOT\\Applications\\photoviewer.dll\\shell\\open\\DropTarget\" /v \"Clsid\" /t REG_SZ /d \"{FFE2A43C-56B9-4bf5-9A79-CC6D4285608A}\"",
+                "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".bmp\" /t REG_SZ /d \"PhotoViewer.FileAssoc.Tiff\"",
+                "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".dib\" /t REG_SZ /d \"PhotoViewer.FileAssoc.Tiff\"",
+                "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".gif\" /t REG_SZ /d \"PhotoViewer.FileAssoc.Tiff\"",
+                "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".ico\" /t REG_SZ /d \"PhotoViewer.FileAssoc.Tiff\"",
+                "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".jfif\" /t REG_SZ /d \"PhotoViewer.FileAssoc.Tiff\"",
+                "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".jpe\" /t REG_SZ /d \"PhotoViewer.FileAssoc.Tiff\"",
+                "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".jpeg\" /t REG_SZ /d \"PhotoViewer.FileAssoc.Tiff\"",
+                "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".jpg\" /t REG_SZ /d \"PhotoViewer.FileAssoc.Tiff\"",
+                "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".jxr\" /t REG_SZ /d \"PhotoViewer.FileAssoc.Tiff\"",
+                "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".png\" /t REG_SZ /d \"PhotoViewer.FileAssoc.Tiff\"",
+                "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".tif\" /t REG_SZ /d \"PhotoViewer.FileAssoc.Tiff\"",
+                "reg add \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".tiff\" /t REG_SZ /d \"PhotoViewer.FileAssoc.Tiff\""
+            };
 
-                try
+
+
+                foreach (string command in batchCommands)
                 {
-                    Process.Start(psi);
-                }
-                catch (Exception)
-                {
+                    writer.WriteLine(command);
                 }
             }
-            else
-            {
-            }
+
+            // Şimdi bat dosyasını çalıştır
+            oldPhotoViewerEnable(batFilePath);
+
+            // Bat dosyasını sildikten sonra temizle
+            File.Delete(batFilePath);
         }
 
-        // Kullanıcının yönetici yetkisine sahip olup olmadığını kontrol eden fonksiyon
-        private bool IsAdministrator()
+        private void oldPhotoViewerEnable(string batFilePath)
         {
-            WindowsIdentity identity = WindowsIdentity.GetCurrent();
-            WindowsPrincipal principal = new WindowsPrincipal(identity);
-            return principal.IsInRole(WindowsBuiltInRole.Administrator);
-        }
+            Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = "MinSudo.exe",
+                Arguments = $"--TrustedInstaller --NoLogo --Privileged --Verbose cmd.exe /C \"{batFilePath}\"",
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                WorkingDirectory = Environment.CurrentDirectory
+            };
 
+            process.StartInfo = startInfo;
+            process.Start();
+            string output = process.StandardOutput.ReadToEnd();
+            process.WaitForExit();
+        }
 
         private void oldPhotoViewer_Unchecked(object sender, RoutedEventArgs e)
         {
+            string batFilePath = Path.Combine(Environment.CurrentDirectory, "oldPhotoViewer.bat");
 
+            using (StreamWriter writer = new StreamWriter(batFilePath))
+            {
+                string[] batchCommands = {
+                "@echo off",
+                "reg delete \"HKEY_CLASSES_ROOT\\Applications\\photoviewer.dll\\shell\\open\" /f",
+                "reg delete \"HKEY_CLASSES_ROOT\\Applications\\photoviewer.dll\\shell\\open\\command\" /f",
+                "reg delete \"HKEY_CLASSES_ROOT\\Applications\\photoviewer.dll\\shell\\open\\DropTarget\" /f",
+                "reg delete \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".bmp\" /f",
+                "reg delete \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".dib\" /f",
+                "reg delete \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".gif\" /f",
+                "reg delete \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".ico\" /f",
+                "reg delete \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".jfif\" /f",
+                "reg delete \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".jpe\" /f",
+                "reg delete \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".jpeg\" /f",
+                "reg delete \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".jpg\" /f",
+                "reg delete \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".jxr\" /f",
+                "reg delete \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".png\" /f",
+                "reg delete \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".tif\" /f",
+                "reg delete \"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows Photo Viewer\\Capabilities\\FileAssociations\" /v \".tiff\" /f"
+            };
+
+
+
+                foreach (string command in batchCommands)
+                {
+                    writer.WriteLine(command);
+                }
+            }
+
+            // Şimdi bat dosyasını çalıştır
+            oldPhotoViewerDisable(batFilePath);
+
+            // Bat dosyasını sildikten sonra temizle
+            File.Delete(batFilePath);
         }
 
+        private void oldPhotoViewerDisable(string batFilePath)
+        {
+            Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = "MinSudo.exe",
+                Arguments = $"--TrustedInstaller --NoLogo --Privileged --Verbose cmd.exe /C \"{batFilePath}\"",
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                WorkingDirectory = Environment.CurrentDirectory
+            };
 
-        // private bool isProcessing = false;
-        // private bool showCleaningCompleteMessage = false;
+            process.StartInfo = startInfo;
+            process.Start();
+            string output = process.StandardOutput.ReadToEnd();
+            process.WaitForExit();
+        }
+
+        // İnternet'ten indirilen dosyaları başlatırken güvenlik uyarılarını devre dışı bırak
+
+        private void attachmentManager_Checked(object sender, EventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"Software\Microsoft\Windows\CurrentVersion\Policies\Attachments", "SaveZoneInformation", 1, RegistryValueKind.DWord);
+        }
+
+        private void attachmentManager_Unchecked(object sender, EventArgs e) 
+        {
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"Software\Microsoft\Windows\CurrentVersion\Policies\Attachments", "SaveZoneInformation", 0, RegistryValueKind.DWord);
+        }
+
+        // Explorer.exe Optimizasyonu
+
+        private void explorerOptimization_Checked(object sender, EventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "Hidden", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "HideFileExt", 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "LaunchTo", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "SeparateProcess", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "ShowSyncProviderNotifications", 0, RegistryValueKind.DWord);
+            Process.Start("explorer.exe");
+            string script = @"
+        Stop-Process -Name explorer -Force
+        Start-Process explorer
+    ";
+            using (Process ps = new Process())
+            {
+                ps.StartInfo.FileName = "powershell.exe";
+                ps.StartInfo.Arguments = $"-Command \"{script}\"";
+                ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                ps.Start();
+                ps.WaitForExit();
+            }
+        }
+
+        private void explorerOptimization_Unchecked(object sender, EventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "Hidden", 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "HideFileExt", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "LaunchTo", 1, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "SeparateProcess", 0, RegistryValueKind.DWord);
+            RegHelper.SetValue(RegistryHive.CurrentUser, @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "ShowSyncProviderNotifications", 0, RegistryValueKind.DWord);
+            Process.Start("explorer.exe");
+            string script = @"
+        Stop-Process -Name explorer -Force
+        Start-Process explorer
+    ";
+            using (Process ps = new Process())
+            {
+                ps.StartInfo.FileName = "powershell.exe";
+                ps.StartInfo.Arguments = $"-Command \"{script}\"";
+                ps.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                ps.Start();
+                ps.WaitForExit();
+            }
+        }
+
+        // Başlangıçda NumLock etkinleştir
+        private void NumLock_Checked(object sender, EventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.Users, @".DEFAULT\Control Panel\Keyboard", "InitialKeyboardIndicators", "2", RegistryValueKind.String);
+        }
+        private void NumLock_Unchecked(object sender, EventArgs e)
+        {
+            RegHelper.SetValue(RegistryHive.Users, @".DEFAULT\Control Panel\Keyboard", "InitialKeyboardIndicators", "0", RegistryValueKind.String);
+        }
+
+        // Cleaning Kodları başlangıcı!
 
         private async void AnalyzeButton_Click(object sender, RoutedEventArgs e)
         {
+            long totalSize = 0;
             // Analiz işlemi başladığında ProgressBar'ı görünür yap
             progressBar.Visibility = Visibility.Visible;
             progressBar.IsIndeterminate = true; // Dönme başlasın
@@ -2078,8 +2776,7 @@ namespace ShadesTweaker
                 return;
             }
 
-            long totalSize = 0;
-            List<string> filePaths = new List<string>();
+            List<string> folderPaths = new List<string>();
 
             foreach (var checkBox in selectedCheckBoxes)
             {
@@ -2088,17 +2785,18 @@ namespace ShadesTweaker
                 if (!string.IsNullOrEmpty(folderPath))
                 {
                     var directoryInfo = new DirectoryInfo(folderPath);
-                    totalSize += await AnalyzeDirectoryAsync(directoryInfo, filePaths);
+                    totalSize += await AnalyzeDirectoryAsync(directoryInfo, folderPaths);
                 }
             }
 
             sizeLabel.Content = $"{FindResource("sizeLabelContent")} {FormatFileSize(totalSize)}";
-            outputTextBox.Text = string.Join(Environment.NewLine, filePaths);
+            outputTextBox.Text = string.Join(Environment.NewLine, folderPaths);
 
             // Analiz işlemi tamamlandığında ProgressBar'ı gizle
             progressBar.Visibility = Visibility.Hidden;
             progressBar.IsIndeterminate = false; // Dönme durdu
         }
+
 
 
         private async void CleanButton_Click(object sender, RoutedEventArgs e)
@@ -2127,12 +2825,10 @@ namespace ShadesTweaker
                 }
             }
 
-            // Temizleme işlemi tamamlandığında ProgressBar'ı gizle
             progressBar.Visibility = Visibility.Hidden;
             progressBar.IsIndeterminate = false; // Dönme durdu
             System.Windows.MessageBox.Show("Cleanup successfully completed!");
         }
-
 
         private async Task<long> AnalyzeDirectoryAsync(DirectoryInfo directoryInfo, List<string> filePaths)
         {
@@ -2143,7 +2839,7 @@ namespace ShadesTweaker
                 foreach (var file in directoryInfo.GetFiles())
                 {
                     totalSize += file.Length;
-                    filePaths.Add(file.FullName);
+                    filePaths.Add(file.FullName); // Dosya yollarını ekleyin
                 }
 
                 foreach (var subDirectory in directoryInfo.GetDirectories())
@@ -2154,46 +2850,47 @@ namespace ShadesTweaker
 
                     // İlerlemeyi güncelle
                     ReportProgress(totalSize, totalSize);
+
+                    // Alt klasörleri yeniden analiz edin ve dosya yollarını ekleyin
+                    long subDirectoryFilesSize = await AnalyzeDirectoryAsync(subDirectory, filePaths);
+                    totalSize += subDirectoryFilesSize;
                 }
             }
 
-            return totalSize;
+            return totalSize; // totalSize değerini geri döndür
         }
+
 
 
         private async Task CleanDirectoryAsync(string directoryPath)
         {
             try
             {
-                Process process = new Process();
+                // Klasör içeriğini silmek için komut
+                string deleteContentCommand = $"cmd.exe /C del /Q /F /S \"{directoryPath}\\*.*\"";
+                Process deleteContentProcess = new Process();
 
-                ProcessStartInfo startInfo = new ProcessStartInfo
+                ProcessStartInfo deleteContentStartInfo = new ProcessStartInfo
                 {
                     FileName = "MinSudo.exe",
-                    Arguments = $"--TrustedInstaller --NoLogo --Privileged --Verbose cmd.exe /C del /Q /F /S \"{directoryPath}\\*.*\" & rmdir /Q /S \"{directoryPath}\"",
+                    Arguments = $"--TrustedInstaller --NoLogo --Privileged --Verbose {deleteContentCommand}",
                     RedirectStandardOutput = true,
                     UseShellExecute = false,
                     CreateNoWindow = true,
                     WorkingDirectory = Environment.CurrentDirectory
                 };
 
-                process.StartInfo = startInfo;
-                process.Start();
+                deleteContentProcess.StartInfo = deleteContentStartInfo;
+                deleteContentProcess.Start();
 
-                string output = await process.StandardOutput.ReadToEndAsync();
-                process.WaitForExit(); // Bekleme işlemi burada kullanılır
-
-                if (process.ExitCode != 0)
-                {
-                    System.Windows.MessageBox.Show($"Dizin silme hatası: {output}");
-                }
+                string deleteContentOutput = await deleteContentProcess.StandardOutput.ReadToEndAsync();
+                deleteContentProcess.WaitForExit();
             }
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show($"Hata oluştu: {ex.Message}");
             }
         }
-
 
 
         private List<CheckBox> GetSelectedCheckBoxes()
@@ -2204,7 +2901,7 @@ namespace ShadesTweaker
                 errorReportingCheckbox, liveKernelCachesCheckbox,
                 downloadsCheckbox, recycleBinCheckbox, searchIndexCheckbox,
                 prefetchCheckbox, fontCacheCheckbox, installerCheckbox, softwareDistributionCheckbox,
-                googleChromeCacheCheckbox, otherLogsCheckbox
+                googleChromeCacheCheckbox, otherLogsCheckbox, edgeCacheCheckbox
             };
 
             return checkBoxes.Where(cb => cb.IsChecked == true).ToList();
@@ -2243,8 +2940,9 @@ namespace ShadesTweaker
                 case "softwareDistributionCheckbox":
                     return @"C:\Windows\SoftwareDistribution";
                 case "googleChromeCacheCheckbox":
-                    return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Google\Chrome\User Data\Default\Cache\Cache_Data";
-
+                    return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Google\Chrome\User Data\Default\Cache\";
+                case "edgeCacheCheckbox":
+                    return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Microsoft\Edge\User Data\Default\Cache\";
                 // Diğer checkbox'lar için aynı şekilde klasör yollarını ekleyin.
                 default:
                     return null;

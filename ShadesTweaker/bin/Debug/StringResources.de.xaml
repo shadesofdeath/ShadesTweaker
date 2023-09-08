@@ -21,6 +21,8 @@
 	<system:String x:Key="disableWindowsSearchToggleToolTip">Es handelt sich um einen Dienst, mit dem Sie Dateien und Anwendungen schnell finden können. Er beschleunigt Funktionen wie die Dateisuche, das Starten von Anwendungen und die Dateibearbeitung.</system:String>
 	
 	<system:String x:Key="windowsDefenderLabel">Windows Defender</system:String>
+	<system:String x:Key="defenderFullToggle">Schaltet den Defender vollständig aus</system:String>
+	<system:String x:Key="defenderFullToggleTooltip">Schaltet Windows Defender und alle erforderlichen Komponenten aus.</system:String>
 	<system:String x:Key="disableDefenderAntiSpywareToggle">Defender Anti-Spyware deaktivieren</system:String>
 	<system:String x:Key="disableDefenderAntivirusToggle">Defender Antivirus deaktivieren</system:String>
 	<system:String x:Key="disableDefenderRealTimeToggle">Defender Echtzeitschutz deaktivieren</system:String>
@@ -86,6 +88,8 @@
 	<system:String x:Key="softwareDistributionCheckbox">Software Vertrieb</system:String>
 	<system:String x:Key="googleChromeCacheCheckbox">Google Chrome Cache</system:String>
 	<system:String x:Key="googleChromeCacheCheckboxToolTip">Löscht Google Chrome Cache</system:String>
+	<system:String x:Key="edgeCacheCheckbox">Microsoft Edge Cache</system:String>
+	<system:String x:Key="edgeCacheCheckboxToolTip">Löscht den Cache von Microsoft Edge</system:String>
 	<system:String x:Key="otherLogsCheckbox">Andere Protokolldateien</system:String>
 	<system:String x:Key="otherLogsCheckboxToolTip">Löscht einige Protokolldateien in System32</system:String>
 	<system:String x:Key="logsCheckboxToolTip">Bereinigt Windows-Ereignisprotokolle</system:String>
@@ -120,6 +124,8 @@
 	<system:String x:Key="disableAppUpdatesToggle">Automatische App-Updates deaktivieren</system:String>
 	<system:String x:Key="disableSearchIndex">Suchindizierung deaktivieren</system:String>
 	<system:String x:Key="oldPhotoViewer">Alten Fotoviewer aktivieren</system:String>
+	<system:String x:Key="oneDriveRemove">Entfernt OneDrive</system:String>
+	<system:String x:Key="oneDriveRemoveTooltip">Entfernt OneDrive und alle seine Komponenten von meiner Seite</system:String>
 	<system:String x:Key="enableOldContextMenuToolTip">Aktiviert den alten Kontextmenüstil.</system:String>
 	<system:String x:Key="disableWidgetsToolTip">Deaktiviert Desktop-Widgets.</system:String>
 	<system:String x:Key="disablePeekToolTip">Deaktiviert die Schnelleinsicht beim Mouseover der Taskleiste.</system:String>
@@ -134,7 +140,23 @@
 	<system:String x:Key="disableAppUpdatesToolTip">Deaktiviert automatische App-Updates.</system:String>
 	<system:String x:Key="disableSearchIndexToolTip">Deaktiviert den Suchindexdienst.</system:String>
 	<system:String x:Key="oldPhotoViewerToolTip">Aktiviert den alten Foto-Viewer.</system:String>
-
+	<system:String x:Key="clockSecond">Sekunden neben der Uhr anzeigen</system:String>
+	<system:String x:Key="clockSecondToolTip">Zeigt die Sekunde neben der Uhr in der Taskleiste an</system:String>
+	<system:String x:Key="explorerNetworkFolder">Entfernt den Ordner "Netzwerk" im Explorer</system:String>
+	<system:String x:Key="explorerNetworkFolderToolTip">Entfernt den Ordner "Netzwerk" aus dem linken Menü, wenn Sie meinen Computer betreten.</system:String>
+	<system:String x:Key="disableUAC">Benutzerkontensteuerung (UAC) deaktivieren</system:String>
+	<system:String x:Key="disableUACToolTip">Ermöglicht das Ausschalten der Einstellungen für die Benutzerkontensteuerung (UAC)</system:String>
+	<system:String x:Key="attachmentManager">Sicherheitswarnungen beim Starten von heruntergeladenen Dateien abschalten</system:String>
+	<system:String x:Key="attachmentManagerToolTip">Initialisiert eine Sicherheitswarnung beim Starten von aus dem Internet heruntergeladenen Dateien und ermöglicht es, diese zu deaktivieren</system:String>
+	<system:String x:Key="explorerOptimization">Geringfügige Optimierung des Explorers</system:String>
+	<system:String x:Key="explorerOptimizationToolTip">Dateien und Ordner ausblenden: Dateien und Ordner werden ausgeblendet.
+	Dateierweiterungen anzeigen: Dateierweiterungen werden nicht ausgeblendet.
+	Startort: Der Datei-Explorer wird in der als "Dieser PC" oder "Arbeitsplatz" bezeichneten Partition gestartet.
+	Separater Betrieb: Jedes Datei-Explorer-Fenster wird als separater Prozess ausgeführt.
+	Synchronisationsanbieter-Benachrichtigungen: Synchronisationsanbieter-Benachrichtigungen werden nicht angezeigt</system:String>
+	<system:String x:Key="NumLock">NumLock beim Starten aktivieren</system:String>
+	<system:String x:Key="NumLockToolTip">Aktiviert die NumLock-Funktion bei jedem Windows-Start</system:String>
+	
 	<system:String x:Key="windowsServicesHeaderText"> Windows Dienste</system:String>
 	<system:String x:Key="windowsServicesLabel">Windows Dienste</system:String>
 	<system:String x:Key="AVCTPServiceToggle">AVCTP-Dienst deaktivieren</system:String>

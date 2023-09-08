@@ -21,6 +21,8 @@
 	<system:String x:Key="disableWindowsSearchToggleToolTip">Це служба, яка дозволяє швидко знаходити файли і програми. Вона прискорює такі функції, як пошук файлів, запуск програм і редагування файлів.</system:String>
 	
 	<system:String x:Key="windowsDefenderLabel">Захисник Windows</system:String>
+	<system:String x:Key="defenderFullToggle">Повністю вимкнути Defender</system:String>
+	<system:String x:Key="defenderFullToggleTooltip">Вимкнути Захисник Windows та всі необхідні компоненти.</system:String>
 	<system:String x:Key="disableDefenderAntiSpywareToggle">Вимкнути захист від шпигунських програм Захисника</system:String>
 	<system:String x:Key="disableDefenderAntivirusToggle">Вимкнути антивірус Захисника</system:String>
 	<system:String x:Key="disableDefenderRealTimeToggle">Вимкнути захист в реальному часі Захисника</system:String>
@@ -86,6 +88,8 @@
 	<system:String x:Key="softwareDistributionCheckbox">Програмне забезпеченняРозповсюдження</system:String>
 	<system:String x:Key="googleChromeCacheCheckbox">Кеш Google Chrome</system:String>
 	<system:String x:Key="googleChromeCacheCheckboxToolTip">Очищає кеш Google Chrome</system:String>
+	<system:String x:Key="edgeCacheCheckbox">Кеш Microsoft Edge</system:String>
+	<system:String x:Key="edgeCacheCheckboxToolTip">Очищає кеш Microsoft Edge</system:String>
 	<system:String x:Key="otherLogsCheckbox">Інші файли журналів</system:String>
 	<system:String x:Key="otherLogsCheckboxToolTip">Видаляє деякі файли журналів у System32</system:String>
 	<system:String x:Key="logsCheckboxToolTip">Очищає журнали подій Windows</system:String>
@@ -120,6 +124,8 @@
 	<system:String x:Key="disableAppUpdatesToggle">Вимкнути автооновлення додатків</system:String>
 	<system:String x:Key="disableSearchIndex">Вимкнути індексування пошуку</system:String>
 	<system:String x:Key="oldPhotoViewer">Увімкнути старий переглядач зображень</system:String>
+	<system:String x:Key="oneDriveRemove">Видалити OneDrive</system:String>
+	<system:String x:Key="oneDriveRemoveTooltip">Видалити OneDrive та всі його компоненти з мого сайту.</system:String>
 	<system:String x:Key="enableOldContextMenuToolTip">Увімкнути старий стиль контекстного меню.</system:String>
 	<system:String x:Key="disableWidgetsToolTip">Вимикає віджети на робочому столі.</system:String>
 	<system:String x:Key="disablePeekToolTip">Вимикає попередній перегляд робочого столу при наведенні на панель завдань.</system:String>
@@ -134,6 +140,22 @@
 	<system:String x:Key="disableAppUpdatesToolTip">Вимикає автооновлення додатків.</system:String>
 	<system:String x:Key="disableSearchIndexToolTip">Вимикає службу індексування пошуку.</system:String>
 	<system:String x:Key="oldPhotoViewerToolTip">Увімкнути старий переглядач зображень.</system:String>
+	<system:String x:Key="clockSecond">Показувати секунди поруч з годинником</system:String>
+	<system:String x:Key="clockSecondToolTip">Показувати секунди поруч з годинником на панелі завдань</system:String>
+	<system:String x:Key="explorerNetworkFolder">Видаляє папку "Network" у провіднику</system:String>
+	<system:String x:Key="explorerNetworkFolderToolTip">Видаляє папку Network з лівого меню при вході на мій комп'ютер.</system:String>
+	<system:String x:Key="disableUAC">Вимкнути контроль облікових записів користувачів (UAC)</system:String>
+	<system:String x:Key="disableUACToolTip">Дозволяє вимкнути налаштування контролю облікових записів користувачів (UAC)</system:String>
+	<system:String x:Key="attachmentManager">Вимкнути попередження про безпеку під час ініціалізації завантажених файлів</system:String>
+	<system:String x:Key="attachmentManagerToolTip">Ініціалізує попередження про безпеку під час запуску файлів, завантажених з інтернету, дозволяючи вимкнути його.</system:String>
+	<system:String x:Key="explorerOptimization">Невелика оптимізація для провідника</system:String>
+	<system:String x:Key="explorerOptimizationToolTip">Приховати файли і теки: файли і теки приховано.
+	Показувати розширення файлів: Розширення файлів не буде приховано.
+	Місце запуску: Провідник файлів запускається у розділі, відомому як "Цей комп'ютер" або "Мій комп'ютер".
+	Окремий режим роботи: Кожне вікно Провідника запускається як окремий процес.
+	Сповіщення від постачальника синхронізації: Сповіщення від постачальника синхронізації не буде показано</system:String>
+	<system:String x:Key="NumLock">Увімкнути NumLock під час запуску</system:String>
+	<system:String x:Key="NumLockToolTip">Увімкнути NumLock під час кожного запуску Windows.</system:String>
 	
 	<system:String x:Key="windowsServicesHeaderText"> Служби Windows</system:String>
 	<system:String x:Key="windowsServicesLabel">Служби Windows</system:String>

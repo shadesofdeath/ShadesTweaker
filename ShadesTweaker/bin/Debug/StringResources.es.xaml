@@ -21,6 +21,8 @@
 	<system:String x:Key="disableWindowsSearchToggleToolTip">Es un servicio que permite encontrar rápidamente archivos y aplicaciones. Acelera funciones como la búsqueda de archivos, el inicio de aplicaciones y la edición de archivos.</system:String>
 	
 	<system:String x:Key="windowsDefenderLabel">Windows Defender</system:String>
+	<system:String x:Key="defenderFullToggle">Desactiva Defender por completo</system:String>
+	<system:String x:Key="defenderFullToggleTooltip">Apaga Windows Defender y todos los componentes necesarios.</system:String>
 	<system:String x:Key="disableDefenderAntiSpywareToggle">Desactivar Protección contra software espía de Defender</system:String>
 	<system:String x:Key="disableDefenderAntivirusToggle">Desactivar Antivirus de Defender</system:String>
 	<system:String x:Key="disableDefenderRealTimeToggle">Desactivar Protección en tiempo real de Defender</system:String>
@@ -86,6 +88,8 @@
 	<system:String x:Key="softwareDistributionCheckbox">Distribución de software</system:String>
 	<system:String x:Key="googleChromeCacheCheckbox">Caché de Google Chrome</system:String>
 	<system:String x:Key="googleChromeCacheCheckboxToolTip">Limpia la caché de Google Chrome</system:String>
+	<system:String x:Key="edgeCacheCheckbox">Caché de Microsoft Edge</system:String>
+	<system:String x:Key="edgeCacheCheckboxToolTip">Limpia la caché de Microsoft Edge</system:String>
 	<system:String x:Key="otherLogsCheckbox">Otros archivos de registro</system:String>
 	<system:String x:Key="otherLogsCheckboxToolTip">Elimina algunos archivos de registro en System32</system:String>
 	<system:String x:Key="logsCheckboxToolTip">Limpia los registros de eventos de Windows</system:String>
@@ -120,6 +124,8 @@
 	<system:String x:Key="disableAppUpdatesToggle">Desactivar actualizaciones automáticas de aplicaciones</system:String>
 	<system:String x:Key="disableSearchIndex">Desactivar indexación de búsqueda</system:String>
 	<system:String x:Key="oldPhotoViewer">Habilitar Visor de fotos anterior</system:String>
+	<system:String x:Key="oneDriveRemove">Eliminar OneDrive</system:String>
+	<system:String x:Key="oneDriveRemoveTooltip">Elimina oneDrive y todos sus componentes de mi sitio.</system:String>
 	<system:String x:Key="enableOldContextMenuToolTip">Habilita el estilo de menú contextual antiguo.</system:String>
 	<system:String x:Key="disableWidgetsToolTip">Desactiva los widgets del escritorio.</system:String>
 	<system:String x:Key="disablePeekToolTip">Desactiva poder echar un vistazo al escritorio al pasar el mouse sobre la barra de tareas.</system:String>
@@ -134,7 +140,23 @@
 	<system:String x:Key="disableAppUpdatesToolTip">Desactiva las actualizaciones automáticas de aplicaciones.</system:String>
 	<system:String x:Key="disableSearchIndexToolTip">Desactiva el servicio de indexación de búsqueda.</system:String>
 	<system:String x:Key="oldPhotoViewerToolTip">Habilita el Visor de fotos anterior.</system:String>
-
+	<system:String x:Key="clockSecond">Mostrar los segundos junto al reloj</system:String>
+	<system:String x:Key="clockSecondToolTip">Muestra los segundos junto al reloj en la barra de tareas.</system:String>
+	<system:String x:Key="explorerNetworkFolder">Quita la carpeta "Red" del explorador</system:String>
+	<system:String x:Key="explorerNetworkFolderToolTip">Elimina la carpeta Red del menú izquierdo al entrar en mi ordenador.</system:String>
+	<system:String x:Key="disableUAC">Desactivar el control de cuentas de usuario (UAC)</system:String>
+	<system:String x:Key="disableUACToolTip">Permite desactivar la configuración del control de cuentas de usuario (UAC)</system:String>
+	<system:String x:Key="attachmentManager">Desactiva las advertencias de seguridad al inicializar los archivos descargados</system:String>
+	<system:String x:Key="attachmentManagerToolTip">Inicializa una advertencia de seguridad al inicializar archivos descargados de Internet, permitiendo desactivarla.</system:String>
+	<system:String x:Key="explorerOptimization">Optimización menor para el explorador</system:String>
+	<system:String x:Key="explorerOptimizationToolTip">Ocultar archivos y carpetas: Los archivos y carpetas se ocultan.
+	Mostrar extensiones de archivos: Las extensiones de archivos no se ocultan.
+	Ubicación de inicio: El Explorador de archivos se inicia en la partición conocida como "Este PC" o "Mi PC".
+	Funcionamiento Separado: Cada ventana del Explorador de archivos se ejecuta como un proceso independiente.
+	Notificaciones del proveedor de sincronización: Las notificaciones del proveedor de sincronización no se muestran</system:String>
+	<system:String x:Key="NumLock">Activa BloqNum al iniciar</system:String>
+	<system:String x:Key="NumLockToolTip">Habilita NumLock en cada inicio de Windows.</system:String>
+	
 	<system:String x:Key="windowsServicesHeaderText"> Servicios de Windows</system:String>
 	<system:String x:Key="windowsServicesLabel">Servicios de Windows</system:String>
 	<system:String x:Key="AVCTPServiceToggle">Desactivar servicio AVCTP</system:String>
