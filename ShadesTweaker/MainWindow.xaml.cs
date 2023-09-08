@@ -3016,30 +3016,39 @@ namespace ShadesTweaker
 
         private void CheckForUpdatesButton_Click(object sender, RoutedEventArgs e)
         {
-            // Sürüm dosyasının URL'sini belirleyin
+            // Set the URL of the version file
             string versionUrl = "https://github.com/shadesofdeath/ShadesTweaker/raw/main/version.txt";
 
             try
             {
-                // URL'den sürüm numarasını indirin
+                // Delete the previously downloaded file if it exists
+                if (File.Exists("version.txt"))
+                {
+                    File.Delete("version.txt");
+                }
+
+                // Download the version number from the URL
                 WebClient webClient = new WebClient();
-                string latestVersion = webClient.DownloadString(versionUrl);
+                webClient.DownloadFile(versionUrl, "version.txt");
 
-                // Uygulamanın içindeki sürüm numarasını alın (örneğin, uygulamanızın içinde bir değişken olarak saklanıyor olabilir)
-                string currentVersion = "1.6"; // Bu kısmı kendi uygulamanızın sürüm numarasını alacak şekilde güncelleyin
+                // Read the downloaded version number
+                string latestVersion = File.ReadAllText("version.txt");
 
-                // Sürüm numaralarını karşılaştırın
+                // Get the current version number of your application (you may store it as a variable in your application)
+                string currentVersion = "1.6"; // Update this with your application's actual version number
+
+                // Compare the version numbers
                 if (latestVersion.Trim() == currentVersion.Trim())
                 {
-                    System.Windows.MessageBox.Show("The application is out of date. No update found.");
+                    System.Windows.MessageBox.Show("No updates found.");
                 }
                 else
                 {
-                    MessageBoxResult result = System.Windows.MessageBox.Show("Update available. Download new version.", "Update Found", MessageBoxButton.OKCancel);
+                    MessageBoxResult result = System.Windows.MessageBox.Show("An update is available. Download the new version.", "Update Found", MessageBoxButton.OKCancel);
 
                     if (result == MessageBoxResult.OK)
                     {
-                        // Kullanıcı "Tamam" tuşuna tıkladığında belirtilen web sitesine yönlendirin
+                        // Redirect the user to the specified website when they click "OK"
                         System.Diagnostics.Process.Start("https://github.com/shadesofdeath/ShadesTweaker/releases");
                     }
                 }
