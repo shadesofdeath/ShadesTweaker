@@ -8,9 +8,9 @@
         ExtendsContentIntoTitleBar="True"
         WindowBackdropType="Mica"
         WindowCornerPreference="Round"
-        WindowStyle="None">
+        WindowStyle="None"  Loaded="Window_Loaded" >
     <Grid>
-        <ui:TitleBar ShowClose="True" Title="Shades Tweaker v1.6" ShowMaximize="False" ShowHelp="False" ShowMinimize="True" CanMaximize="False"  VerticalAlignment="Top" />
+        <ui:TitleBar ShowClose="True" Title="Shades Tweaker v1.7" ShowMaximize="False" ShowHelp="False" ShowMinimize="True" CanMaximize="False"  VerticalAlignment="Top" />
         <TabControl x:Name="myTabControl" Margin="0,42,0,0">
             <!-- Tab 1 -->
             <TabItem Width="auto" FontSize="12">
@@ -29,7 +29,6 @@
                         <ui:ToggleSwitch FontSize="12" Margin="0,10,0,0" x:Name="disableMemoryCompressionToggle" Checked="disableMemoryCompressionToggle_Checked" Unchecked="disableMemoryCompressionToggle_Unchecked" Content="{DynamicResource disableMemoryCompressionToggle}" ToolTip="{DynamicResource disableMemoryCompressionToggleTooltip}" />
                         <ui:ToggleSwitch FontSize="12" Margin="0,10,0,0" x:Name="compatibilityAssistantToggle" Checked="compatibilityassistansToggle_Checked" Unchecked="compatibilityAssistantToggle_Unchecked" Content="{DynamicResource compatibilityAssistantToggle}" ToolTip="{DynamicResource compatibilityAssistantToggleTooltip}" />
                         <ui:ToggleSwitch FontSize="12" Margin="0,10,0,0" x:Name="printSpoolerToggle" Checked="printspoolerToggle_Checked" Unchecked="printspoolerToggle_Unchecked" Content="{DynamicResource printSpoolerToggle}" ToolTip="{DynamicResource printSpoolerToggleTooltip}" />
-                        <ui:ToggleSwitch FontSize="12" Margin="0,10,0,0" x:Name="sysMainToggle" Checked="SysMain_Checked" Unchecked="SysMain_Unchecked" Content="{DynamicResource sysMainToggle}" ToolTip="{DynamicResource sysMainToggleTooltip}" />
                     </StackPanel>
                     <StackPanel Margin="800,0,0,0" MaxWidth="430" MinWidth="430" HorizontalAlignment="Center">
                         <Label Foreground="#7F8487" Content="{DynamicResource windowsDefenderLabel}"/>
@@ -194,7 +193,6 @@
                         <ui:ToggleSwitch x:Name="DataUsageServiceToggle" FontSize="12" Content="{DynamicResource DataUsageServiceToggle}" Margin="0,10,0,0" Checked="DataUsageService_Checked" Unchecked="DataUsageService_Unchecked" ToolTip="{DynamicResource DataUsageServiceToggleToolTip}"/>
                         <ui:ToggleSwitch x:Name="GeolocationServiceToggle" FontSize="12" Content="{DynamicResource GeolocationServiceToggle}" Margin="0,10,0,0" Checked="GeolocationService_Checked" Unchecked="GeolocationService_Unchecked" ToolTip="{DynamicResource GeolocationServiceToggleToolTip}"/>
                         <ui:ToggleSwitch x:Name="CredentialManagerServiceToggle" FontSize="12" Content="{DynamicResource CredentialManagerServiceToggle}" Margin="0,10,0,0" Checked="CredentialManagerService_Checked" Unchecked="CredentialManagerService_Unchecked" ToolTip="{DynamicResource CredentialManagerServiceToggleToolTip}"/>
-                        <ui:ToggleSwitch x:Name="SysMainServiceToggle" FontSize="12" Content="{DynamicResource SysMainServiceToggle}" Margin="0,10,0,0" Checked="SysMainService_Checked" Unchecked="SysMainService_Unchecked" ToolTip="{DynamicResource SysMainServiceToggleToolTip}"/>
                         <ui:ToggleSwitch x:Name="disableWindowsSearchToggle" FontSize="12" Content="{DynamicResource disableWindowsSearchToggle}" Margin="0,10,0,0" Checked="disableWindowsSearch_Checked" Unchecked="disableWindowsSearch_Unchecked" ToolTip="{DynamicResource disableWindowsSearchToggleToolTip}"/>
                     </StackPanel>
                 </WrapPanel>
@@ -218,7 +216,6 @@
                         <ui:ToggleSwitch x:Name="disableWindowsDefender" FontSize="12" Content="{DynamicResource disableWindowsDefenderToggle}" Margin="0,10,0,0" Checked="windowsDefender_Checked" Unchecked="windowsDefender_Unchecked" ToolTip="{DynamicResource disableWindowsDefenderToolTip}"/>
                         <ui:ToggleSwitch x:Name="disableOneDrive" FontSize="12" Content="{DynamicResource disableOneDriveToggle}" Margin="0,10,0,0" Checked="oneDrive_Checked" Unchecked="oneDrive_Unchecked" ToolTip="{DynamicResource disableOneDriveToolTip}"/>
                         <ui:ToggleSwitch x:Name="disableFeedbackHub" FontSize="12" Content="{DynamicResource disableFeedbackHubToggle}" Margin="0,10,0,0" Checked="feedbackHub_Checked" Unchecked="feedbackHub_Unchecked" ToolTip="{DynamicResource disableFeedbackHubToolTip}"/>
-                        <ui:ToggleSwitch x:Name="disableWiFiSense" FontSize="12" Content="{DynamicResource disableWiFiSenseToggle}" Margin="0,10,0,0" Checked="wifiSense_Checked" Unchecked="wifiSense_Unchecked" ToolTip="{DynamicResource disableWiFiSenseToolTip}"/>
                         <ui:ToggleSwitch x:Name="disableDiagnosticData" FontSize="12" Content="{DynamicResource disableDiagnosticDataToggle}" Margin="0,10,0,0" Checked="diagnosticData_Checked" Unchecked="diagnosticData_Unchecked" ToolTip="{DynamicResource disableDiagnosticDataToolTip}"/>
                         <ui:ToggleSwitch x:Name="disableDiagnosticsTracking" FontSize="12" Content="{DynamicResource disableDiagnosticsTrackingToggle}" Margin="0,10,0,0" Checked="diagnosticsTrackingDisable_Checked" Unchecked="diagnosticsTrackingDisable_Unchecked" ToolTip="{DynamicResource disableDiagnosticsTrackingToolTip}"/>
                         <ui:ToggleSwitch x:Name="disableSmartScreen" FontSize="12" Content="{DynamicResource disableSmartScreen2Toggle}" Margin="0,10,0,0" Checked="smartScreen_Checked" Unchecked="smartScreen_Unchecked" ToolTip="{DynamicResource disableSmartScreen2ToolTip}"/>
